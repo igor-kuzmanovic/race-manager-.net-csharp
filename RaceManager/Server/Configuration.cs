@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Server.Database.Access
+namespace Server
 {
-    class Configuration : DbMigrationsConfiguration<Context>
+    class Configuration : DbMigrationsConfiguration<RaceManagerDbContext>
     {
         public Configuration()
         {

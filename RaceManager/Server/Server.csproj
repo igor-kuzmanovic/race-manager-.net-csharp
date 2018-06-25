@@ -64,11 +64,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Database\Access\Configuration.cs" />
-    <Compile Include="Database\Access\Context.cs" />
-    <Compile Include="Database\Models\Driver.cs" />
-    <Compile Include="Database\Models\Race.cs" />
-    <Compile Include="Database\Models\Vehicle.cs" />
+    <Compile Include="Configuration.cs" />
+    <Compile Include="Context.cs" />
+    <Compile Include="Driver.cs" />
+    <Compile Include="Race.cs" />
+    <Compile Include="Vehicle.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -77,10 +77,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Database\Data\RaceManagerDb.mdf">
+    <Content Include="RaceManagerDb.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Database\Data\RaceManagerDb_log.ldf">
+    <Content Include="RaceManagerDb_log.ldf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>RaceManagerDb.mdf</DependentUpon>
     </Content>

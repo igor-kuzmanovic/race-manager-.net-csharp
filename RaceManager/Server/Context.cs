@@ -1,14 +1,13 @@
-﻿using Server.Database.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Server.Database.Access
+namespace Server
 {
-    class Context : DbContext
+    class RaceManagerDbContext : DbContext
     {
         public Context() : base("RaceManagerDbConnection")
         {
