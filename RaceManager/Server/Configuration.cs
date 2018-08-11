@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Server
 {
-    class Configuration : DbMigrationsConfiguration<RaceManagerDbContext>
+    class Configuration : DbMigrationsConfiguration<Context>
     {
         public Configuration()
         {

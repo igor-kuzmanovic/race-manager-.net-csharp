@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace Server
 {
-    class Race
+    class Race : BaseEntity
     {
-        public int Id { get; set; }
         public DateTime EventDate { get; set; }
         public string EventLocation { get; set; }
         public ICollection<Driver> Drivers { get; set; }
