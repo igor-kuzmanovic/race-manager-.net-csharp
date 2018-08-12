@@ -1,6 +1,6 @@
-﻿namespace SharedLibrary
+﻿namespace Service
 {
-    class VehicleDTO
+    public class VehicleDTO
     {
         public int Id { get; set; }
         public string Manufacturer { get; set; }

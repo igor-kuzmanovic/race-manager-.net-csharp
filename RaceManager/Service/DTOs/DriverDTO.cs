@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 
-namespace SharedLibrary
+namespace Service
 {
-    class DriverDTO
+    public class DriverDTO
     {
         public int Id { get; set; }
         public string FirstName { get; set; }

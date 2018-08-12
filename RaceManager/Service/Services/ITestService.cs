@@ -1,11 +1,11 @@
 ﻿using System.ServiceModel;
 
-namespace SharedLibrary
+namespace Service
 {
     [ServiceContract]
-    public interface IService
+    public interface ITestService
     {
         [OperationContract]
-        void Ping();
+        string Test();
     }
 }

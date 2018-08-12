@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Service;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -23,6 +25,12 @@ namespace Client
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            ChannelFactory<ITestService> factory = new ChannelFactory<ITestService>("TestService");
+            MessageBox.Show(factory.CreateChannel().Test());
         }
     }
 }

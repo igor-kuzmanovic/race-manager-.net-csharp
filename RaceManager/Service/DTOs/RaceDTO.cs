@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace SharedLibrary
+namespace Service
 {
-    class RaceDTO
+    public class RaceDTO
     {
         public int Id { get; set; }
         public DateTime EventDate { get; set; }

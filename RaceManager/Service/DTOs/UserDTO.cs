@@ -1,6 +1,6 @@
-﻿namespace SharedLibrary
+﻿namespace Service
 {
-    class UserDTO
+    public class UserDTO
     {
         public int Id { get; set; }
         public string Username { get; set; }
