@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Server
+namespace SharedLibrary
 {
-    class Race : BaseEntity
+    class RaceDTO
     {
+        public int Id { get; set; }
         public DateTime EventDate { get; set; }
         public string EventLocation { get; set; }
-        public ICollection<Driver> Drivers { get; set; }
+        public List<int> DriverIds { get; set; }
     }
 }

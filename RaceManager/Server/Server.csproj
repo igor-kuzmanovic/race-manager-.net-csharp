@@ -71,7 +71,6 @@
     <Compile Include="Context.cs" />
     <Compile Include="Driver.cs" />
     <Compile Include="BaseEntity.cs" />
-    <Compile Include="IService.cs" />
     <Compile Include="Race.cs" />
     <Compile Include="Service.cs" />
     <Compile Include="User.cs" />
@@ -103,6 +102,12 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SharedLibrary\SharedLibrary.csproj">
+      <Project>{30D7CAEA-0712-4B86-B4B0-614B757BAA5C}</Project>
+      <Name>SharedLibrary</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

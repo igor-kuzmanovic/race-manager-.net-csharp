@@ -1,13 +1,14 @@
 ﻿using System.Collections.Generic;
 
-namespace Server
+namespace SharedLibrary
 {
-    class Driver : BaseEntity
+    class DriverDTO
     {
+        public int Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string UMCN { get; set; }
-        public ICollection<Vehicle> Vehicles { get; set; }
-        public ICollection<Race> Races { get; set; }
+        public List<int> VehicleIds { get; set; }
+        public List<int> RaceIds { get; set; }
     }
 }
