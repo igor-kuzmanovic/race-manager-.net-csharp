@@ -41,12 +41,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DriverDTO.cs" />
-    <Compile Include="IService.cs" />
+    <Compile Include="DTOs\DriverDTO.cs" />
+    <Compile Include="Services\IService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RaceDTO.cs" />
-    <Compile Include="UserDTO.cs" />
-    <Compile Include="VehicleDTO.cs" />
+    <Compile Include="DTOs\RaceDTO.cs" />
+    <Compile Include="DTOs\UserDTO.cs" />
+    <Compile Include="DTOs\VehicleDTO.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

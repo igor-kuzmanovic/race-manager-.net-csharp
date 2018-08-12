@@ -67,14 +67,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Configuration.cs" />
-    <Compile Include="Context.cs" />
-    <Compile Include="Driver.cs" />
-    <Compile Include="BaseEntity.cs" />
-    <Compile Include="Race.cs" />
-    <Compile Include="Service.cs" />
-    <Compile Include="User.cs" />
-    <Compile Include="Vehicle.cs" />
+    <Compile Include="DB\Configuration.cs" />
+    <Compile Include="DB\Context.cs" />
+    <Compile Include="Domain\Driver.cs" />
+    <Compile Include="Domain\BaseEntity.cs" />
+    <Compile Include="Domain\Race.cs" />
+    <Compile Include="Services\Service.cs" />
+    <Compile Include="Domain\User.cs" />
+    <Compile Include="Domain\Vehicle.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
