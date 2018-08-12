@@ -22,15 +22,25 @@ namespace Client
     /// </summary>
     public partial class MainWindow : Window
     {
+        private static ChannelFactory<ILoginService> factory = new ChannelFactory<ILoginService>("LoginService");
+        private static ILoginService proxy = factory.CreateChannel();
+        private static LoginDTO user;
+
         public MainWindow()
         {
-            InitializeComponent();
+            InitializeComponent();          
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Login_Click(object sender, RoutedEventArgs e)
         {
-            ChannelFactory<ITestService> factory = new ChannelFactory<ITestService>("TestService");
-            MessageBox.Show(factory.CreateChannel().Test());
+            user = proxy.Login(TUsername.Text, TPassword.Text);
+            MessageBox.Show("Logged in - Id: " + user.Id + ", Token: " + user.Token + ", Admin: " + user.IsAdmin);
+        }
+
+        private void Logout_Click(object sender, RoutedEventArgs e)
+        {
+            proxy.Logout(user.Token);
+            MessageBox.Show("Logged out");
         }
     }
 }

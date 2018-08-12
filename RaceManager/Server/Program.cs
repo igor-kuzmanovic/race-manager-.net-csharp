@@ -7,7 +7,7 @@ namespace Server
     {
         static void Main(string[] args)
         {
-            ServiceHost service = new ServiceHost(typeof(TestService));
+            var service = new ServiceHost(typeof(LoginService));
             service.Open();
             Console.ReadKey();
             service.Close();

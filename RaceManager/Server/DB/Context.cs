@@ -6,6 +6,7 @@ namespace Server
     {
         public Context() : base("RaceManagerDbConnection")
         {
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<Context, Configuration>());
         }
 
         public DbSet<User> Users { get; set; }
