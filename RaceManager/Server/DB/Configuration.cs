@@ -8,14 +8,6 @@ namespace Server
         {
             AutomaticMigrationsEnabled = true;
             AutomaticMigrationDataLossAllowed = true;
-            ContextKey = "Context";
-        }
-
-        protected override void Seed(Context context)
-        {
-            context.Users.Add(new User() { Id = 1, Username = "Admin", Password = "Admin", IsAdmin = true });
-
-            base.Seed(context);
         }
     }
 }

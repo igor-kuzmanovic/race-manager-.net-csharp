@@ -69,6 +69,7 @@
   <ItemGroup>
     <Compile Include="DB\Configuration.cs" />
     <Compile Include="DB\Context.cs" />
+    <Compile Include="DB\Initializer.cs" />
     <Compile Include="Domain\Driver.cs" />
     <Compile Include="Domain\BaseEntity.cs" />
     <Compile Include="Domain\Race.cs" />
@@ -82,15 +83,6 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="RaceManagerDb.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="RaceManagerDb_log.ldf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <DependentUpon>RaceManagerDb.mdf</DependentUpon>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">
