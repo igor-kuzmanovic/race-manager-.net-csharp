@@ -7,25 +7,34 @@ namespace Server
 {
     class LoginService : ILoginService
     {
-        public LoginDTO Login(string username, string password)
+        public UserDTO Login(string username, string password)
         {
+            if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
+            {
+                Console.WriteLine("Empty username or password");
+                return new UserDTO();
+            }
+
             var user = UserRepository.Instance.GetUserByUsername(username);
 
             if (user == null)
             {
                 Console.WriteLine("User not found: " + username);
-                return new LoginDTO();
+                return new UserDTO();
             }
 
             if (user.Password != password)
             {
                 Console.WriteLine("Incorrect password: " + username);
-                return new LoginDTO();
+                return new UserDTO();
             }
 
-            var loginDTO = new LoginDTO();
-            loginDTO.Id = user.Id;
-            loginDTO.IsAdmin = user.IsAdmin;
+            var userDTO = new UserDTO();
+            userDTO.Id = user.Id;
+            userDTO.Username = user.Username;
+            userDTO.FirstName = user.FirstName;
+            userDTO.LastName = user.LastName;
+            userDTO.IsAdmin = user.IsAdmin;
 
             string generatedToken;
             IEnumerable<string> tokens;
@@ -41,12 +50,18 @@ namespace Server
             UserRepository.Instance.UpdateUser(user);
             Console.WriteLine("Logged in: " + username);
 
-            loginDTO.Token = user.Token;
-            return loginDTO;
+            userDTO.Token = user.Token;
+            return userDTO;
         }
 
         public void Logout(string token)
         {
+            if (string.IsNullOrWhiteSpace(token))
+            {
+                Console.WriteLine("Empty token");
+                return;
+            }
+
             var user = UserRepository.Instance.GetUserByToken(token);
 
             if (user == null)

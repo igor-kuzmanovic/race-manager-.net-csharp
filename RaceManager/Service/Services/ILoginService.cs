@@ -6,7 +6,7 @@ namespace Service
     public interface ILoginService
     {
         [OperationContract]
-        LoginDTO Login(string username, string password);
+        UserDTO Login(string username, string password);
 
         [OperationContract]
         void Logout(string token);

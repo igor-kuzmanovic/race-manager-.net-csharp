@@ -42,7 +42,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DTOs\DriverDTO.cs" />
-    <Compile Include="DTOs\LoginDTO.cs" />
     <Compile Include="DTOs\RaceDTO.cs" />
     <Compile Include="DTOs\UserDTO.cs" />
     <Compile Include="DTOs\VehicleDTO.cs" />
