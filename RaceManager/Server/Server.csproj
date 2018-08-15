@@ -67,12 +67,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DBManagers\BaseDBManager.cs" />
     <Compile Include="DB\Configuration.cs" />
     <Compile Include="DB\Context.cs" />
     <Compile Include="DB\Initializer.cs" />
-    <Compile Include="Managers\DriverManager.cs" />
-    <Compile Include="Managers\RaceManager.cs" />
-    <Compile Include="Managers\VehicleManager.cs" />
+    <Compile Include="DBManagers\DriverDBManager.cs" />
+    <Compile Include="DBManagers\IDBManager.cs" />
+    <Compile Include="DBManagers\RaceDBManager.cs" />
+    <Compile Include="DBManagers\VehicleDBManager.cs" />
     <Compile Include="Models\Driver.cs" />
     <Compile Include="Models\BaseEntity.cs" />
     <Compile Include="Models\Race.cs" />
@@ -80,7 +82,7 @@
     <Compile Include="Models\Vehicle.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Managers\UserManager.cs" />
+    <Compile Include="DBManagers\UserDBManager.cs" />
     <Compile Include="Services\LoginService.cs" />
   </ItemGroup>
   <ItemGroup>
