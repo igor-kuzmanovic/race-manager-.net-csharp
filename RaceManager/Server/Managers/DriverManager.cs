@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 
 namespace Server.Managers
 {
@@ -12,19 +13,19 @@ namespace Server.Managers
 
         private DriverManager() { }
 
-        public Driver GetDriverById(int id)
+        public Driver GetDriver(Expression<Func<Driver, bool>> predicate)
         {
             using (var context = new Context())
             {
-                return context.Drivers.FirstOrDefault(d => d.Id == id);
+                return context.Drivers.FirstOrDefault(predicate);
             }
         }
 
-        public IEnumerable<Driver> GetAllDrivers()
+        public IEnumerable<Driver> GetDrivers(Expression<Func<Driver, bool>> predicate)
         {
             using (var context = new Context())
             {
-                return context.Drivers.ToList();
+                return context.Drivers.Where(predicate).ToList();
             }
         }
 
@@ -42,7 +43,7 @@ namespace Server.Managers
         {
             using (var context = new Context())
             {
-                var oldDriver = GetDriverById(driver.Id);
+                var oldDriver = GetDriver(d => d.Id == driver.Id);
 
                 if (oldDriver == null)
                     return false;
@@ -61,7 +62,7 @@ namespace Server.Managers
         {
             using (var context = new Context())
             {
-                var driver = GetDriverById(id);
+                var driver = GetDriver(d => d.Id == id);
 
                 if (driver == null)
                     return false;

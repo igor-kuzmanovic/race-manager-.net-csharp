@@ -7,7 +7,7 @@ namespace Server
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string UMCN { get; set; }
-        public ICollection<Vehicle> Vehicles { get; set; }
+        public ICollection<User> Vehicles { get; set; }
         public ICollection<Race> Races { get; set; }
     }
 }

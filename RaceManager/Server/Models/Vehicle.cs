@@ -1,6 +1,6 @@
 ﻿namespace Server
 {
-    class Vehicle : BaseEntity
+    class User : BaseEntity
     {
         public string Manufacturer { get; set; }
         public string Model { get; set; }

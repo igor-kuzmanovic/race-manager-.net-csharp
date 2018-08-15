@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 
 namespace Server
 {
@@ -12,23 +13,23 @@ namespace Server
 
         private VehicleManager() { }
 
-        public Vehicle GetVehicleById(int id)
+        public User GetVehicle(Expression<Func<User, bool>> predicate)
         {
             using (var context = new Context())
             {
-                return context.Vehicles.FirstOrDefault(v => v.Id == id);
+                return context.Vehicles.FirstOrDefault(predicate);
             }
         }
 
-        public IEnumerable<Vehicle> GetAllVehicles()
+        public IEnumerable<User> GetVehicles(Expression<Func<User, bool>> predicate)
         {
             using (var context = new Context())
             {
-                return context.Vehicles.ToList();
+                return context.Vehicles.Where(predicate).ToList();
             }
         }
 
-        public int InsertVehicle(Vehicle vehicle)
+        public int InsertVehicle(User vehicle)
         {
             using (var context = new Context())
             {
@@ -38,11 +39,11 @@ namespace Server
             }
         }
 
-        public bool UpdateVehicle(Vehicle vehicle)
+        public bool UpdateVehicle(User vehicle)
         {
             using (var context = new Context())
             {
-                var oldVehicle = GetVehicleById(vehicle.Id);
+                var oldVehicle = GetVehicle(v => v.Id == vehicle.Id);
 
                 if (oldVehicle == null)
                     return false;
@@ -63,7 +64,7 @@ namespace Server
         {
             using (var context = new Context())
             {
-                var vehicle = GetVehicleById(id);
+                var vehicle = GetVehicle(v => v.Id == id);
 
                 if (vehicle == null)
                     return false;

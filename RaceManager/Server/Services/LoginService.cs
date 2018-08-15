@@ -15,7 +15,7 @@ namespace Server
                 return new UserDTO();
             }
 
-            var user = UserManager.Instance.GetUserByUsername(username);
+            var user = UserManager.Instance.GetUser(u => u.Username.ToLower() == username.ToLower());
 
             if (user == null)
             {
@@ -42,7 +42,7 @@ namespace Server
             do
             {
                 generatedToken = Guid.NewGuid().ToString();
-                tokens = UserManager.Instance.GetAllTokens();
+                tokens = UserManager.Instance.GetUsers(u => true).Select(u => u.Token);
                 Console.WriteLine("Generated token: " + generatedToken);
             } while (tokens.Contains(generatedToken));
 
@@ -62,7 +62,7 @@ namespace Server
                 return;
             }
 
-            var user = UserManager.Instance.GetUserByToken(token);
+            var user = UserManager.Instance.GetUser(u => u.Token == token);
 
             if (user == null)
             {

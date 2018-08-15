@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 
 namespace Server
 {
@@ -12,19 +13,19 @@ namespace Server
 
         private RaceManager() { }
 
-        public Race GetRaceById(int id)
+        public Race GetRace(Expression<Func<Race, bool>> predicate)
         {
             using (var context = new Context())
             {
-                return context.Races.FirstOrDefault(r => r.Id == id);
+                return context.Races.FirstOrDefault(predicate);
             }
         }
 
-        public IEnumerable<Race> GetAllRaces()
+        public IEnumerable<Race> GetRaces(Expression<Func<Race, bool>> predicate)
         {
             using (var context = new Context())
             {
-                return context.Races.ToList();
+                return context.Races.Where(predicate).ToList();
             }
         }
 
@@ -42,7 +43,7 @@ namespace Server
         {
             using (var context = new Context())
             {
-                var oldRace = GetRaceById(race.Id);
+                var oldRace = GetRace(r => r.Id == race.Id);
 
                 if (oldRace == null)
                     return false;
@@ -59,7 +60,7 @@ namespace Server
         {
             using (var context = new Context())
             {
-                var race = GetRaceById(id);
+                var race = GetRace(r => r.Id == id);
 
                 if (race == null)
                     return false;

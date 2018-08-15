@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 
 namespace Server
 {
@@ -12,43 +13,19 @@ namespace Server
 
         private UserManager() { }
 
-        public User GetUserById(int id)
+        public User GetUser(Expression<Func<User, bool>> predicate)
         {
             using (var context = new Context())
             {
-                return context.Users.FirstOrDefault(u => u.Id == id);
+                return context.Users.FirstOrDefault(predicate);
             }
         }
 
-        public User GetUserByUsername(string username)
+        public IEnumerable<User> GetUsers(Expression<Func<User, bool>> predicate)
         {
             using (var context = new Context())
             {
-                return context.Users.FirstOrDefault(u => u.Username.ToLower() == username.ToLower());
-            }
-        }
-
-        public User GetUserByToken(string token)
-        {
-            using (var context = new Context())
-            {
-                return context.Users.FirstOrDefault(u => u.Token == token);
-            }
-        }
-
-        public IEnumerable<User> GetAllUsers()
-        {
-            using (var context = new Context())
-            {
-                return context.Users.ToList();
-            }
-        }
-
-        public IEnumerable<string> GetAllTokens()
-        {
-            using (var context = new Context())
-            {
-                return context.Users.Select(u => u.Token).ToList();
+                return context.Users.Where(predicate).ToList();
             }
         }
 
@@ -56,7 +33,7 @@ namespace Server
         {
             using (var context = new Context())
             {
-                IEnumerable<User> users = GetAllUsers();
+                IEnumerable<User> users = GetUsers(u => true);
 
                 if (users.Any(u => u.Username.ToLower() == user.Username.ToLower()))
                     return 0;
@@ -71,7 +48,7 @@ namespace Server
         {
             using (var context = new Context())
             {
-                var oldUser = GetUserById(user.Id);
+                var oldUser = GetUser(u => u.Id == user.Id);
 
                 if (oldUser == null)
                     return false;
@@ -89,7 +66,7 @@ namespace Server
         {
             using (var context = new Context())
             {
-                var user = GetUserById(id);
+                var user = GetUser(u => u.Id == id);
 
                 if (user == null)
                     return false;
