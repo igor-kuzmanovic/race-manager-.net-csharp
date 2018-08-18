@@ -4,31 +4,16 @@ using System.Collections.Generic;
 
 namespace Server
 {
-    abstract class BaseCRUDService<TDataTransferObject, TEntity> : ICRUDService<TDataTransferObject>
+    abstract class BaseCRUDService<TDataTransferObject, TEntity> : ICRUDService<TDataTransferObject> where TEntity : BaseEntity
     {
-        public virtual IEnumerable<TDataTransferObject> GetAll(string securityToken)
-        {
-            throw new NotImplementedException();
-        }
+        public abstract IEnumerable<TDataTransferObject> GetAll(string securityToken);
 
-        public virtual TDataTransferObject Get(string securityToken, int id)
-        {
-            throw new NotImplementedException();
-        }
+        public abstract TDataTransferObject Get(string securityToken, int id);
 
-        public virtual int Insert(string securityToken, TDataTransferObject dto)
-        {
-            throw new NotImplementedException();
-        }
+        public abstract int Insert(string securityToken, TDataTransferObject dto);
 
-        public virtual bool Update(string securityToken, TDataTransferObject dto)
-        {
-            throw new NotImplementedException();
-        }
+        public abstract bool Update(string securityToken, TDataTransferObject dto);
 
-        public virtual bool Delete(string securityToken, int id)
-        {
-            throw new NotImplementedException();
-        }
+        public abstract bool Delete(string securityToken, int id);
     }
 }
