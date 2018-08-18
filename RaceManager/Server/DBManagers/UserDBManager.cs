@@ -17,7 +17,7 @@ namespace Server
         {
             using (var context = new DBContext())
             {
-                IEnumerable<User> users = GetAll(u => true);
+                IEnumerable<User> users = FindAll(u => true);
 
                 if (users.Any(u => u.Username.ToLower() == user.Username.ToLower()))
                     return 0;
@@ -32,7 +32,7 @@ namespace Server
         {
             using (var context = new DBContext())
             {
-                var oldUser = Get(u => u.Id == user.Id);
+                var oldUser = Find(u => u.Id == user.Id);
 
                 if (oldUser == null)
                     return false;

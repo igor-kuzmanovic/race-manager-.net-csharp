@@ -45,6 +45,7 @@
     <Compile Include="DTOs\RaceDTO.cs" />
     <Compile Include="DTOs\UserDTO.cs" />
     <Compile Include="DTOs\VehicleDTO.cs" />
+    <Compile Include="Enums\DateTimeQueryType.cs" />
     <Compile Include="Services\ILoginService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\IDriverService.cs" />

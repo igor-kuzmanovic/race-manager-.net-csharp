@@ -12,7 +12,7 @@
         {
             using (var context = new DBContext())
             {
-                var oldRace = Get(r => r.Id == race.Id);
+                var oldRace = Find(r => r.Id == race.Id);
 
                 if (oldRace == null)
                     return false;

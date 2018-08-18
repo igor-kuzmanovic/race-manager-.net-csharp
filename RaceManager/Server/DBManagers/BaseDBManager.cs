@@ -8,7 +8,7 @@ namespace Server
 {
     abstract class BaseDBManager<TEntity> : IDBManager<TEntity> where TEntity : BaseEntity
     {
-        public virtual TEntity Get(Expression<Func<TEntity, bool>> predicate)
+        public virtual TEntity Find(Expression<Func<TEntity, bool>> predicate)
         {
             using (var context = new DBContext())
             {
@@ -16,7 +16,7 @@ namespace Server
             }
         }
 
-        public virtual IEnumerable<TEntity> GetAll(Expression<Func<TEntity, bool>> predicate)
+        public virtual IEnumerable<TEntity> FindAll(Expression<Func<TEntity, bool>> predicate)
         {
             using (var context = new DBContext())
             {
@@ -38,7 +38,7 @@ namespace Server
         {
             using (var context = new DBContext())
             {
-                var oldEntity = Get(e => e.Id == entity.Id);
+                var oldEntity = Find(e => e.Id == entity.Id);
 
                 if (oldEntity == null)
                     return false;
@@ -53,7 +53,7 @@ namespace Server
         {
             using (var context = new DBContext())
             {
-                var entity = Get(e => e.Id == id);
+                var entity = Find(e => e.Id == id);
 
                 if (entity == null)
                     return false;

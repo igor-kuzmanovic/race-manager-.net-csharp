@@ -12,7 +12,7 @@ namespace Server
             if (!AuthenticationManager.Instance.Authenticate(username, password))
                 return new UserDTO();
 
-            var user = UserDBManager.Instance.Get(u => u.Username.ToLower() == username.ToLower());
+            var user = UserDBManager.Instance.Find(u => u.Username.ToLower() == username.ToLower());
 
             if (user == null)
                 return new UserDTO();
@@ -38,7 +38,7 @@ namespace Server
             if (string.IsNullOrWhiteSpace(token))
                 return;
 
-            var user = UserDBManager.Instance.Get(u => u.Token == token);
+            var user = UserDBManager.Instance.Find(u => u.Token == token);
 
             if (user == null)
                 return;

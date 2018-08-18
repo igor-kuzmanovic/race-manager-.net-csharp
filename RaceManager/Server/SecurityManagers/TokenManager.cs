@@ -14,16 +14,19 @@ namespace Server
 
         public string GenerateToken(string username)
         {
-            string generatedToken;
-            IEnumerable<string> tokens;
+            var user = UserDBManager.Instance.Find(u => u.Username == username);
 
-            do
+            if (user == null)
+                return string.Empty;
+
+            while (true)
             {
-                generatedToken = Guid.NewGuid().ToString();
-                tokens = UserDBManager.Instance.GetAll(u => true).Select(u => u.Token);
-            } while (tokens.Contains(generatedToken));
+                var generatedToken = Guid.NewGuid().ToString();
+                var tokens = UserDBManager.Instance.FindAll(u => true).Select(u => u.Token);
 
-            return generatedToken;
+                if (!tokens.Contains(generatedToken))
+                    return generatedToken;
+            }
         }
     }
 }

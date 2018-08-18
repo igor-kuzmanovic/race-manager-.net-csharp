@@ -12,7 +12,7 @@
         {
             using (var context = new DBContext())
             {
-                var oldDriver = Get(d => d.Id == driver.Id);
+                var oldDriver = Find(d => d.Id == driver.Id);
 
                 if (oldDriver == null)
                     return false;

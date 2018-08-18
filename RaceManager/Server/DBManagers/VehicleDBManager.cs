@@ -12,7 +12,7 @@
         {
             using (var context = new DBContext())
             {
-                var oldVehicle = Get(v => v.Id == vehicle.Id);
+                var oldVehicle = Find(v => v.Id == vehicle.Id);
 
                 if (oldVehicle == null)
                     return false;

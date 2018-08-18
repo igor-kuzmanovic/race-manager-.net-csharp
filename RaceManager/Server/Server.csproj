@@ -81,6 +81,9 @@
     <Compile Include="DBEntities\User.cs" />
     <Compile Include="DBEntities\Vehicle.cs" />
     <Compile Include="Mappers\BaseMapper.cs" />
+    <Compile Include="Mappers\DriverMapper.cs" />
+    <Compile Include="Mappers\UserMapper.cs" />
+    <Compile Include="Mappers\VehicleMapper.cs" />
     <Compile Include="Mappers\RaceMapper.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

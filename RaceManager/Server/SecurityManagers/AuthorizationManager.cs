@@ -10,7 +10,7 @@
 
         public bool Authorize(string securityToken, bool shouldBeAdmin)
         {
-            var user = UserDBManager.Instance.Get(u => u.Token == securityToken);
+            var user = UserDBManager.Instance.Find(u => u.Token == securityToken);
 
             if (user == null)
                 return false;

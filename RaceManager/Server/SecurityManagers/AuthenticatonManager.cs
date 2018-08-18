@@ -10,7 +10,7 @@
 
         public bool Authenticate(string username, string password)
         {
-            var user = UserDBManager.Instance.Get(u => u.Username.ToLower() == username.ToLower());
+            var user = UserDBManager.Instance.Find(u => u.Username.ToLower() == username.ToLower());
 
             if (user == null)
                 return false;
