@@ -22,9 +22,22 @@ namespace Client
     /// </summary>
     public partial class MainWindow : Window
     {
-        private static ChannelFactory<ILoginService> factory = new ChannelFactory<ILoginService>("LoginService");
-        private static ILoginService proxy = factory.CreateChannel();
-        private static LoginDTO user;
+        private static ChannelFactory<ILoginService> loginFactory = new ChannelFactory<ILoginService>("LoginService");
+        private static ILoginService loginProxy = loginFactory.CreateChannel();
+
+        private static ChannelFactory<IUserService> userFactory = new ChannelFactory<IUserService>("UserService");
+        private static IUserService userProxy = userFactory.CreateChannel();
+
+        private static ChannelFactory<IRaceService> raceFactory = new ChannelFactory<IRaceService>("RaceService");
+        private static IRaceService raceProxy = raceFactory.CreateChannel();
+
+        private static ChannelFactory<IDriverService> driverFactory = new ChannelFactory<IDriverService>("DriverService");
+        private static IDriverService driverProxy = driverFactory.CreateChannel();
+
+        private static ChannelFactory<IVehicleService> vehicleFactory = new ChannelFactory<IVehicleService>("VehicleService");
+        private static IVehicleService vehicleProxy = vehicleFactory.CreateChannel();
+
+        private static UserDTO user;
 
         public MainWindow()
         {
@@ -33,14 +46,19 @@ namespace Client
 
         private void Login_Click(object sender, RoutedEventArgs e)
         {
-            user = proxy.Login(TUsername.Text, TPassword.Text);
+            user = loginProxy.Login(TUsername.Text, TPassword.Text);
             MessageBox.Show("Logged in - Id: " + user.Id + ", Token: " + user.Token + ", Admin: " + user.IsAdmin);
         }
 
         private void Logout_Click(object sender, RoutedEventArgs e)
         {
-            proxy.Logout(user.Token);
+            loginProxy.Logout(user.Token);
             MessageBox.Show("Logged out");
+        }
+
+        private void Test_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

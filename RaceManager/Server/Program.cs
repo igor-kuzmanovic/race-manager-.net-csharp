@@ -7,10 +7,25 @@ namespace Server
     {
         static void Main(string[] args)
         {
-            var service = new ServiceHost(typeof(LoginService));
-            service.Open();
+            var loginService = new ServiceHost(typeof(LoginService));
+            var userService = new ServiceHost(typeof(UserService));
+            var raceService = new ServiceHost(typeof(RaceService));
+            var driverService = new ServiceHost(typeof(DriverService));
+            var vehicleService = new ServiceHost(typeof(VehicleService));
+
+            loginService.Open();
+            userService.Open();
+            raceService.Open();
+            driverService.Open();
+            vehicleService.Open();
+
             Console.ReadKey();
-            service.Close();
+
+            loginService.Close();
+            userService.Close();
+            raceService.Close();
+            driverService.Close();
+            vehicleService.Close();
         }
     }
 }
