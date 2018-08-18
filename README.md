@@ -1,2 +1,2 @@
 # Race-Manager-WPF
-A Race Manager application with a client (WPF) and a server (WCF + Entity)
+A Race Manager project consisting of a client (WPF - MVVM) and a server (WCF, Entity Framework)
