@@ -10,7 +10,7 @@
 
         public override bool Update(Vehicle vehicle)
         {
-            using (var context = new Context())
+            using (var context = new DBContext())
             {
                 var oldVehicle = Get(v => v.Id == vehicle.Id);
 

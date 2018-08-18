@@ -68,22 +68,29 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DBManagers\BaseDBManager.cs" />
-    <Compile Include="DB\Configuration.cs" />
-    <Compile Include="DB\Context.cs" />
-    <Compile Include="DB\Initializer.cs" />
+    <Compile Include="DB\DBConfiguration.cs" />
+    <Compile Include="DB\DBContext.cs" />
+    <Compile Include="DB\DBInitializer.cs" />
     <Compile Include="DBManagers\DriverDBManager.cs" />
     <Compile Include="DBManagers\IDBManager.cs" />
     <Compile Include="DBManagers\RaceDBManager.cs" />
     <Compile Include="DBManagers\VehicleDBManager.cs" />
-    <Compile Include="Models\Driver.cs" />
-    <Compile Include="Models\BaseEntity.cs" />
-    <Compile Include="Models\Race.cs" />
-    <Compile Include="Models\User.cs" />
-    <Compile Include="Models\Vehicle.cs" />
+    <Compile Include="DBEntities\Driver.cs" />
+    <Compile Include="DBEntities\BaseEntity.cs" />
+    <Compile Include="DBEntities\Race.cs" />
+    <Compile Include="DBEntities\User.cs" />
+    <Compile Include="DBEntities\Vehicle.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DBManagers\UserDBManager.cs" />
+    <Compile Include="SecurityManagers\AuthenticatonManager.cs" />
+    <Compile Include="SecurityManagers\AuthorizationManager.cs" />
+    <Compile Include="SecurityManagers\TokenManager.cs" />
+    <Compile Include="Services\VehicleService.cs" />
     <Compile Include="Services\LoginService.cs" />
+    <Compile Include="Services\DriverService.cs" />
+    <Compile Include="Services\RaceService.cs" />
+    <Compile Include="Services\UserService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

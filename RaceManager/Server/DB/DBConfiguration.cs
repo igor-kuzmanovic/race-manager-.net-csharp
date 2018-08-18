@@ -2,9 +2,9 @@
 
 namespace Server
 {
-    class Configuration : DbMigrationsConfiguration<Context>
+    class DBConfiguration : DbMigrationsConfiguration<DBContext>
     {
-        public Configuration()
+        public DBConfiguration()
         {
             AutomaticMigrationsEnabled = true;
             AutomaticMigrationDataLossAllowed = true;

@@ -9,6 +9,6 @@ namespace Service
         UserDTO Login(string username, string password);
 
         [OperationContract]
-        void Logout(string token);
+        void Logout(string securityToken);
     }
 }

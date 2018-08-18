@@ -2,9 +2,9 @@
 
 namespace Server
 {
-    class Initializer : DropCreateDatabaseAlways<Context>
+    class DBInitializer : DropCreateDatabaseAlways<DBContext>
     {
-        protected override void Seed(Context context)
+        protected override void Seed(DBContext context)
         {
             context.Users.Add(new User() { Id = 1, Username = "admin", Password = "admin", IsAdmin = true });
 

@@ -10,7 +10,7 @@
 
         public override bool Update(Race race)
         {
-            using (var context = new Context())
+            using (var context = new DBContext())
             {
                 var oldRace = Get(r => r.Id == race.Id);
 

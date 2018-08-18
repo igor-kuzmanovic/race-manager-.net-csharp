@@ -2,11 +2,11 @@
 
 namespace Server
 {
-    class Context : DbContext
+    class DBContext : DbContext
     {
-        public Context() : base("RaceManagerDbConnection")
+        public DBContext() : base("RaceManagerDbConnection")
         {
-            Database.SetInitializer(new Initializer());
+            Database.SetInitializer(new DBInitializer());
         }
 
         public DbSet<User> Users { get; set; }

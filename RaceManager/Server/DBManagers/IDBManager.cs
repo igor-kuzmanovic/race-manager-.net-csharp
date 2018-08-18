@@ -8,8 +8,8 @@ namespace Server
     {
         TEntity Get(Expression<Func<TEntity, bool>> predicate);
         IEnumerable<TEntity> GetAll(Expression<Func<TEntity, bool>> predicate);
-        int Insert(TEntity driver);
-        bool Update(TEntity driver);
+        int Insert(TEntity entity);
+        bool Update(TEntity entity);
         bool Delete(int id);
     }
 }

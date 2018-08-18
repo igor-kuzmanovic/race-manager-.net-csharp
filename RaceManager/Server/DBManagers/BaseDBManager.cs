@@ -10,7 +10,7 @@ namespace Server
     {
         public virtual TEntity Get(Expression<Func<TEntity, bool>> predicate)
         {
-            using (var context = new Context())
+            using (var context = new DBContext())
             {
                 return context.Set<TEntity>().FirstOrDefault(predicate);
             }
@@ -18,7 +18,7 @@ namespace Server
 
         public virtual IEnumerable<TEntity> GetAll(Expression<Func<TEntity, bool>> predicate)
         {
-            using (var context = new Context())
+            using (var context = new DBContext())
             {
                 return context.Set<TEntity>().Where(predicate).ToList();
             }
@@ -26,7 +26,7 @@ namespace Server
 
         public virtual int Insert(TEntity entity)
         {
-            using (var context = new Context())
+            using (var context = new DBContext())
             {
                 context.Set<TEntity>().Add(entity);
                 context.SaveChanges();
@@ -36,7 +36,7 @@ namespace Server
 
         public virtual bool Update(TEntity entity)
         {
-            using (var context = new Context())
+            using (var context = new DBContext())
             {
                 var oldEntity = Get(e => e.Id == entity.Id);
 
@@ -51,7 +51,7 @@ namespace Server
 
         public virtual bool Delete(int id)
         {
-            using (var context = new Context())
+            using (var context = new DBContext())
             {
                 var entity = Get(e => e.Id == id);
 

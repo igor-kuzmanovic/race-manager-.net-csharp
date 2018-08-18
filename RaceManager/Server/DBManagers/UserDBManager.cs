@@ -15,7 +15,7 @@ namespace Server
 
         public override int Insert(User user)
         {
-            using (var context = new Context())
+            using (var context = new DBContext())
             {
                 IEnumerable<User> users = GetAll(u => true);
 
@@ -30,7 +30,7 @@ namespace Server
 
         public override bool Update(User user)
         {
-            using (var context = new Context())
+            using (var context = new DBContext())
             {
                 var oldUser = Get(u => u.Id == user.Id);
 

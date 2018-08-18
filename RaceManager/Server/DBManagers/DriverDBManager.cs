@@ -10,7 +10,7 @@
 
         public override bool Update(Driver driver)
         {
-            using (var context = new Context())
+            using (var context = new DBContext())
             {
                 var oldDriver = Get(d => d.Id == driver.Id);
 
