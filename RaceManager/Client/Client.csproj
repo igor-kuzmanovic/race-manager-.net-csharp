@@ -55,9 +55,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Binding\BindableBase.cs" />
+    <Compile Include="Common\BindableBase.cs" />
     <Compile Include="Command\MyICommand.cs" />
-    <Compile Include="MainWindowViewModel.cs" />
+    <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="Models\BaseModel.cs" />
     <Compile Include="Models\Driver.cs" />
     <Compile Include="ViewModels\DriverViewModel.cs" />
@@ -68,7 +68,7 @@
     <Compile Include="Views\VehicleView.xaml.cs">
       <DependentUpon>VehicleView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="VML\ViewModelLocator.cs" />
+    <Compile Include="Common\ViewModelLocator.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -123,8 +123,6 @@
       <Name>Service</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Services\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

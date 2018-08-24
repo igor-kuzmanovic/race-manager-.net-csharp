@@ -1,4 +1,4 @@
-﻿using Client.Binding;
+﻿using Client.Common;
 using Client.Command;
 using Client.Models;
 using System;

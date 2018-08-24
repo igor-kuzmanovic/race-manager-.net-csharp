@@ -6,8 +6,8 @@
              xmlns:local="clr-namespace:Client.Views"
              xmlns:viewModels="clr-namespace:Client.ViewModels"
              xmlns:models="clr-namespace:Client.Models" 
-             xmlns:vml="clr-namespace:Client.VML" 
-             vml:ViewModelLocator.AutoHookedUpViewModel="True"
+             xmlns:common="clr-namespace:Client.Common" 
+             common:ViewModelLocator.AutoHookedUpViewModel="True"
              mc:Ignorable="d" 
              d:DesignHeight="692" d:DesignWidth="1230">
 

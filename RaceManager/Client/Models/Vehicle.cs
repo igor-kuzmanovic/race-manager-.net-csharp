@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Client.Models
 {
-    class Vehicle : INotifyPropertyChanged
+    class Vehicle : BaseModel
     {
         private string manufacturer;
         private string model;
@@ -96,13 +96,6 @@ namespace Client.Models
         public string Print
         {
             get => "Vehicle: " + manufacturer + "_" + model + "_" + type + "_" + engineHorsepower + "_" + engineDisplacement + "_" + driverId;
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        private void RaisePropertyChanged(string property)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(property));
         }
     }
 }

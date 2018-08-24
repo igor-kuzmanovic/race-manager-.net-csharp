@@ -1,4 +1,4 @@
-﻿using Client.Binding;
+﻿using Client.Common;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Client.Models
 {
-    class Driver : BindableBase
+    class Driver : BaseModel
     {
         private string manufacturer;
         private string model;
@@ -97,13 +97,6 @@ namespace Client.Models
         public string Print
         {
             get => "Driver: " + manufacturer + "_" + model + "_" + type + "_" + engineHorsepower + "_" + engineDisplacement + "_" + driverId;
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        private void RaisePropertyChanged(string property)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(property));
         }
     }
 }

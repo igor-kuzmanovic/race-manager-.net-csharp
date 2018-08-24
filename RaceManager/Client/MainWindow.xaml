@@ -10,7 +10,7 @@
         Title="MainWindow" Height="692" Width="1230" WindowStartupLocation="CenterScreen">
 
     <Window.DataContext>
-        <local:MainWindowViewModel />
+        <viewModels:MainWindowViewModel />
     </Window.DataContext>
 
     <Window.Resources>

@@ -1,4 +1,4 @@
-﻿using Client.Binding;
+﻿using Client.Common;
 using Client.Command;
 using Client.ViewModels;
 using System;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Client
+namespace Client.ViewModels
 {
     class MainWindowViewModel : BindableBase
     {
@@ -30,8 +30,9 @@ namespace Client
 
         public MyICommand NavCommand { get; private set; }
 
-        private void OnNav(string destination)
+        private void OnNav()
         {
+            string destination = string.Empty;
             switch (destination)
             {
                 case "drivers":
