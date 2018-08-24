@@ -55,6 +55,20 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Binding\BindableBase.cs" />
+    <Compile Include="Command\MyICommand.cs" />
+    <Compile Include="MainWindowViewModel.cs" />
+    <Compile Include="Models\BaseModel.cs" />
+    <Compile Include="Models\Driver.cs" />
+    <Compile Include="ViewModels\DriverViewModel.cs" />
+    <Compile Include="ViewModels\VehicleViewModel.cs" />
+    <Compile Include="Views\DriverView.xaml.cs">
+      <DependentUpon>DriverView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\VehicleView.xaml.cs">
+      <DependentUpon>VehicleView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="VML\ViewModelLocator.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -67,8 +81,17 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\DriverView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\VehicleView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\Vehicle.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -99,6 +122,9 @@
       <Project>{dba1eda6-b4ca-40d5-8fee-c6fcad055a39}</Project>
       <Name>Service</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

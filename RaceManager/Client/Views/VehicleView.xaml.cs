@@ -1,9 +1,7 @@
 ﻿using Client.ViewModels;
-using Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -16,13 +14,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Client
+namespace Client.Views
 {
-    public partial class MainWindow : Window
+    public partial class VehicleView : UserControl
     {
-        public MainWindow()
+        public VehicleView()
         {
-            InitializeComponent();          
+            InitializeComponent();
+            DataContext = new VehicleViewModel();
         }
     }
 }

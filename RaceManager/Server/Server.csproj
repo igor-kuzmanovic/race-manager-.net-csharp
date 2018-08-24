@@ -75,11 +75,11 @@
     <Compile Include="DBManagers\IDBManager.cs" />
     <Compile Include="DBManagers\RaceDBManager.cs" />
     <Compile Include="DBManagers\VehicleDBManager.cs" />
-    <Compile Include="DBEntities\Driver.cs" />
-    <Compile Include="DBEntities\BaseEntity.cs" />
-    <Compile Include="DBEntities\Race.cs" />
-    <Compile Include="DBEntities\User.cs" />
-    <Compile Include="DBEntities\Vehicle.cs" />
+    <Compile Include="Models\Driver.cs" />
+    <Compile Include="Models\BaseEntity.cs" />
+    <Compile Include="Models\Race.cs" />
+    <Compile Include="Models\User.cs" />
+    <Compile Include="Models\Vehicle.cs" />
     <Compile Include="Mappers\BaseMapper.cs" />
     <Compile Include="Mappers\DriverMapper.cs" />
     <Compile Include="Mappers\UserMapper.cs" />

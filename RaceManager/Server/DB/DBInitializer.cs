@@ -6,7 +6,7 @@ namespace Server
     {
         protected override void Seed(DBContext context)
         {
-            context.Users.Add(new User() { Id = 1, Username = "admin", Password = "admin", IsAdmin = true });
+            context.Users.AddOrUpdate(new User() { Id = 1, Username = "admin", Password = "admin", IsAdmin = true });
 
             base.Seed(context);
         }
