@@ -6,6 +6,9 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RaceManager.Server", "RaceManager.Server\RaceManager.Server.csproj", "{1E13BBF5-1739-4C0F-9482-776633A2067A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RaceManager.Client", "RaceManager.Client\RaceManager.Client.csproj", "{461AE2B0-E21B-4F66-9503-0A6CEBDFCD89}"
+	ProjectSection(ProjectDependencies) = postProject
+		{1E13BBF5-1739-4C0F-9482-776633A2067A} = {1E13BBF5-1739-4C0F-9482-776633A2067A}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

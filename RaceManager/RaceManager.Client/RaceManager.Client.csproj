@@ -56,6 +56,41 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Connected Services\DriverService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\RaceService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\VehicleService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Converters\IConverter.cs" />
+    <Compile Include="Core\Converters\IDriverConverter.cs" />
+    <Compile Include="Core\Converters\IRaceConverter.cs" />
+    <Compile Include="Core\Converters\IVehicleConverter.cs" />
+    <Compile Include="Models\Converters\Converter.cs" />
+    <Compile Include="Models\Converters\DriverConverter.cs" />
+    <Compile Include="Models\Converters\RaceConverter.cs" />
+    <Compile Include="Models\Converters\VehicleConverter.cs" />
+    <Compile Include="ViewModels\DriverViewModel.cs" />
+    <Compile Include="ViewModels\RaceViewModel.cs" />
+    <Compile Include="ViewModels\VehicleViewModel.cs" />
+    <Compile Include="Views\DriverView.xaml.cs">
+      <DependentUpon>DriverView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RaceView.xaml.cs">
+      <DependentUpon>RaceView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\VehicleView.xaml.cs">
+      <DependentUpon>VehicleView.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -68,8 +103,24 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\DriverView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\RaceView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\VehicleView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\Driver.cs" />
+    <Compile Include="Models\ObservableObject.cs" />
+    <Compile Include="Models\Race.cs" />
+    <Compile Include="Models\Vehicle.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -87,6 +138,45 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="Connected Services\DriverService\DriverService.wsdl" />
+    <None Include="Connected Services\DriverService\DriverService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\DriverService\DriverService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\DriverService\DriverService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\DriverService\RaceManager.Client.DriverService.DriverDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\RaceService\RaceManager.Client.RaceService.RaceDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\RaceService\RaceService.wsdl" />
+    <None Include="Connected Services\RaceService\RaceService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\RaceService\RaceService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\RaceService\RaceService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\VehicleService\RaceManager.Client.VehicleService.VehicleDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\VehicleService\VehicleService.wsdl" />
+    <None Include="Connected Services\VehicleService\VehicleService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\VehicleService\VehicleService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\VehicleService\VehicleService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -98,5 +188,56 @@
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Connected Services\DriverService\" />
+    <WCFMetadataStorage Include="Connected Services\RaceService\" />
+    <WCFMetadataStorage Include="Connected Services\VehicleService\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\DriverService\DriverService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\DriverService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\DriverService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\DriverService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\RaceService\RaceService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\RaceService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\RaceService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\RaceService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\VehicleService\VehicleService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\VehicleService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\VehicleService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\VehicleService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

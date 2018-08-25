@@ -4,9 +4,22 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RaceManager.Client"
+        xmlns:views="clr-namespace:RaceManager.Client.Views"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="1382,744" Width="768" WindowStartupLocation="CenterScreen" WindowState="Maximized">
+
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <views:RaceView x:Name="RaceViewControl" Grid.Column="0" Grid.Row="0" />
+        <views:DriverView x:Name="DriverViewControl" Grid.Column="1" Grid.Row="0" />
+        <views:VehicleView x:Name="VehicleViewControl" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" />
     </Grid>
 </Window>
