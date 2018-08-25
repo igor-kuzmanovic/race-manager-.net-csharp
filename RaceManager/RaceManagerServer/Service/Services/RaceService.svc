@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="RaceManagerServer.Service.Services.RaceService" CodeBehind="RaceService.svc.cs" %>

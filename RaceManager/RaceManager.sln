@@ -9,6 +9,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client", "Client\Client.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service", "Service\Service.csproj", "{DBA1EDA6-B4CA-40D5-8FEE-C6FCAD055A39}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RaceManagerServer", "RaceManagerServer\RaceManagerServer.csproj", "{1E13BBF5-1739-4C0F-9482-776633A2067A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RaceManagerClient", "RaceManagerClient\RaceManagerClient.csproj", "{461AE2B0-E21B-4F66-9503-0A6CEBDFCD89}"
+	ProjectSection(ProjectDependencies) = postProject
+		{1E13BBF5-1739-4C0F-9482-776633A2067A} = {1E13BBF5-1739-4C0F-9482-776633A2067A}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +34,14 @@ Global
 		{DBA1EDA6-B4CA-40D5-8FEE-C6FCAD055A39}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DBA1EDA6-B4CA-40D5-8FEE-C6FCAD055A39}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DBA1EDA6-B4CA-40D5-8FEE-C6FCAD055A39}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E13BBF5-1739-4C0F-9482-776633A2067A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E13BBF5-1739-4C0F-9482-776633A2067A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E13BBF5-1739-4C0F-9482-776633A2067A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E13BBF5-1739-4C0F-9482-776633A2067A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{461AE2B0-E21B-4F66-9503-0A6CEBDFCD89}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{461AE2B0-E21B-4F66-9503-0A6CEBDFCD89}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{461AE2B0-E21B-4F66-9503-0A6CEBDFCD89}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{461AE2B0-E21B-4F66-9503-0A6CEBDFCD89}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
