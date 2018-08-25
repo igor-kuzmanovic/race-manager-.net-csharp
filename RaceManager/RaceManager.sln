@@ -3,18 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27703.2026
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Server", "Server\Server.csproj", "{780B49A2-2496-40CB-8E9F-260256FC2F56}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RaceManager.Server", "RaceManager.Server\RaceManager.Server.csproj", "{1E13BBF5-1739-4C0F-9482-776633A2067A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client", "Client\Client.csproj", "{3088004E-019D-450C-B3CE-F7DB7D6C4154}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service", "Service\Service.csproj", "{DBA1EDA6-B4CA-40D5-8FEE-C6FCAD055A39}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RaceManagerServer", "RaceManagerServer\RaceManagerServer.csproj", "{1E13BBF5-1739-4C0F-9482-776633A2067A}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RaceManagerClient", "RaceManagerClient\RaceManagerClient.csproj", "{461AE2B0-E21B-4F66-9503-0A6CEBDFCD89}"
-	ProjectSection(ProjectDependencies) = postProject
-		{1E13BBF5-1739-4C0F-9482-776633A2067A} = {1E13BBF5-1739-4C0F-9482-776633A2067A}
-	EndProjectSection
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RaceManager.Client", "RaceManager.Client\RaceManager.Client.csproj", "{461AE2B0-E21B-4F66-9503-0A6CEBDFCD89}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -22,18 +13,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{780B49A2-2496-40CB-8E9F-260256FC2F56}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{780B49A2-2496-40CB-8E9F-260256FC2F56}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{780B49A2-2496-40CB-8E9F-260256FC2F56}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{780B49A2-2496-40CB-8E9F-260256FC2F56}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3088004E-019D-450C-B3CE-F7DB7D6C4154}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3088004E-019D-450C-B3CE-F7DB7D6C4154}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3088004E-019D-450C-B3CE-F7DB7D6C4154}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3088004E-019D-450C-B3CE-F7DB7D6C4154}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DBA1EDA6-B4CA-40D5-8FEE-C6FCAD055A39}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DBA1EDA6-B4CA-40D5-8FEE-C6FCAD055A39}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DBA1EDA6-B4CA-40D5-8FEE-C6FCAD055A39}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DBA1EDA6-B4CA-40D5-8FEE-C6FCAD055A39}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1E13BBF5-1739-4C0F-9482-776633A2067A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1E13BBF5-1739-4C0F-9482-776633A2067A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1E13BBF5-1739-4C0F-9482-776633A2067A}.Release|Any CPU.ActiveCfg = Release|Any CPU
