@@ -24,7 +24,6 @@ namespace RaceManager.Client.Views
         public RaceView()
         {
             InitializeComponent();
-            DataContext = new RaceViewModel();
         }
     }
 }

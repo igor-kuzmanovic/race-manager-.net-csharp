@@ -75,6 +75,8 @@
     <Compile Include="Core\Converters\IDriverConverter.cs" />
     <Compile Include="Core\Converters\IRaceConverter.cs" />
     <Compile Include="Core\Converters\IVehicleConverter.cs" />
+    <Compile Include="Core\RelayCommand.cs" />
+    <Compile Include="Core\ViewModelLocator.cs" />
     <Compile Include="Models\Converters\Converter.cs" />
     <Compile Include="Models\Converters\DriverConverter.cs" />
     <Compile Include="Models\Converters\RaceConverter.cs" />
@@ -118,7 +120,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\Driver.cs" />
-    <Compile Include="Models\ObservableObject.cs" />
+    <Compile Include="Core\ObservableObject.cs" />
     <Compile Include="Models\Race.cs" />
     <Compile Include="Models\Vehicle.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -238,6 +240,8 @@
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Commands\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

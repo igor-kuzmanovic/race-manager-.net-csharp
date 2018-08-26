@@ -4,18 +4,20 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:RaceManager.Client.Views"
+             xmlns:core="clr-namespace:RaceManager.Client.Core"
+             core:ViewModelLocator.AutoHookedUpViewModel="True"
              mc:Ignorable="d" 
              d:DesignHeight="768" d:DesignWidth="1366">
     
     <Grid>
-        <DataGrid x:Name="vehiclesDataGrid" ItemsSource="{Binding Vehicles}" AutoGenerateColumns="False">
+        <DataGrid ItemsSource="{Binding Vehicles}" AutoGenerateColumns="False" EnableRowVirtualization="True" SelectionMode="Single" RowDetailsVisibilityMode="Collapsed">
             <DataGrid.Columns>
-                <DataGridTextColumn x:Name="idColumn" Width="Auto" Header="Id" Binding="{Binding Id}"/>
-                <DataGridTextColumn x:Name="manufacturerColumn" Width="Auto" Header="Manufacturer" Binding="{Binding Manufacturer}"/>
-                <DataGridTextColumn x:Name="modelColumn" Width="Auto" Header="Model" Binding="{Binding Model}"/>
-                <DataGridTextColumn x:Name="typeColumn" Width="Auto" Header="Type" Binding="{Binding Type}"/>
-                <DataGridTextColumn x:Name="engineHorsepowerColumn" Width="Auto" Header="Engine Horsepower" Binding="{Binding EngineHorsepower}"/>
-                <DataGridTextColumn x:Name="engineDisplacementColumn" Width="Auto" Header="Engine Displacement" Binding="{Binding EngineDisplacement}"/>
+                <DataGridTextColumn Width="Auto" Header="Id"  Binding="{Binding Id}" IsReadOnly="True" />
+                <DataGridTextColumn Width="*" Header="Manufacturer" Binding="{Binding Manufacturer}" />
+                <DataGridTextColumn Width="*" Header="Model" Binding="{Binding Model}" />
+                <DataGridTextColumn Width="*" Header="Type" Binding="{Binding Type}" />
+                <DataGridTextColumn Width="*" Header="Engine Horsepower" Binding="{Binding EngineHorsepower}" />
+                <DataGridTextColumn Width="*" Header="Engine Displacement" Binding="{Binding EngineDisplacement}" />
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

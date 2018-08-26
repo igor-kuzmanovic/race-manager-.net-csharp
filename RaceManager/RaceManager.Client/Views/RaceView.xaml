@@ -4,15 +4,28 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:RaceManager.Client.Views"
+             xmlns:core="clr-namespace:RaceManager.Client.Core"
+             core:ViewModelLocator.AutoHookedUpViewModel="True"
              mc:Ignorable="d" 
              d:DesignHeight="768" d:DesignWidth="1366">
     
     <Grid>
-        <DataGrid x:Name="racesDataGrid" ItemsSource="{Binding Races}" AutoGenerateColumns="False">
+        <DataGrid x:Name="raceDataGrid" ItemsSource="{Binding Races}" AutoGenerateColumns="False" EnableRowVirtualization="True" SelectionMode="Single" RowDetailsVisibilityMode="Collapsed">
             <DataGrid.Columns>
-                <DataGridTextColumn x:Name="idColumn" Width="Auto" Header="Id" Binding="{Binding Id}"/>
-                <DataGridTextColumn x:Name="eventDateColumn" Width="Auto" Header="Event Date" Binding="{Binding EventDate}"/>
-                <DataGridTextColumn x:Name="eventLocationColumn" Width="Auto" Header="Event Location" Binding="{Binding EventLocation}"/>
+                <DataGridTextColumn Width="Auto" Header="Id" Binding="{Binding Id}" IsReadOnly="True" CanUserResize="False" />
+                <DataGridTemplateColumn Width="Auto" Header="Event Date" SortMemberPath="EventDate" CanUserSort="True">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding EventDate, StringFormat=d}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                    <DataGridTemplateColumn.CellEditingTemplate>
+                        <DataTemplate>
+                            <DatePicker SelectedDate="{Binding EventDate}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellEditingTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Width="*" Header="Event Location" Binding="{Binding EventLocation}" />
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

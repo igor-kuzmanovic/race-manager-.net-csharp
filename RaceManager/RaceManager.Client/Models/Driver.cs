@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RaceManager.Core;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,7 +25,7 @@ namespace RaceManager.Client.Models
                 if (_firstName != value)
                 {
                     _firstName = value;
-                    RaisePropertyChanged("FirstName");
+                    RaisePropertyChanged();
                 }
             }
         }
@@ -36,7 +37,7 @@ namespace RaceManager.Client.Models
                 if (_lastName != value)
                 {
                     _lastName = value;
-                    RaisePropertyChanged("LastName");
+                    RaisePropertyChanged();
                 }
             }
         }
@@ -48,7 +49,7 @@ namespace RaceManager.Client.Models
                 if (_umcn != value)
                 {
                     _umcn = value;
-                    RaisePropertyChanged("UMCN");
+                    RaisePropertyChanged();
                 }
             }
         }

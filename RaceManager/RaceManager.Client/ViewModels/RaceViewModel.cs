@@ -24,7 +24,31 @@ namespace RaceManager.Client.ViewModels
 
         private void LoadRaces()
         {
-            Races = new ObservableCollection<Race>(RaceConverter.Instance.Convert(_raceServiceClient.GetAll()));
+            //Races = new ObservableCollection<Race>(RaceConverter.Instance.Convert(_raceServiceClient.GetAll()));
+
+            var races = new List<Race>()
+            {
+                new Race()
+                {
+                    Id = 0,
+                    EventDate = new DateTime(2018, 8, 8),
+                    EventLocation = "Race Location 1",
+                },
+                new Race()
+                {
+                    Id = 1,
+                    EventDate = new DateTime(2017, 7, 7),
+                    EventLocation = "Race Location 2",
+                },
+                new Race()
+                {
+                    Id = 2,
+                    EventDate = new DateTime(2016, 6, 6),
+                    EventLocation = "Race Location 3",
+                }
+            };
+
+            Races = new ObservableCollection<Race>(races);
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RaceManager.Core;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,7 +24,7 @@ namespace RaceManager.Client.Models
                 if (_eventDate != value)
                 {
                     _eventDate = value;
-                    RaisePropertyChanged("EventDate");
+                    RaisePropertyChanged();
                 }
             }
         }
@@ -35,7 +36,7 @@ namespace RaceManager.Client.Models
                 if (_eventLocation != value)
                 {
                     _eventLocation = value;
-                    RaisePropertyChanged("EventLocation");
+                    RaisePropertyChanged();
                 }
             }
         }

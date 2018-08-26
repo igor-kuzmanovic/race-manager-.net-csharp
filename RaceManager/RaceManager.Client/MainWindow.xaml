@@ -9,17 +9,18 @@
         Title="MainWindow" Height="1382,744" Width="768" WindowStartupLocation="CenterScreen" WindowState="Maximized">
 
     <Grid>
-        <Grid.ColumnDefinitions>
+        <!--<Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
+        </Grid.RowDefinitions>-->
 
-        <views:RaceView x:Name="RaceViewControl" Grid.Column="0" Grid.Row="0" />
-        <views:DriverView x:Name="DriverViewControl" Grid.Column="1" Grid.Row="0" />
-        <views:VehicleView x:Name="VehicleViewControl" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" />
+        <!--<views:RaceView x:Name="raceViewControl" Grid.Column="0" Grid.Row="0" />
+        <views:DriverView x:Name="driverViewControl" Grid.Column="1" Grid.Row="0" />
+        <views:VehicleView x:Name="vehicleViewControl" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" />-->
+        <views:VehicleView x:Name="vehicleViewControl" />
     </Grid>
 </Window>

@@ -4,17 +4,38 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:RaceManager.Client.Views"
+             xmlns:model="clr-namespace:RaceManager.Client.Models"
+             xmlns:core="clr-namespace:RaceManager.Client.Core"
+             core:ViewModelLocator.AutoHookedUpViewModel="True"
              mc:Ignorable="d" 
              d:DesignHeight="768" d:DesignWidth="1366">
 
+    <UserControl.Resources>
+        <DataTemplate DataType="{x:Type data:Vehicle}">
+
+            <StackPanel Orientation = "Horizontal">
+                <TextBox Text = "{Binding Path = FirstName, Mode = TwoWay}" 
+               Width = "100" Margin = "3 5 3 5"/>
+
+                <TextBox Text = "{Binding Path = LastName, Mode = TwoWay}" 
+               Width = "100" Margin = "0 5 3 5"/>
+
+                <TextBlock Text = "{Binding Path = FullName, Mode = OneWay}" 
+               Margin = "0 5 3 5"/>
+
+            </StackPanel>
+
+        </DataTemplate>
+    </UserControl.Resources>
+
     <Grid>
-        <DataGrid x:Name="driversDataGrid" ItemsSource="{Binding Drivers}" AutoGenerateColumns="False">
+        <ListBox ItemsSource="{Binding Drivers}" SelectedItem="{Binding SelectedDriver}" AutoGenerateColumns="False" EnableRowVirtualization="True" SelectionMode="Single" RowDetailsVisibilityMode="Collapsed">
             <DataGrid.Columns>
-                <DataGridTextColumn x:Name="idColumn" Width="Auto" Header="Id" Binding="{Binding Id}"/>
-                <DataGridTextColumn x:Name="firstNameColumn" Width="Auto" Header="First Name" Binding="{Binding FirstName}"/>
-                <DataGridTextColumn x:Name="lastNameColumn" Width="Auto" Header="Last Name" Binding="{Binding LastName}"/>
-                <DataGridTextColumn x:Name="umcnColumn" Width="Auto" Header="UMCN" Binding="{Binding UMCN}"/>
+                <DataGridTextColumn Width="Auto" Header="Id" Binding="{Binding Id}" IsReadOnly="True" CanUserResize="False" />
+                <DataGridTextColumn Width="*" Header="First Name" Binding="{Binding FirstName}" />
+                <DataGridTextColumn Width="*" Header="Last Name" Binding="{Binding LastName}" />
+                <DataGridTextColumn Width="*" Header="UMCN" Binding="{Binding UMCN}" />
             </DataGrid.Columns>
-        </DataGrid>
+        </ListBox>
     </Grid>
 </UserControl>

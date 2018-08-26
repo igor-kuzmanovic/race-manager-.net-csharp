@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RaceManager.Core;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -26,7 +27,7 @@ namespace RaceManager.Client.Models
                 if (_manufacturer != value)
                 {
                     _manufacturer = value;
-                    RaisePropertyChanged("Manufacturer");
+                    RaisePropertyChanged();
                 }
             }
         }
@@ -38,7 +39,7 @@ namespace RaceManager.Client.Models
                 if (_model != value)
                 {
                     _model = value;
-                    RaisePropertyChanged("Model");
+                    RaisePropertyChanged();
                 }
             }
         }
@@ -50,7 +51,7 @@ namespace RaceManager.Client.Models
                 if (_type != value)
                 {
                     _type = value;
-                    RaisePropertyChanged("Type");
+                    RaisePropertyChanged();
                 }
             }
         }

@@ -1,5 +1,4 @@
-﻿using RaceManager.Client.ViewModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,7 +23,6 @@ namespace RaceManager.Client.Views
         public VehicleView()
         {
             InitializeComponent();
-            DataContext = new VehicleViewModel();
         }
     }
 }
