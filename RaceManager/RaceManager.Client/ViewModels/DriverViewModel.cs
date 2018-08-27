@@ -32,6 +32,7 @@ namespace RaceManager.Client.ViewModels
             RefreshCommand = new RelayCommand(OnRefresh);
             NewCommand = new RelayCommand(OnNew);
             EditCommand = new RelayCommand(OnEdit, CanEdit);
+            CopyCommand = new RelayCommand(OnCopy, CanCopy);
             DeleteCommand = new RelayCommand(OnDelete, CanDelete);
             SaveCommand = new RelayCommand(OnSave, CanSave); 
             LoadDrivers();
@@ -42,6 +43,7 @@ namespace RaceManager.Client.ViewModels
         public RelayCommand RefreshCommand { get; }
         public RelayCommand NewCommand { get; }
         public RelayCommand EditCommand { get; }
+        public RelayCommand CopyCommand { get; }
         public RelayCommand DeleteCommand { get; }
         public RelayCommand SaveCommand { get; }
 
@@ -156,6 +158,19 @@ namespace RaceManager.Client.ViewModels
         }
 
         private bool CanEdit()
+        {
+            return SelectedDriver != null;
+        }
+
+        private void OnCopy()
+        {
+            Id = 0;
+            FirstName = SelectedDriver.FirstName;
+            LastName = SelectedDriver.LastName;
+            UMCN = SelectedDriver.UMCN;
+        }
+
+        private bool CanCopy()
         {
             return SelectedDriver != null;
         }
