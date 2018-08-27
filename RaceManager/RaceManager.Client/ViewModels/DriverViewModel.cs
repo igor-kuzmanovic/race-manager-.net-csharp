@@ -14,6 +14,8 @@ namespace RaceManager.Client.ViewModels
 {
     class DriverViewModel : ObservableObject
     {
+        #region Fields
+
         private readonly DriverServiceClient _driverServiceClient;
         private ObservableCollection<Driver> _drivers;
         private Driver _selectedDriver;
@@ -21,6 +23,8 @@ namespace RaceManager.Client.ViewModels
         private string _firstName;
         private string _lastName;
         private string _umcn;
+
+        #endregion
 
         public DriverViewModel()
         {
@@ -33,11 +37,17 @@ namespace RaceManager.Client.ViewModels
             LoadDrivers();
         }
 
+        #region Commands
+
         public RelayCommand RefreshCommand { get; }
         public RelayCommand NewCommand { get; }
         public RelayCommand EditCommand { get; }
         public RelayCommand DeleteCommand { get; }
         public RelayCommand SaveCommand { get; }
+
+        #endregion
+
+        #region Properties
 
         public ObservableCollection<Driver> Drivers
         {
@@ -111,37 +121,18 @@ namespace RaceManager.Client.ViewModels
             }
         }
 
+        #endregion
+
+        #region Helper Methods
+
         private void LoadDrivers()
         {
             Drivers = new ObservableCollection<Driver>(DriverConverter.Instance.Convert(_driverServiceClient.GetAll()));
-
-            //var drivers = new List<Driver>()
-            //{
-            //    new Driver()
-            //    {
-            //        Id = 1,
-            //        FirstName = "John 1",
-            //        LastName = "Doe 1",
-            //        UMCN = "1111111111111"
-            //    },
-            //    new Driver()
-            //    {
-            //        Id = 2,
-            //        FirstName = "John 2",
-            //        LastName = "Doe 2",
-            //        UMCN = "2222222222222"
-            //    },
-            //    new Driver()
-            //    {
-            //        Id = 3,
-            //        FirstName = "John 3",
-            //        LastName = "Doe 3",
-            //        UMCN = "3333333333333"
-            //    }
-            //};
-
-            //Drivers = new ObservableCollection<Driver>(drivers);
         }
+
+        #endregion
+
+        #region Command Methods
 
         private void OnRefresh()
         {
@@ -172,11 +163,8 @@ namespace RaceManager.Client.ViewModels
         private void OnDelete()
         {
             _driverServiceClient.Remove(SelectedDriver.Id);
-
-            Drivers.Remove(SelectedDriver);
-
-            if (Id > 0)
-                OnNew();
+            LoadDrivers();
+            OnNew();
         }
 
         private bool CanDelete()
@@ -194,21 +182,13 @@ namespace RaceManager.Client.ViewModels
             if (Id > 0)
             {
                 driver.Id = Id;
-
                 _driverServiceClient.Update(DriverConverter.Instance.Convert(driver));
-
-                SelectedDriver.FirstName = FirstName;
-                SelectedDriver.LastName = LastName;
-                SelectedDriver.UMCN = UMCN;
+                LoadDrivers();
             }
             else
-            {
                 _driverServiceClient.Add(DriverConverter.Instance.Convert(driver));
-                LoadDrivers();
-
-                //Drivers.Add(driver);
-            }
-
+                
+            LoadDrivers();
             OnNew();
         }
 
@@ -216,5 +196,7 @@ namespace RaceManager.Client.ViewModels
         {
             return !string.IsNullOrWhiteSpace(FirstName) && !string.IsNullOrWhiteSpace(LastName) && !string.IsNullOrWhiteSpace(UMCN);
         }
+
+        #endregion
     }
 }
