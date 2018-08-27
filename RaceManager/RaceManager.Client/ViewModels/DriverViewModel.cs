@@ -25,6 +25,7 @@ namespace RaceManager.Client.ViewModels
         public DriverViewModel()
         {
             _driverServiceClient = new DriverServiceClient();
+            RefreshCommand = new RelayCommand(OnRefresh);
             NewCommand = new RelayCommand(OnNew);
             EditCommand = new RelayCommand(OnEdit, CanEdit);
             DeleteCommand = new RelayCommand(OnDelete, CanDelete);
@@ -32,6 +33,7 @@ namespace RaceManager.Client.ViewModels
             LoadDrivers();
         }
 
+        public RelayCommand RefreshCommand { get; }
         public RelayCommand NewCommand { get; }
         public RelayCommand EditCommand { get; }
         public RelayCommand DeleteCommand { get; }
@@ -111,34 +113,39 @@ namespace RaceManager.Client.ViewModels
 
         private void LoadDrivers()
         {
-            //Drivers = new ObservableCollection<Driver>(DriverConverter.Instance.Convert(_driverServiceClient.GetAll()));
+            Drivers = new ObservableCollection<Driver>(DriverConverter.Instance.Convert(_driverServiceClient.GetAll()));
 
-            var drivers = new List<Driver>()
-            {
-                new Driver()
-                {
-                    Id = 1,
-                    FirstName = "John 1",
-                    LastName = "Doe 1",
-                    UMCN = "1111111111111"
-                },
-                new Driver()
-                {
-                    Id = 2,
-                    FirstName = "John 2",
-                    LastName = "Doe 2",
-                    UMCN = "2222222222222"
-                },
-                new Driver()
-                {
-                    Id = 3,
-                    FirstName = "John 3",
-                    LastName = "Doe 3",
-                    UMCN = "3333333333333"
-                }
-            };
+            //var drivers = new List<Driver>()
+            //{
+            //    new Driver()
+            //    {
+            //        Id = 1,
+            //        FirstName = "John 1",
+            //        LastName = "Doe 1",
+            //        UMCN = "1111111111111"
+            //    },
+            //    new Driver()
+            //    {
+            //        Id = 2,
+            //        FirstName = "John 2",
+            //        LastName = "Doe 2",
+            //        UMCN = "2222222222222"
+            //    },
+            //    new Driver()
+            //    {
+            //        Id = 3,
+            //        FirstName = "John 3",
+            //        LastName = "Doe 3",
+            //        UMCN = "3333333333333"
+            //    }
+            //};
 
-            Drivers = new ObservableCollection<Driver>(drivers);
+            //Drivers = new ObservableCollection<Driver>(drivers);
+        }
+
+        private void OnRefresh()
+        {
+            LoadDrivers();
         }
 
         private void OnNew()
@@ -164,11 +171,11 @@ namespace RaceManager.Client.ViewModels
 
         private void OnDelete()
         {
-            //_driverServiceClient.Remove(SelectedDriver.Id);
+            _driverServiceClient.Remove(SelectedDriver.Id);
 
             Drivers.Remove(SelectedDriver);
 
-            if (Id == SelectedDriver.Id)
+            if (Id > 0)
                 OnNew();
         }
 
@@ -188,7 +195,7 @@ namespace RaceManager.Client.ViewModels
             {
                 driver.Id = Id;
 
-                //_driverServiceClient.Update(DriverConverter.Instance.Convert(driver));
+                _driverServiceClient.Update(DriverConverter.Instance.Convert(driver));
 
                 SelectedDriver.FirstName = FirstName;
                 SelectedDriver.LastName = LastName;
@@ -196,9 +203,10 @@ namespace RaceManager.Client.ViewModels
             }
             else
             {
-                //_driverServiceClient.Add(DriverConverter.Instance.Convert(driver));
+                _driverServiceClient.Add(DriverConverter.Instance.Convert(driver));
+                LoadDrivers();
 
-                Drivers.Add(driver);
+                //Drivers.Add(driver);
             }
 
             OnNew();

@@ -20,6 +20,7 @@
                 </DataGrid.Columns>
             </DataGrid>
             <StackPanel Orientation="Horizontal">
+                <Button Content="Refresh" Width="75" Margin="10,10,10,10" Command="{Binding RefreshCommand}" />
                 <Button Content="New" Width="75" Margin="10,10,10,10" Command="{Binding NewCommand}" />
                 <Button Content="Edit" Width="75" Margin="10,10,10,10" Command="{Binding EditCommand}" />
                 <Button Content="Delete" Width="75" Margin="10,10,10,10" Command="{Binding DeleteCommand}" />
