@@ -25,17 +25,7 @@ namespace RaceManager.Client.Core
 
         public bool CanExecute(object parameter)
         {
-            if (_canExecuteMethod != null)
-            {
-                return _canExecuteMethod();
-            }
-
-            if (_executeMethod != null)
-            {
-                return true;
-            }
-
-            return false;
+            return _canExecuteMethod != null ? _canExecuteMethod() : true;
         }
 
         public void Execute(object parameter)

@@ -4,38 +4,37 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:RaceManager.Client.Views"
-             xmlns:model="clr-namespace:RaceManager.Client.Models"
              xmlns:core="clr-namespace:RaceManager.Client.Core"
              core:ViewModelLocator.AutoHookedUpViewModel="True"
              mc:Ignorable="d" 
-             d:DesignHeight="768" d:DesignWidth="1366">
-
-    <UserControl.Resources>
-        <DataTemplate DataType="{x:Type data:Vehicle}">
-
-            <StackPanel Orientation = "Horizontal">
-                <TextBox Text = "{Binding Path = FirstName, Mode = TwoWay}" 
-               Width = "100" Margin = "3 5 3 5"/>
-
-                <TextBox Text = "{Binding Path = LastName, Mode = TwoWay}" 
-               Width = "100" Margin = "0 5 3 5"/>
-
-                <TextBlock Text = "{Binding Path = FullName, Mode = OneWay}" 
-               Margin = "0 5 3 5"/>
-
-            </StackPanel>
-
-        </DataTemplate>
-    </UserControl.Resources>
+             d:DesignHeight="600" d:DesignWidth="800">
 
     <Grid>
-        <ListBox ItemsSource="{Binding Drivers}" SelectedItem="{Binding SelectedDriver}" AutoGenerateColumns="False" EnableRowVirtualization="True" SelectionMode="Single" RowDetailsVisibilityMode="Collapsed">
-            <DataGrid.Columns>
-                <DataGridTextColumn Width="Auto" Header="Id" Binding="{Binding Id}" IsReadOnly="True" CanUserResize="False" />
-                <DataGridTextColumn Width="*" Header="First Name" Binding="{Binding FirstName}" />
-                <DataGridTextColumn Width="*" Header="Last Name" Binding="{Binding LastName}" />
-                <DataGridTextColumn Width="*" Header="UMCN" Binding="{Binding UMCN}" />
-            </DataGrid.Columns>
-        </ListBox>
+        <StackPanel Orientation="Vertical">
+            <DataGrid ItemsSource="{Binding Drivers}" SelectedItem="{Binding SelectedDriver}" Height="Auto" AutoGenerateColumns="False" EnableRowVirtualization="True" SelectionMode="Single" RowDetailsVisibilityMode="Collapsed" CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Width="Auto" Header="Id" Binding="{Binding Id}" CanUserResize="False" />
+                    <DataGridTextColumn Width="*" Header="First Name" Binding="{Binding FirstName}" />
+                    <DataGridTextColumn Width="*" Header="Last Name" Binding="{Binding LastName}" />
+                    <DataGridTextColumn Width="*" Header="UMCN" Binding="{Binding UMCN}" />
+                </DataGrid.Columns>
+            </DataGrid>
+            <StackPanel Orientation="Horizontal">
+                <Button Content="New" Width="75" Margin="10,10,10,10" Command="{Binding NewCommand}" />
+                <Button Content="Edit" Width="75" Margin="10,10,10,10" Command="{Binding EditCommand}" />
+                <Button Content="Delete" Width="75" Margin="10,10,10,10" Command="{Binding DeleteCommand}" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Id" />
+                <TextBox Text="{Binding Id, UpdateSourceTrigger=PropertyChanged}" Height="23" Width="Auto" IsReadOnly="True" />
+                <Label Content="First Name" />
+                <TextBox Text="{Binding FirstName, UpdateSourceTrigger=PropertyChanged}" Height="23" Width="150" />
+                <Label Content="Last Name" />
+                <TextBox Text="{Binding LastName, UpdateSourceTrigger=PropertyChanged}" Height="23" Width="150" />
+                <Label Content="UMCN" />
+                <TextBox Text="{Binding UMCN, UpdateSourceTrigger=PropertyChanged}" Height="23" Width="150" />
+                <Button Content="Save" Width="75" Margin="10,10,10,10" Command="{Binding SaveCommand}" />
+            </StackPanel>
+        </StackPanel>
     </Grid>
 </UserControl>

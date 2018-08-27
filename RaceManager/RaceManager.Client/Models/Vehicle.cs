@@ -18,8 +18,17 @@ namespace RaceManager.Client.Models
 
         public Vehicle() { }
 
-        public int Id { get => _id; set => _id = value; }
-
+        public int Id
+        {
+            get => _id; set
+            {
+                if (_id != value)
+                {
+                    _id = value;
+                    RaisePropertyChanged();
+                }
+            }
+        }
         public string Manufacturer
         {
             get => _manufacturer; set
