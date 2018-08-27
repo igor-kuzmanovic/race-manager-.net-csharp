@@ -1,4 +1,4 @@
-﻿using RaceManager.Core;
+﻿using RaceManager.Client.Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -72,7 +72,7 @@ namespace RaceManager.Client.Models
                 if (_engineHorsepower != value)
                 {
                     _engineHorsepower = value;
-                    RaisePropertyChanged("EngineHorsepower");
+                    RaisePropertyChanged();
                 }
             }
         }
@@ -84,7 +84,7 @@ namespace RaceManager.Client.Models
                 if (_engineDisplacement != value)
                 {
                     _engineDisplacement = value;
-                    RaisePropertyChanged("EngineDisplacement");
+                    RaisePropertyChanged();
                 }
             }
         }

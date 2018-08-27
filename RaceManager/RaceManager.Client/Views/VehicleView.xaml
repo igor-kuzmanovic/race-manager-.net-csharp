@@ -8,17 +8,53 @@
              core:ViewModelLocator.AutoHookedUpViewModel="True"
              mc:Ignorable="d" 
              d:DesignHeight="768" d:DesignWidth="1366">
-    
+
     <Grid>
-        <DataGrid ItemsSource="{Binding Vehicles}" AutoGenerateColumns="False" EnableRowVirtualization="True" SelectionMode="Single" RowDetailsVisibilityMode="Collapsed">
-            <DataGrid.Columns>
-                <DataGridTextColumn Width="Auto" Header="Id"  Binding="{Binding Id}" IsReadOnly="True" />
-                <DataGridTextColumn Width="*" Header="Manufacturer" Binding="{Binding Manufacturer}" />
-                <DataGridTextColumn Width="*" Header="Model" Binding="{Binding Model}" />
-                <DataGridTextColumn Width="*" Header="Type" Binding="{Binding Type}" />
-                <DataGridTextColumn Width="*" Header="Engine Horsepower" Binding="{Binding EngineHorsepower}" />
-                <DataGridTextColumn Width="*" Header="Engine Displacement" Binding="{Binding EngineDisplacement}" />
-            </DataGrid.Columns>
-        </DataGrid>
+        <StackPanel Orientation="Vertical">
+            <DataGrid ItemsSource="{Binding Vehicles}" SelectedItem="{Binding SelectedVehicle}" AutoGenerateColumns="False" EnableRowVirtualization="True" SelectionMode="Single" RowDetailsVisibilityMode="Collapsed" CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Width="Auto" Header="Id"  Binding="{Binding Id}" CanUserResize="False" />
+                    <DataGridTextColumn Width="Auto" Header="Manufacturer" Binding="{Binding Manufacturer}" />
+                    <DataGridTextColumn Width="Auto" Header="Model" Binding="{Binding Model}" />
+                    <DataGridTextColumn Width="Auto" Header="Type" Binding="{Binding Type}" />
+                    <DataGridTextColumn Width="Auto" Header="Engine Horsepower" Binding="{Binding EngineHorsepower}" />
+                    <DataGridTextColumn Width="Auto" Header="Engine Displacement" Binding="{Binding EngineDisplacement}" />
+                </DataGrid.Columns>
+            </DataGrid>
+            <StackPanel Orientation="Horizontal">
+                <Button Content="Refresh" Width="75" Command="{Binding RefreshCommand}" />
+                <Button Content="New" Width="75" Command="{Binding NewCommand}" />
+                <Button Content="Edit" Width="75" Command="{Binding EditCommand}" />
+                <Button Content="Copy" Width="75" Command="{Binding CopyCommand}" />
+                <Button Content="Delete" Width="75" Command="{Binding DeleteCommand}" />
+                <Button Content="Save" Width="75" Command="{Binding SaveCommand}" />
+            </StackPanel>
+            <StackPanel Orientation="Vertical">
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Id" />
+                    <TextBox Text="{Binding Id, UpdateSourceTrigger=PropertyChanged}" Height="23" Width="Auto" IsReadOnly="True" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Manufacturer" />
+                    <TextBox Text="{Binding Manufacturer, UpdateSourceTrigger=PropertyChanged}" Height="23" Width="150" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Model" />
+                    <TextBox Text="{Binding Model, UpdateSourceTrigger=PropertyChanged}" Height="23" Width="150" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Type" />
+                    <TextBox Text="{Binding Type, UpdateSourceTrigger=PropertyChanged}" Height="23" Width="150" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Engine Horsepower" />
+                    <TextBox Text="{Binding EngineHorsepower, UpdateSourceTrigger=PropertyChanged}" Height="23" Width="150" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Engine Displacement" />
+                    <TextBox Text="{Binding EngineDisplacement, UpdateSourceTrigger=PropertyChanged}" Height="23" Width="150" />
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
     </Grid>
 </UserControl>

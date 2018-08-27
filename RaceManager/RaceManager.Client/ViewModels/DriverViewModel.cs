@@ -2,7 +2,6 @@
 using RaceManager.Client.DriverService;
 using RaceManager.Client.Models;
 using RaceManager.Client.Models.Converters;
-using RaceManager.Core;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -29,13 +28,13 @@ namespace RaceManager.Client.ViewModels
         public DriverViewModel()
         {
             _driverServiceClient = new DriverServiceClient();
+            LoadDrivers();
             RefreshCommand = new RelayCommand(OnRefresh);
             NewCommand = new RelayCommand(OnNew);
             EditCommand = new RelayCommand(OnEdit, CanEdit);
             CopyCommand = new RelayCommand(OnCopy, CanCopy);
             DeleteCommand = new RelayCommand(OnDelete, CanDelete);
             SaveCommand = new RelayCommand(OnSave, CanSave); 
-            LoadDrivers();
         }
 
         #region Commands
@@ -67,6 +66,7 @@ namespace RaceManager.Client.ViewModels
                 _selectedDriver = value;
                 RaisePropertyChanged();
                 EditCommand.RaiseCanExecuteChanged();
+                CopyCommand.RaiseCanExecuteChanged();
                 DeleteCommand.RaiseCanExecuteChanged();
             }
         }
@@ -190,16 +190,13 @@ namespace RaceManager.Client.ViewModels
         private void OnSave()
         {
             var driver = new Driver();
+            driver.Id = Id > 0 ? Id : 0;
             driver.FirstName = FirstName;
             driver.LastName = LastName;
             driver.UMCN = UMCN;
 
             if (Id > 0)
-            {
-                driver.Id = Id;
                 _driverServiceClient.Update(DriverConverter.Instance.Convert(driver));
-                LoadDrivers();
-            }
             else
                 _driverServiceClient.Add(DriverConverter.Instance.Convert(driver));
                 

@@ -1,5 +1,4 @@
 ﻿using RaceManager.Client.Models;
-using RaceManager.Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;

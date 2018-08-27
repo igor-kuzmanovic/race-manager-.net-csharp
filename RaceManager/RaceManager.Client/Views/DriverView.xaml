@@ -7,35 +7,43 @@
              xmlns:core="clr-namespace:RaceManager.Client.Core"
              core:ViewModelLocator.AutoHookedUpViewModel="True"
              mc:Ignorable="d" 
-             d:DesignHeight="600" d:DesignWidth="800">
+             d:DesignHeight="768" d:DesignWidth="1366">
 
     <Grid>
         <StackPanel Orientation="Vertical">
-            <DataGrid ItemsSource="{Binding Drivers}" SelectedItem="{Binding SelectedDriver}" Height="Auto" AutoGenerateColumns="False" EnableRowVirtualization="True" SelectionMode="Single" RowDetailsVisibilityMode="Collapsed" CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True">
+            <DataGrid ItemsSource="{Binding Drivers}" SelectedItem="{Binding SelectedDriver}" AutoGenerateColumns="False" EnableRowVirtualization="True" SelectionMode="Single" RowDetailsVisibilityMode="Collapsed" CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True">
                 <DataGrid.Columns>
                     <DataGridTextColumn Width="Auto" Header="Id" Binding="{Binding Id}" CanUserResize="False" />
-                    <DataGridTextColumn Width="*" Header="First Name" Binding="{Binding FirstName}" />
-                    <DataGridTextColumn Width="*" Header="Last Name" Binding="{Binding LastName}" />
-                    <DataGridTextColumn Width="*" Header="UMCN" Binding="{Binding UMCN}" />
+                    <DataGridTextColumn Width="Auto" Header="First Name" Binding="{Binding FirstName}" />
+                    <DataGridTextColumn Width="Auto" Header="Last Name" Binding="{Binding LastName}" />
+                    <DataGridTextColumn Width="Auto" Header="UMCN" Binding="{Binding UMCN}" />
                 </DataGrid.Columns>
             </DataGrid>
             <StackPanel Orientation="Horizontal">
-                <Button Content="Refresh" Width="75" Margin="10,10,10,10" Command="{Binding RefreshCommand}" />
-                <Button Content="New" Width="75" Margin="10,10,10,10" Command="{Binding NewCommand}" />
-                <Button Content="Edit" Width="75" Margin="10,10,10,10" Command="{Binding EditCommand}" />
-                <Button Content="Copy" Width="75" Margin="10,10,10,10" Command="{Binding CopyCommand}" />
-                <Button Content="Delete" Width="75" Margin="10,10,10,10" Command="{Binding DeleteCommand}" />
+                <Button Content="Refresh" Width="75" Command="{Binding RefreshCommand}" />
+                <Button Content="New" Width="75" Command="{Binding NewCommand}" />
+                <Button Content="Edit" Width="75" Command="{Binding EditCommand}" />
+                <Button Content="Copy" Width="75" Command="{Binding CopyCommand}" />
+                <Button Content="Delete" Width="75" Command="{Binding DeleteCommand}" />
+                <Button Content="Save" Width="75" Command="{Binding SaveCommand}" />
             </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <Label Content="Id" />
-                <TextBox Text="{Binding Id, UpdateSourceTrigger=PropertyChanged}" Height="23" Width="Auto" IsReadOnly="True" />
-                <Label Content="First Name" />
-                <TextBox Text="{Binding FirstName, UpdateSourceTrigger=PropertyChanged}" Height="23" Width="150" />
-                <Label Content="Last Name" />
-                <TextBox Text="{Binding LastName, UpdateSourceTrigger=PropertyChanged}" Height="23" Width="150" />
-                <Label Content="UMCN" />
-                <TextBox Text="{Binding UMCN, UpdateSourceTrigger=PropertyChanged}" Height="23" Width="150" />
-                <Button Content="Save" Width="75" Margin="10,10,10,10" Command="{Binding SaveCommand}" />
+            <StackPanel Orientation="Vertical">
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Id" />
+                    <TextBox Text="{Binding Id, UpdateSourceTrigger=PropertyChanged}" Height="23" Width="Auto" IsReadOnly="True" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="First Name" />
+                    <TextBox Text="{Binding FirstName, UpdateSourceTrigger=PropertyChanged}" Height="23" Width="150" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Last Name" />
+                    <TextBox Text="{Binding LastName, UpdateSourceTrigger=PropertyChanged}" Height="23" Width="150" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="UMCN" />
+                    <TextBox Text="{Binding UMCN, UpdateSourceTrigger=PropertyChanged}" Height="23" Width="150" />
+                </StackPanel>
             </StackPanel>
         </StackPanel>
     </Grid>

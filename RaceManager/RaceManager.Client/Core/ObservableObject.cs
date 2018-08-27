@@ -6,7 +6,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RaceManager.Core
+namespace RaceManager.Client.Core
 {
     class ObservableObject : INotifyPropertyChanged
     {

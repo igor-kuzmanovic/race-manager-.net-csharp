@@ -1,5 +1,5 @@
-﻿using RaceManager.Client.Core.Converters;
-using RaceManager.Core;
+﻿using RaceManager.Client.Core;
+using RaceManager.Client.Core.Converters;
 using System.Collections.Generic;
 using System.Linq;
 

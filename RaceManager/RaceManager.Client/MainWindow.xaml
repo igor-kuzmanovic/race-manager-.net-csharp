@@ -6,21 +6,13 @@
         xmlns:local="clr-namespace:RaceManager.Client"
         xmlns:views="clr-namespace:RaceManager.Client.Views"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="800" WindowStartupLocation="CenterScreen">
+        Title="MainWindow" Height="768" Width="1366" WindowStartupLocation="CenterScreen" WindowState="Maximized">
 
     <Grid>
-        <!--<Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>-->
-
-        <!--<views:RaceView x:Name="raceViewControl" Grid.Column="0" Grid.Row="0" />
-        <views:DriverView x:Name="driverViewControl" Grid.Column="1" Grid.Row="0" />
-        <views:VehicleView x:Name="vehicleViewControl" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" />-->
-        <views:DriverView x:Name="driverViewControl" />
+        <StackPanel Orientation="Horizontal">
+            <views:RaceView x:Name="raceViewControl" />
+            <views:DriverView x:Name="driverViewControl" />
+            <views:VehicleView x:Name="vehicleViewControl" />
+        </StackPanel>
     </Grid>
 </Window>

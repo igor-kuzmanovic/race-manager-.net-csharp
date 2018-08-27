@@ -8,25 +8,38 @@
              core:ViewModelLocator.AutoHookedUpViewModel="True"
              mc:Ignorable="d" 
              d:DesignHeight="768" d:DesignWidth="1366">
-    
+
     <Grid>
-        <DataGrid x:Name="raceDataGrid" ItemsSource="{Binding Races}" AutoGenerateColumns="False" EnableRowVirtualization="True" SelectionMode="Single" RowDetailsVisibilityMode="Collapsed">
-            <DataGrid.Columns>
-                <DataGridTextColumn Width="Auto" Header="Id" Binding="{Binding Id}" IsReadOnly="True" CanUserResize="False" />
-                <DataGridTemplateColumn Width="Auto" Header="Event Date" SortMemberPath="EventDate" CanUserSort="True">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="{Binding EventDate, StringFormat=d}" />
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                    <DataGridTemplateColumn.CellEditingTemplate>
-                        <DataTemplate>
-                            <DatePicker SelectedDate="{Binding EventDate}" />
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellEditingTemplate>
-                </DataGridTemplateColumn>
-                <DataGridTextColumn Width="*" Header="Event Location" Binding="{Binding EventLocation}" />
-            </DataGrid.Columns>
-        </DataGrid>
+        <StackPanel Orientation="Vertical">
+            <DataGrid ItemsSource="{Binding Races}" SelectedItem="{Binding SelectedRace}" AutoGenerateColumns="False" EnableRowVirtualization="True" SelectionMode="Single" RowDetailsVisibilityMode="Collapsed" CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Width="Auto" Header="Id" Binding="{Binding Id}" CanUserResize="False" />
+                    <DataGridTextColumn Width="Auto" Header="Event Date" Binding="{Binding EventDate, StringFormat=D}" />
+                    <DataGridTextColumn Width="Auto" Header="Event Location" Binding="{Binding EventLocation}" />
+                </DataGrid.Columns>
+            </DataGrid>
+            <StackPanel Orientation="Horizontal">
+                <Button Content="Refresh" Width="75" Command="{Binding RefreshCommand}" />
+                <Button Content="New" Width="75" Command="{Binding NewCommand}" />
+                <Button Content="Edit" Width="75" Command="{Binding EditCommand}" />
+                <Button Content="Copy" Width="75" Command="{Binding CopyCommand}" />
+                <Button Content="Delete" Width="75" Command="{Binding DeleteCommand}" />
+                <Button Content="Save" Width="75" Command="{Binding SaveCommand}" />
+            </StackPanel>
+            <StackPanel Orientation="Vertical">
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Id" />
+                    <TextBox Text="{Binding Id, UpdateSourceTrigger=PropertyChanged}" Height="23" Width="Auto" IsReadOnly="True" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Event Date" />
+                    <DatePicker SelectedDate="{Binding EventDate, UpdateSourceTrigger=PropertyChanged}" Height="23" Width="Auto" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Event Location" />
+                    <TextBox Text="{Binding EventLocation, UpdateSourceTrigger=PropertyChanged}" Height="23" Width="150" />
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
     </Grid>
 </UserControl>
