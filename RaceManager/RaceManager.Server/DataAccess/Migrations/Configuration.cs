@@ -13,7 +13,6 @@ namespace RaceManager.Server.DataAccess.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
-            AutomaticMigrationDataLossAllowed = true;
         }
 
         protected override void Seed(RaceManagerContext context)
