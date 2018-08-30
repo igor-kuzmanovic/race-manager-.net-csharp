@@ -115,7 +115,7 @@ namespace RaceManager.Client.ViewModels
 
         private void LoadRaces()
         {
-            Races = new ObservableCollection<Race>(RaceConverter.Instance.Convert(_raceServiceClient.GetAll()));
+            //Races = new ObservableCollection<Race>(RaceConverter.Instance.Convert(_raceServiceClient.GetAll()));
         }
 
         #endregion

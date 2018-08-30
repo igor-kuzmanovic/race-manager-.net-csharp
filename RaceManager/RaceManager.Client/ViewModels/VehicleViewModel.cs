@@ -156,7 +156,7 @@ namespace RaceManager.Client.ViewModels
 
         private void LoadVehicles()
         {
-            Vehicles = new ObservableCollection<Vehicle>(VehicleConverter.Instance.Convert(_vehicleServiceClient.GetAll()));
+            //Vehicles = new ObservableCollection<Vehicle>(VehicleConverter.Instance.Convert(_vehicleServiceClient.GetAll()));
         }
 
         #endregion

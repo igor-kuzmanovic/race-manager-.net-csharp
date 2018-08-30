@@ -129,7 +129,7 @@ namespace RaceManager.Client.ViewModels
 
         private void LoadDrivers()
         {
-            Drivers = new ObservableCollection<Driver>(DriverConverter.Instance.Convert(_driverServiceClient.GetAll()));
+            //Drivers = new ObservableCollection<Driver>(DriverConverter.Instance.Convert(_driverServiceClient.GetAll()));
         }
 
         #endregion

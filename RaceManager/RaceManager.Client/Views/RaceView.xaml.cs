@@ -16,9 +16,6 @@ using System.Windows.Shapes;
 
 namespace RaceManager.Client.Views
 {
-    /// <summary>
-    /// Interaction logic for RaceView.xaml
-    /// </summary>
     public partial class RaceView : UserControl
     {
         public RaceView()

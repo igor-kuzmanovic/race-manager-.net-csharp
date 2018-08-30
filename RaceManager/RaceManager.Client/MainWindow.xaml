@@ -5,14 +5,38 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RaceManager.Client"
         xmlns:views="clr-namespace:RaceManager.Client.Views"
+        xmlns:viewModels="clr-namespace:RaceManager.Client.ViewModels"
         mc:Ignorable="d"
-        Title="MainWindow" Height="768" Width="1366" WindowStartupLocation="CenterScreen" WindowState="Maximized">
+        Title="MainWindow" Height="600" Width="800" WindowStartupLocation="CenterScreen">
+
+    <Window.DataContext>
+        <viewModels:MainWindowViewModel />
+    </Window.DataContext>
 
     <Grid>
-        <StackPanel Orientation="Horizontal">
-            <views:RaceView x:Name="raceViewControl" />
-            <views:DriverView x:Name="driverViewControl" />
-            <views:VehicleView x:Name="vehicleViewControl" />
-        </StackPanel>
+        <TabControl>
+            <TabItem Header="Races" Visibility="{Binding IsRaceViewVisible}">
+                <views:RaceView x:Name="raceViewControl" />
+            </TabItem>
+            <TabItem Header="Drivers" Visibility="{Binding IsDriverViewVisible}">
+                <views:DriverView x:Name="driverViewControl" />
+            </TabItem>
+            <TabItem Header="Vehicles" Visibility="{Binding IsVehicleViewVisible}">
+                <views:VehicleView x:Name="vehicleViewControl" />
+            </TabItem>
+            <TabItem Header="Users" Visibility="{Binding IsUserViewVisible}">
+                
+            </TabItem>
+            <TabItem IsTabStop="True" />
+            <TabItem Header="LogIn" Visibility="{Binding IsLogInViewVisible}">
+                <views:LogInView x:Name="logInViewControl" />
+            </TabItem>
+            <TabItem Header="LogOut" Visibility="{Binding IsLogOutViewVisible}">
+
+            </TabItem>
+            <TabItem Header="Settings" Visibility="{Binding IsSettingsViewVisible}">
+
+            </TabItem>
+        </TabControl>
     </Grid>
 </Window>

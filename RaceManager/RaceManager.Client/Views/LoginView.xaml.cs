@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -15,11 +16,17 @@ using System.Windows.Shapes;
 
 namespace RaceManager.Client.Views
 {
-    public partial class DriverView : UserControl
+    public partial class LogInView : UserControl
     {
-        public DriverView()
+        public LogInView()
         {
             InitializeComponent();
+        }
+
+        private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            if (DataContext != null)
+                ((dynamic)DataContext).Password = ((PasswordBox)sender).Password;
         }
     }
 }
