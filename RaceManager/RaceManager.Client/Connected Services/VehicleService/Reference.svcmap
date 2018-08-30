@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="a14a9d94-0571-409e-a888-c106ba4f666f" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="49464714-fac9-489a-8886-b98777703e4f" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -22,11 +22,11 @@
     <MetadataSource Address="http://localhost:51257/Service/Services/VehicleService.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="VehicleService.xsd" MetadataType="Schema" ID="9b338a8f-78e8-4263-8d16-fe055dd81719" SourceId="1" SourceUrl="http://localhost:51257/Service/Services/VehicleService.svc?xsd=xsd2" />
-    <MetadataFile FileName="VehicleService1.xsd" MetadataType="Schema" ID="3fea471a-b162-422c-aad2-ff8a700c3968" SourceId="1" SourceUrl="http://localhost:51257/Service/Services/VehicleService.svc?xsd=xsd1" />
-    <MetadataFile FileName="VehicleService.wsdl" MetadataType="Wsdl" ID="d6344475-74c2-47e8-abd8-239582365715" SourceId="1" SourceUrl="http://localhost:51257/Service/Services/VehicleService.svc?wsdl" />
-    <MetadataFile FileName="VehicleService.disco" MetadataType="Disco" ID="b44517e8-f4a7-4d36-85be-4467e3ab1683" SourceId="1" SourceUrl="http://localhost:51257/Service/Services/VehicleService.svc?disco" />
-    <MetadataFile FileName="VehicleService2.xsd" MetadataType="Schema" ID="dca382fb-c187-4e6a-8185-43af3fbe844a" SourceId="1" SourceUrl="http://localhost:51257/Service/Services/VehicleService.svc?xsd=xsd0" />
+    <MetadataFile FileName="VehicleService.xsd" MetadataType="Schema" ID="7716646a-052b-4710-9f56-1f528f4eb7d5" SourceId="1" SourceUrl="http://localhost:51257/Service/Services/VehicleService.svc?xsd=xsd2" />
+    <MetadataFile FileName="VehicleService1.xsd" MetadataType="Schema" ID="2dcc7fcb-1a96-44a4-90a0-afa356eee77a" SourceId="1" SourceUrl="http://localhost:51257/Service/Services/VehicleService.svc?xsd=xsd1" />
+    <MetadataFile FileName="VehicleService.wsdl" MetadataType="Wsdl" ID="db78b1d5-6c6d-49a1-9d34-e173f21e741b" SourceId="1" SourceUrl="http://localhost:51257/Service/Services/VehicleService.svc?wsdl" />
+    <MetadataFile FileName="VehicleService.disco" MetadataType="Disco" ID="e6819a5c-2d54-440b-bcf6-f9a1268b3bb7" SourceId="1" SourceUrl="http://localhost:51257/Service/Services/VehicleService.svc?disco" />
+    <MetadataFile FileName="VehicleService2.xsd" MetadataType="Schema" ID="5b535827-83b7-4701-8ad8-8cfe13dc95fc" SourceId="1" SourceUrl="http://localhost:51257/Service/Services/VehicleService.svc?xsd=xsd0" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

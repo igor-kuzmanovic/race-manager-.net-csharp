@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="6ef04816-5145-4c26-afc9-6e0179a04a67" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="539e4c3c-3a30-4c0a-aa22-2dd3bfd20485" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -22,11 +22,11 @@
     <MetadataSource Address="http://localhost:51257/Service/Services/DriverService.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="DriverService.disco" MetadataType="Disco" ID="8e5dd6ca-e11f-461a-bf0a-a32af3aa46f0" SourceId="1" SourceUrl="http://localhost:51257/Service/Services/DriverService.svc?disco" />
-    <MetadataFile FileName="DriverService.xsd" MetadataType="Schema" ID="e4d3af4b-5e07-4955-a598-3fd0e36dd9c6" SourceId="1" SourceUrl="http://localhost:51257/Service/Services/DriverService.svc?xsd=xsd1" />
-    <MetadataFile FileName="DriverService1.xsd" MetadataType="Schema" ID="ab9c086d-3567-4dad-a870-edca53c6f184" SourceId="1" SourceUrl="http://localhost:51257/Service/Services/DriverService.svc?xsd=xsd0" />
-    <MetadataFile FileName="DriverService2.xsd" MetadataType="Schema" ID="7ec14cad-0bde-4cf5-bcdd-4107a7f29f02" SourceId="1" SourceUrl="http://localhost:51257/Service/Services/DriverService.svc?xsd=xsd2" />
-    <MetadataFile FileName="DriverService.wsdl" MetadataType="Wsdl" ID="bc722884-65bf-4359-b33c-15dbd550396c" SourceId="1" SourceUrl="http://localhost:51257/Service/Services/DriverService.svc?wsdl" />
+    <MetadataFile FileName="DriverService.disco" MetadataType="Disco" ID="58bd31c0-bed5-4949-bc68-1869f0395114" SourceId="1" SourceUrl="http://localhost:51257/Service/Services/DriverService.svc?disco" />
+    <MetadataFile FileName="DriverService.xsd" MetadataType="Schema" ID="38ebf01d-cc28-4a0a-b227-70241b6255b4" SourceId="1" SourceUrl="http://localhost:51257/Service/Services/DriverService.svc?xsd=xsd1" />
+    <MetadataFile FileName="DriverService1.xsd" MetadataType="Schema" ID="d1733649-4421-4e61-97b7-d410fe49d76b" SourceId="1" SourceUrl="http://localhost:51257/Service/Services/DriverService.svc?xsd=xsd0" />
+    <MetadataFile FileName="DriverService2.xsd" MetadataType="Schema" ID="69437f06-c082-4ad0-b5e6-aaa261488654" SourceId="1" SourceUrl="http://localhost:51257/Service/Services/DriverService.svc?xsd=xsd2" />
+    <MetadataFile FileName="DriverService.wsdl" MetadataType="Wsdl" ID="4226f37e-eae3-46a3-80b0-fc9e95bd5799" SourceId="1" SourceUrl="http://localhost:51257/Service/Services/DriverService.svc?wsdl" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

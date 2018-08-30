@@ -49,6 +49,7 @@
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.IdentityModel" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -71,7 +72,9 @@
     <Content Include="Service\Services\DriverService.svc" />
     <Content Include="Service\Services\VehicleService.svc" />
     <Content Include="Service\Services\RaceService.svc" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Service\Converters\Converter.cs" />
@@ -105,6 +108,7 @@
     <Compile Include="Service\Core\Services\IVehicleService.cs" />
     <Compile Include="Service\Core\Services\IRaceService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service\Security\ServiceAuthenticator.cs" />
     <Compile Include="Service\Services\DriverService.svc.cs">
       <DependentUpon>DriverService.svc</DependentUpon>
     </Compile>
