@@ -12,7 +12,7 @@ namespace RaceManager.Server.Service.Core.Services
     public interface ILoginService
     {
         [OperationContract]
-        UserDTO LogIn(string username, string password);
+        LoginDTO LogIn(string username, string password);
 
         [OperationContract]
         void LogOut(string securityToken);

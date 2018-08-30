@@ -15,10 +15,10 @@ namespace RaceManager.Client.LoginService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="UserDTO", Namespace="http://schemas.datacontract.org/2004/07/RaceManager.Server.Service.Core.DataTrans" +
+    [System.Runtime.Serialization.DataContractAttribute(Name="LoginDTO", Namespace="http://schemas.datacontract.org/2004/07/RaceManager.Server.Service.Core.DataTrans" +
         "ferObjects")]
     [System.SerializableAttribute()]
-    public partial class UserDTO : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+    public partial class LoginDTO : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
@@ -160,10 +160,10 @@ namespace RaceManager.Client.LoginService {
     public interface ILoginService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILoginService/LogIn", ReplyAction="http://tempuri.org/ILoginService/LogInResponse")]
-        RaceManager.Client.LoginService.UserDTO LogIn(string username, string password);
+        RaceManager.Client.LoginService.LoginDTO LogIn(string username, string password);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILoginService/LogIn", ReplyAction="http://tempuri.org/ILoginService/LogInResponse")]
-        System.Threading.Tasks.Task<RaceManager.Client.LoginService.UserDTO> LogInAsync(string username, string password);
+        System.Threading.Tasks.Task<RaceManager.Client.LoginService.LoginDTO> LogInAsync(string username, string password);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILoginService/LogOut", ReplyAction="http://tempuri.org/ILoginService/LogOutResponse")]
         void LogOut(string securityToken);
@@ -199,11 +199,11 @@ namespace RaceManager.Client.LoginService {
                 base(binding, remoteAddress) {
         }
         
-        public RaceManager.Client.LoginService.UserDTO LogIn(string username, string password) {
+        public RaceManager.Client.LoginService.LoginDTO LogIn(string username, string password) {
             return base.Channel.LogIn(username, password);
         }
         
-        public System.Threading.Tasks.Task<RaceManager.Client.LoginService.UserDTO> LogInAsync(string username, string password) {
+        public System.Threading.Tasks.Task<RaceManager.Client.LoginService.LoginDTO> LogInAsync(string username, string password) {
             return base.Channel.LogInAsync(username, password);
         }
         

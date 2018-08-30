@@ -101,12 +101,14 @@
     <Compile Include="Core\DataMappers\IDataMapper.cs" />
     <Compile Include="Core\DataMappers\IDriverMapper.cs" />
     <Compile Include="Core\DataMappers\IRaceMapper.cs" />
+    <Compile Include="Core\DataMappers\ILoginMapper.cs" />
     <Compile Include="Core\DataMappers\IUserMapper.cs" />
     <Compile Include="Core\DataMappers\IVehicleMapper.cs" />
     <Compile Include="Core\RelayCommand.cs" />
     <Compile Include="Core\ViewModelLocator.cs" />
     <Compile Include="Models\DataMappers\DataMapper.cs" />
     <Compile Include="Models\DataMappers\DriverMapper.cs" />
+    <Compile Include="Models\DataMappers\LoginMapper.cs" />
     <Compile Include="Models\DataMappers\UserMapper.cs" />
     <Compile Include="Models\DataMappers\RaceMapper.cs" />
     <Compile Include="Models\DataMappers\VehicleMapper.cs" />
@@ -202,7 +204,7 @@
     <None Include="Connected Services\LoginService\LoginService2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\LoginService\RaceManager.Client.LoginService.UserDTO.datasource">
+    <None Include="Connected Services\LoginService\RaceManager.Client.LoginService.LoginDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\RaceService\RaceManager.Client.RaceService.RaceDTO.datasource">

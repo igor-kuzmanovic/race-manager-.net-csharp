@@ -1,4 +1,5 @@
-﻿using RaceManager.Server.DataAccess.Persistence;
+﻿using RaceManager.Server.DataAccess.Core;
+using RaceManager.Server.DataAccess.Persistence;
 using RaceManager.Server.Service.Core.Security;
 using System;
 using System.Collections.Generic;
@@ -15,23 +16,20 @@ namespace RaceManager.Server.Service.Security
 
         private SecurityTokenManager() { }
 
-        public string GenerateToken(string username)
+        public string GenerateToken(IUnitOfWork uow, string username)
         {
-            using (var uow = new UnitOfWork(new RaceManagerContext()))
+            var user = uow.Users.Find(u => u.Username.ToLower() == username.ToLower());
+
+            if (user == null)
+                return string.Empty;
+
+            while (true)
             {
-                var user = uow.Users.Find(u => u.Username.ToLower() == username.ToLower());
+                var generatedToken = Guid.NewGuid().ToString();
+                var tokens = uow.Users.GetAll().Select(u => u.SecurityToken);
 
-                if (user == null)
-                    return string.Empty;
-
-                while (true)
-                {
-                    var generatedToken = Guid.NewGuid().ToString();
-                    var tokens = uow.Users.GetAll().Select(u => u.SecurityToken);
-
-                    if (!tokens.Contains(generatedToken))
-                        return generatedToken;
-                }
+                if (!tokens.Contains(generatedToken))
+                    return generatedToken;
             }
         }
     }

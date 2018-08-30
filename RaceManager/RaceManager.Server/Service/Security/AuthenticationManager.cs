@@ -1,4 +1,4 @@
-﻿using RaceManager.Server.DataAccess.Persistence;
+﻿using RaceManager.Server.DataAccess.Core;
 using RaceManager.Server.Service.Core.Security;
 using System;
 using System.Collections.Generic;
@@ -15,20 +15,17 @@ namespace RaceManager.Server.Service.Security
 
         private AuthenticationManager() { }
 
-        public bool Authenticate(string username, string password)
+        public bool Authenticate(IUnitOfWork uow, string username, string password)
         {
-            using (var uow = new UnitOfWork(new RaceManagerContext()))
-            {
-                var user = uow.Users.Find(u => u.Username.ToLower() == username.ToLower());
+            var user = uow.Users.Find(u => u.Username.ToLower() == username.ToLower());
 
-                if (user == null)
-                    return false;
+            if (user == null)
+                return false;
 
-                if (user.Password != password)
-                    return false;
+            if (user.Password != password)
+                return false;
 
-                return true;
-            }
+            return true;
         }
     }
 }

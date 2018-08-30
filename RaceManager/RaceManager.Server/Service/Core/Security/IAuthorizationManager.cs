@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RaceManager.Server.DataAccess.Core;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,6 @@ namespace RaceManager.Server.Service.Core.Security
 {
     interface IAuthorizationManager
     {
-        bool Authorize(string securityToken, bool shouldBeAdmin);
+        bool Authorize(IUnitOfWork uow, string securityToken, bool shouldBeAdmin);
     }
 }

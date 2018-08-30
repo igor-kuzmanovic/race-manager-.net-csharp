@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RaceManager.Server.DataAccess.Core;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,6 @@ namespace RaceManager.Server.Service.Core.Security
 {
     interface ISecurityTokenManager
     {
-        string GenerateToken(string username);
+        string GenerateToken(IUnitOfWork uow, string username);
     }
 }

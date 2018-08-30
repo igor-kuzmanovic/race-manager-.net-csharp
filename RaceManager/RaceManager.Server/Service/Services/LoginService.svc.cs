@@ -15,34 +15,36 @@ namespace RaceManager.Server.Service.Services
 {
     public class LoginService : ILoginService
     {
-        public UserDTO LogIn(string username, string password)
+        public LoginDTO LogIn(string username, string password)
         {
             using (var uow = new UnitOfWork(new RaceManagerContext()))
             {
                 if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
-                    return new UserDTO();
+                    return new LoginDTO();
 
-                if (!AuthenticationManager.Instance.Authenticate(username, password))
-                    return new UserDTO();
+                if (!AuthenticationManager.Instance.Authenticate(uow, username, password))
+                    return new LoginDTO();
 
                 var user = uow.Users.Find(u => u.Username.ToLower() == username.ToLower());
 
                 if (user == null)
-                    return new UserDTO();
+                    return new LoginDTO();
 
-                var securityToken = SecurityTokenManager.Instance.GenerateToken(username);
+                var securityToken = SecurityTokenManager.Instance.GenerateToken(uow, username);
 
-                var userDTO = new UserDTO();
-                userDTO.Id = user.Id;
-                userDTO.Username = user.Username;
-                userDTO.Password = string.Empty;
-                userDTO.SecurityToken = securityToken;
-                userDTO.IsAdmin = user.IsAdmin;
+                var loginDTO = new LoginDTO();
+                loginDTO.Id = user.Id;
+                loginDTO.Username = user.Username;
+                loginDTO.Password = string.Empty;
+                loginDTO.FirstName = user.FirstName;
+                loginDTO.LastName = user.LastName;
+                loginDTO.SecurityToken = securityToken;
+                loginDTO.IsAdmin = user.IsAdmin;
 
                 user.SecurityToken = securityToken;
                 uow.Complete();
 
-                return userDTO;
+                return loginDTO;
             }
         }
 

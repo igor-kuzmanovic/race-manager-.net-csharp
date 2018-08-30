@@ -18,6 +18,7 @@ namespace RaceManager.Server.DataAccess.Persistence
             Races = new RaceRepository(_context);
             Drivers = new DriverRepository(_context);
             Vehicles = new VehicleRepository(_context);
+            Users = new UserRepository(_context);
         }
 
         public IRaceRepository Races { get; private set; }

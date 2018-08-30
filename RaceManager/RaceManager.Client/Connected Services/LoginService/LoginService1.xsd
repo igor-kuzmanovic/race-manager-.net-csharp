@@ -12,7 +12,7 @@
   <xs:element name="LogInResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/RaceManager.Server.Service.Core.DataTransferObjects" minOccurs="0" name="LogInResult" nillable="true" type="q1:UserDTO" />
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/RaceManager.Server.Service.Core.DataTransferObjects" minOccurs="0" name="LogInResult" nillable="true" type="q1:LoginDTO" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

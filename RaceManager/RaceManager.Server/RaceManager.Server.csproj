@@ -82,7 +82,9 @@
     <Compile Include="DataAccess\Core\Domain\User.cs" />
     <Compile Include="DataAccess\Core\Repositories\IUserRepository.cs" />
     <Compile Include="DataAccess\Persistence\Repositories\UserRepository.cs" />
+    <Compile Include="Service\Core\DataMappers\ILoginMapper.cs" />
     <Compile Include="Service\Core\DataMappers\IUserMapper.cs" />
+    <Compile Include="Service\Core\DataTransferObjects\LoginDTO.cs" />
     <Compile Include="Service\Core\DataTransferObjects\UserDTO.cs" />
     <Compile Include="Service\Core\Security\IAuthenticationManager.cs" />
     <Compile Include="Service\Core\Security\IAuthorizationManager.cs" />
@@ -93,6 +95,7 @@
     <Compile Include="Service\Core\DataMappers\IVehicleMapper.cs" />
     <Compile Include="Service\Core\DataMappers\IRaceMapper.cs" />
     <Compile Include="Service\Core\DataMappers\IDriverMapper.cs" />
+    <Compile Include="Service\DataMappers\LoginMapper.cs" />
     <Compile Include="Service\DataMappers\UserMapper.cs" />
     <Compile Include="Service\DataMappers\RaceMapper.cs" />
     <Compile Include="Service\DataMappers\VehicleMapper.cs" />
