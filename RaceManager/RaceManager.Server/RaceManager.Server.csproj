@@ -70,6 +70,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Service\Services\DriverService.svc" />
+    <Content Include="Service\Services\LoginService.svc" />
     <Content Include="Service\Services\VehicleService.svc" />
     <Content Include="Service\Services\RaceService.svc" />
     <Content Include="Web.config">
@@ -104,12 +105,16 @@
     <Compile Include="DataAccess\Persistence\Repositories\Repository.cs" />
     <Compile Include="DataAccess\Persistence\Repositories\VehicleRepository.cs" />
     <Compile Include="DataAccess\Persistence\UnitOfWork.cs" />
+    <Compile Include="Service\Core\Services\ILoginService.cs" />
     <Compile Include="Service\Core\Services\IDriverService.cs" />
     <Compile Include="Service\Core\Services\IVehicleService.cs" />
     <Compile Include="Service\Core\Services\IRaceService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service\Services\DriverService.svc.cs">
       <DependentUpon>DriverService.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Service\Services\LoginService.svc.cs">
+      <DependentUpon>LoginService.svc</DependentUpon>
     </Compile>
     <Compile Include="Service\Services\VehicleService.svc.cs">
       <DependentUpon>VehicleService.svc</DependentUpon>
