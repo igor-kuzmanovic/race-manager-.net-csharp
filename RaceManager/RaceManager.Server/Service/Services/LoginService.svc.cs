@@ -9,22 +9,58 @@ using System.Linq.Expressions;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
+using RaceManager.Server.Service.Security;
 
 namespace RaceManager.Server.Service.Services
 {
     public class LoginService : ILoginService
     {
-        public string LogIn(string username, string password)
+        public UserDTO LogIn(string username, string password)
         {
-            if (username == "admin" && password == "admin")
-                return "1234";
-            return string.Empty;
+            using (var uow = new UnitOfWork(new RaceManagerContext()))
+            {
+                if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
+                    return new UserDTO();
+
+                if (!AuthenticationManager.Instance.Authenticate(username, password))
+                    return new UserDTO();
+
+                var user = uow.Users.Find(u => u.Username.ToLower() == username.ToLower());
+
+                if (user == null)
+                    return new UserDTO();
+
+                var securityToken = SecurityTokenManager.Instance.GenerateToken(username);
+
+                var userDTO = new UserDTO();
+                userDTO.Id = user.Id;
+                userDTO.Username = user.Username;
+                userDTO.Password = string.Empty;
+                userDTO.SecurityToken = securityToken;
+                userDTO.IsAdmin = user.IsAdmin;
+
+                user.SecurityToken = securityToken;
+                uow.Complete();
+
+                return userDTO;
+            }
         }
 
         public void LogOut(string securityToken)
         {
-            if (securityToken == "1234")
-                return;
+            using (var uow = new UnitOfWork(new RaceManagerContext()))
+            {
+                if (string.IsNullOrWhiteSpace(securityToken))
+                    return;
+
+                var user = uow.Users.Find(u => u.SecurityToken == securityToken);
+
+                if (user == null)
+                    return;
+
+                user.SecurityToken = string.Empty;
+                uow.Complete();
+            }
         }
     }
 }

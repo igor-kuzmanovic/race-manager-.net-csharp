@@ -23,6 +23,7 @@ namespace RaceManager.Server.DataAccess.Persistence
         public IRaceRepository Races { get; private set; }
         public IDriverRepository Drivers { get; private set; }
         public IVehicleRepository Vehicles { get; private set; }
+        public IUserRepository Users { get; private set; }
 
         public int Complete()
         {

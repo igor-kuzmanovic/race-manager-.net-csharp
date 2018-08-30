@@ -9,12 +9,21 @@ using System.Text;
 namespace RaceManager.Server.Service.Core.Services
 {
     [ServiceContract]
-    public interface ILoginService
+    public interface IUserService
     {
         [OperationContract]
-        UserDTO LogIn(string username, string password);
+        UserDTO Get(int id);
 
         [OperationContract]
-        void LogOut(string securityToken);
+        IEnumerable<UserDTO> GetAll();
+
+        [OperationContract]
+        void Add(UserDTO dto);
+
+        [OperationContract]
+        void Update(UserDTO dto);
+
+        [OperationContract]
+        void Remove(int id);
     }
 }

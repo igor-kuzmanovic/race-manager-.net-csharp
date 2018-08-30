@@ -12,6 +12,7 @@ namespace RaceManager.Server.DataAccess.Core
         IRaceRepository Races { get; }
         IDriverRepository Drivers { get; }
         IVehicleRepository Vehicles { get; }
+        IUserRepository Users { get; }
         int Complete();
     }
 }

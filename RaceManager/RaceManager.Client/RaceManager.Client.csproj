@@ -78,7 +78,17 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Connected Services\LoginService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Connected Services\RaceService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\UserService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -91,19 +101,26 @@
     <Compile Include="Core\DataMappers\IDataMapper.cs" />
     <Compile Include="Core\DataMappers\IDriverMapper.cs" />
     <Compile Include="Core\DataMappers\IRaceMapper.cs" />
+    <Compile Include="Core\DataMappers\IUserMapper.cs" />
     <Compile Include="Core\DataMappers\IVehicleMapper.cs" />
     <Compile Include="Core\RelayCommand.cs" />
     <Compile Include="Core\ViewModelLocator.cs" />
     <Compile Include="Models\DataMappers\DataMapper.cs" />
     <Compile Include="Models\DataMappers\DriverMapper.cs" />
+    <Compile Include="Models\DataMappers\UserMapper.cs" />
     <Compile Include="Models\DataMappers\RaceMapper.cs" />
     <Compile Include="Models\DataMappers\VehicleMapper.cs" />
+    <Compile Include="Models\User.cs" />
     <Compile Include="ViewModels\DriverViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
+    <Compile Include="ViewModels\UserViewModel.cs" />
     <Compile Include="ViewModels\RaceViewModel.cs" />
     <Compile Include="ViewModels\VehicleViewModel.cs" />
     <Compile Include="Views\DriverView.xaml.cs">
       <DependentUpon>DriverView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserView.xaml.cs">
+      <DependentUpon>UserView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\RaceView.xaml.cs">
       <DependentUpon>RaceView.xaml</DependentUpon>
@@ -126,6 +143,10 @@
     <Page Include="Views\DriverView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\RaceView.xaml">
       <SubType>Designer</SubType>
@@ -171,6 +192,19 @@
     <None Include="Connected Services\DriverService\RaceManager.Client.DriverService.DriverDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Connected Services\LoginService\LoginService.wsdl" />
+    <None Include="Connected Services\LoginService\LoginService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\LoginService\LoginService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\LoginService\LoginService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\LoginService\RaceManager.Client.LoginService.UserDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Connected Services\RaceService\RaceManager.Client.RaceService.RaceDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -182,6 +216,19 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Connected Services\RaceService\RaceService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\UserService\RaceManager.Client.UserService.UserDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\UserService\UserService.wsdl" />
+    <None Include="Connected Services\UserService\UserService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\UserService\UserService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\UserService\UserService2.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Connected Services\VehicleService\RaceManager.Client.VehicleService.VehicleDTO.datasource">
@@ -222,7 +269,9 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Connected Services\DriverService\" />
+    <WCFMetadataStorage Include="Connected Services\LoginService\" />
     <WCFMetadataStorage Include="Connected Services\RaceService\" />
+    <WCFMetadataStorage Include="Connected Services\UserService\" />
     <WCFMetadataStorage Include="Connected Services\VehicleService\" />
   </ItemGroup>
   <ItemGroup>
@@ -266,6 +315,36 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Connected Services\RaceService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\LoginService\LoginService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\LoginService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\LoginService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\LoginService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\UserService\UserService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\UserService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\UserService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\UserService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>

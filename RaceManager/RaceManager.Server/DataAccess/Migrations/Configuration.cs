@@ -94,6 +94,31 @@ namespace RaceManager.Server.DataAccess.Migrations
 
             foreach (var vehicle in vehicles)
                 context.Vehicles.AddOrUpdate(v => v.Id, vehicle);
+
+            var users = new List<User>()
+            {
+                new User()
+                {
+                    Username = "admin",
+                    Password = "admin",
+                    FirstName = "John",
+                    LastName = "Doe",
+                    SecurityToken = string.Empty,
+                    IsAdmin = true
+                },
+                new User()
+                {
+                    Username = "user",
+                    Password = "user",
+                    FirstName = "Mary",
+                    LastName = "Doe",
+                    SecurityToken = string.Empty,
+                    IsAdmin = false
+                }
+            };
+
+            foreach (var user in users)
+                context.Users.AddOrUpdate(u => u.Id, user);
         }
     }
 }

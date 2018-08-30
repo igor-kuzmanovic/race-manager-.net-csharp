@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RaceManager.Client.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,19 +14,13 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace RaceManager.Client
+namespace RaceManager.Client.Views
 {
-    public partial class MainWindow : Window
+    public partial class UserView : UserControl
     {
-        public MainWindow()
+        public UserView()
         {
             InitializeComponent();
-        }
-
-        private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
-        {
-            if (DataContext != null)
-                ((dynamic)DataContext).Password = ((PasswordBox)sender).Password;
         }
     }
 }

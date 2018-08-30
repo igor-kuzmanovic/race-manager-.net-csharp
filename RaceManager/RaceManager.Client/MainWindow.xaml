@@ -25,11 +25,11 @@
                 <views:VehicleView x:Name="vehicleViewControl" />
             </TabItem>
             <TabItem Header="Users" IsEnabled="{Binding IsUserViewEnabled}">
-                
+                <views:UserView x:Name="userViewControl" />
             </TabItem>
-            <TabItem Header="Settings" IsEnabled="{Binding IsSettingsViewEnabled}">
-
-            </TabItem>
+            <!--<TabItem Header="Settings" IsEnabled="{Binding IsSettingsViewEnabled}">
+                <views:SettingsView x:Name="settingsViewControl" />
+            </TabItem>-->
             <TabItem Header="Log In" IsEnabled="{Binding IsLogInViewEnabled}" IsSelected="{Binding IsLogInViewSelected}">
                 <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
                     <Label Content="Username" />
