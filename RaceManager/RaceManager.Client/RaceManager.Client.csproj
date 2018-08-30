@@ -84,16 +84,12 @@
     <Compile Include="ViewModels\DriverViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\RaceViewModel.cs" />
-    <Compile Include="ViewModels\LogInViewModel.cs" />
     <Compile Include="ViewModels\VehicleViewModel.cs" />
     <Compile Include="Views\DriverView.xaml.cs">
       <DependentUpon>DriverView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\RaceView.xaml.cs">
       <DependentUpon>RaceView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\LogInView.xaml.cs">
-      <DependentUpon>LogInView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\VehicleView.xaml.cs">
       <DependentUpon>VehicleView.xaml</DependentUpon>
@@ -117,10 +113,6 @@
     <Page Include="Views\RaceView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\LogInView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\VehicleView.xaml">
       <SubType>Designer</SubType>
@@ -249,8 +241,6 @@
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Observers\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

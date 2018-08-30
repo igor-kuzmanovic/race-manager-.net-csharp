@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace RaceManager.Client.ViewModels
 {
@@ -11,112 +12,219 @@ namespace RaceManager.Client.ViewModels
     {
         #region Fields
 
-        private bool _isRaceViewVisible;
-        private bool _isDriverViewVisible;
-        private bool _isVehicleViewVisible;
-        private bool _isUserViewVisible;
-        private bool _isLogInViewVisible;
-        private bool _isLogOutViewVisible;
-        private bool _isSettingsViewVisible;
+        private string _username;
+        private string _password;
+        private bool _isRaceViewEnabled;
+        private bool _isDriverViewEnabled;
+        private bool _isVehicleViewEnabled;
+        private bool _isUserViewEnabled;
+        private bool _isLogInViewEnabled;
+        private bool _isLogOutViewEnabled;
+        private bool _isSettingsViewEnabled;
+        private bool _isRaceViewSelected;
+        private bool _isLogInViewSelected;
 
         #endregion
 
         public MainWindowViewModel()
         {
-            InitializeViewVisibility();
+            DisableViewsWhenLoggedOut();
+            LogInCommand = new RelayCommand(OnLogIn, CanLogIn);
+            LogOutCommand = new RelayCommand(OnLogOut);
         }
 
         #region Commands
 
-
+        public RelayCommand LogInCommand { get; }
+        public RelayCommand LogOutCommand { get; }
 
         #endregion
 
         #region Properties
 
-        public bool IsRaceViewVisible
+        public string Username
         {
-            get => _isRaceViewVisible; set
+            get => _username; set
             {
-                _isRaceViewVisible = value;
-                RaisePropertyChanged();
+                if (_username != value)
+                {
+                    _username = value;
+                    RaisePropertyChanged();
+                    LogInCommand.RaiseCanExecuteChanged();                   
+                }
             }
         }
 
-        public bool IsDriverViewVisible
+        public string Password
         {
-            get => _isDriverViewVisible; set
+            get => _password; set
             {
-                _isDriverViewVisible = value;
-                RaisePropertyChanged();
+                if (_password != value)
+                {
+                    _password = value;
+                    RaisePropertyChanged();
+                    LogInCommand.RaiseCanExecuteChanged();
+                }
             }
         }
 
-        public bool IsVehicleViewVisible
+        public bool IsRaceViewEnabled
         {
-            get => _isVehicleViewVisible; set
+            get => _isRaceViewEnabled; set
             {
-                _isVehicleViewVisible = value;
-                RaisePropertyChanged();
+                if (_isRaceViewEnabled != value)
+                {
+                    _isRaceViewEnabled = value;
+                    RaisePropertyChanged();
+                }
             }
         }
 
-        public bool IsUserViewVisible
+        public bool IsDriverViewEnabled
         {
-            get => _isUserViewVisible; set
+            get => _isDriverViewEnabled; set
             {
-                _isUserViewVisible = value;
-                RaisePropertyChanged();
+                if (_isDriverViewEnabled != value)
+                {
+                    _isDriverViewEnabled = value;
+                    RaisePropertyChanged();
+                }
             }
         }
 
-        public bool IsLogInViewVisible
+        public bool IsVehicleViewEnabled
         {
-            get => _isLogInViewVisible; set
+            get => _isVehicleViewEnabled; set
             {
-                _isLogInViewVisible = value;
-                RaisePropertyChanged();
+                if (_isVehicleViewEnabled != value)
+                {
+                    _isVehicleViewEnabled = value;
+                    RaisePropertyChanged();
+                }
             }
         }
 
-        public bool IsLogOutViewVisible
+        public bool IsUserViewEnabled
         {
-            get => _isLogOutViewVisible; set
+            get => _isUserViewEnabled; set
             {
-                _isLogOutViewVisible = value;
-                RaisePropertyChanged();
+                if (_isUserViewEnabled != value)
+                {
+                    _isUserViewEnabled = value;
+                    RaisePropertyChanged();
+                }
             }
         }
 
-        public bool IsSettingsViewVisible
+        public bool IsLogInViewEnabled
         {
-            get => _isSettingsViewVisible; set
+            get => _isLogInViewEnabled; set
             {
-                _isSettingsViewVisible = value;
-                RaisePropertyChanged();
+                if (_isLogInViewEnabled != value)
+                {
+                    _isLogInViewEnabled = value;
+                    RaisePropertyChanged();
+                }
             }
         }
+
+        public bool IsLogOutViewEnabled
+        {
+            get => _isLogOutViewEnabled; set
+            {
+                if (_isLogOutViewEnabled != value)
+                {
+                    _isLogOutViewEnabled = value;
+                    RaisePropertyChanged();
+                }
+            }
+        }
+
+        public bool IsSettingsViewEnabled
+        {
+            get => _isSettingsViewEnabled; set
+            {
+                if (_isSettingsViewEnabled != value)
+                {
+                    _isSettingsViewEnabled = value;
+                    RaisePropertyChanged();
+                }
+            }
+        }
+
+        public bool IsRaceViewSelected
+        {
+            get => _isRaceViewSelected; set
+            {
+                if (_isRaceViewSelected != value)
+                {
+                    _isRaceViewSelected = value;
+                    RaisePropertyChanged();
+                }
+            }
+        }
+
+        public bool IsLogInViewSelected
+        {
+            get => _isLogInViewSelected; set
+            {
+                if (_isLogInViewSelected != value)
+                {
+                    _isLogInViewSelected = value;
+                    RaisePropertyChanged();
+                }
+            }
+        }
+
 
         #endregion Properties
 
         #region Helper Methods
 
-        private void InitializeViewVisibility()
+        private void EnableViewsWhenLoggedIn()
         {
-            IsRaceViewVisible = false;
-            IsDriverViewVisible = false;
-            IsVehicleViewVisible = false;
-            IsUserViewVisible = false;
-            IsLogInViewVisible = true;
-            IsLogOutViewVisible = false;
-            IsSettingsViewVisible = false;
+            IsRaceViewEnabled = true;
+            IsDriverViewEnabled = true;
+            IsVehicleViewEnabled = true;
+            IsUserViewEnabled = true;
+            IsLogInViewEnabled = false;
+            IsLogOutViewEnabled = true;
+            IsSettingsViewEnabled = true;
+            IsRaceViewSelected = true;
+            IsLogInViewSelected = false;
+        }
+
+        private void DisableViewsWhenLoggedOut()
+        {
+            IsRaceViewEnabled = false;
+            IsDriverViewEnabled = false;
+            IsVehicleViewEnabled = false;
+            IsUserViewEnabled = false;
+            IsLogInViewEnabled = true;
+            IsLogOutViewEnabled = false;
+            IsSettingsViewEnabled = false;
+            IsRaceViewSelected = false;
+            IsLogInViewSelected = true;
         }
 
         #endregion
 
         #region Command Methods
 
+        private void OnLogIn()
+        {
+            EnableViewsWhenLoggedIn();
+        }
 
+        private bool CanLogIn()
+        {
+            return !string.IsNullOrWhiteSpace(Username) && !string.IsNullOrWhiteSpace(Password);
+        }
+
+        private void OnLogOut()
+        {
+            DisableViewsWhenLoggedOut();
+        }
 
         #endregion
     }
