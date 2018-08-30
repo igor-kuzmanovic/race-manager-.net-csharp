@@ -32,7 +32,6 @@ namespace RaceManager.Client.ViewModels
         public UserViewModel()
         {
             _userServiceClient = new UserServiceClient();
-            LoadUsers();
             RefreshCommand = new RelayCommand(OnRefresh);
             NewCommand = new RelayCommand(OnNew);
             EditCommand = new RelayCommand(OnEdit, CanEdit);
@@ -172,7 +171,7 @@ namespace RaceManager.Client.ViewModels
 
         private void LoadUsers()
         {
-            //Users = new ObservableCollection<User>(UserConverter.Instance.Convert(_userServiceClient.GetAll()));
+            Users = new ObservableCollection<User>(UserMapper.Instance.Map(_userServiceClient.GetAll()));
         }
 
         #endregion

@@ -28,7 +28,6 @@ namespace RaceManager.Client.ViewModels
         public RaceViewModel()
         {
             _raceServiceClient = new RaceServiceClient();
-            LoadRaces();
             RefreshCommand = new RelayCommand(OnRefresh);
             NewCommand = new RelayCommand(OnNew);
             EditCommand = new RelayCommand(OnEdit, CanEdit);
@@ -116,7 +115,7 @@ namespace RaceManager.Client.ViewModels
 
         private void LoadRaces()
         {
-            //Races = new ObservableCollection<Race>(RaceConverter.Instance.Convert(_raceServiceClient.GetAll()));
+            Races = new ObservableCollection<Race>(RaceMapper.Instance.Map(_raceServiceClient.GetAll()));
         }
 
         #endregion

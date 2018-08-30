@@ -30,7 +30,6 @@ namespace RaceManager.Client.ViewModels
         public VehicleViewModel()
         {
             _vehicleServiceClient = new VehicleServiceClient();
-            LoadVehicles();
             RefreshCommand = new RelayCommand(OnRefresh);
             NewCommand = new RelayCommand(OnNew);
             EditCommand = new RelayCommand(OnEdit, CanEdit);
@@ -156,7 +155,7 @@ namespace RaceManager.Client.ViewModels
 
         private void LoadVehicles()
         {
-            //Vehicles = new ObservableCollection<Vehicle>(VehicleConverter.Instance.Convert(_vehicleServiceClient.GetAll()));
+            Vehicles = new ObservableCollection<Vehicle>(VehicleMapper.Instance.Map(_vehicleServiceClient.GetAll()));
         }
 
         #endregion

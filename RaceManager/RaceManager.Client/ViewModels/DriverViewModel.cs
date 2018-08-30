@@ -28,7 +28,6 @@ namespace RaceManager.Client.ViewModels
         public DriverViewModel()
         {
             _driverServiceClient = new DriverServiceClient();
-            LoadDrivers();
             RefreshCommand = new RelayCommand(OnRefresh);
             NewCommand = new RelayCommand(OnNew);
             EditCommand = new RelayCommand(OnEdit, CanEdit);
@@ -129,7 +128,7 @@ namespace RaceManager.Client.ViewModels
 
         private void LoadDrivers()
         {
-            //Drivers = new ObservableCollection<Driver>(DriverConverter.Instance.Convert(_driverServiceClient.GetAll()));
+            Drivers = new ObservableCollection<Driver>(DriverMapper.Instance.Map(_driverServiceClient.GetAll()));
         }
 
         #endregion
