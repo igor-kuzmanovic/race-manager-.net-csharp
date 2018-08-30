@@ -15,9 +15,9 @@ namespace RaceManager.Server.DataAccess.Persistence
         public UnitOfWork(RaceManagerContext context)
         {
             _context = context;
-            Races = new RaceRepository(context);
-            Drivers = new DriverRepository(context);
-            Vehicles = new VehicleRepository(context);
+            Races = new RaceRepository(_context);
+            Drivers = new DriverRepository(_context);
+            Vehicles = new VehicleRepository(_context);
         }
 
         public IRaceRepository Races { get; private set; }

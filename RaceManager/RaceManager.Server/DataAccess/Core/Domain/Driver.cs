@@ -9,8 +9,8 @@ namespace RaceManager.Server.DataAccess.Core.Domain
     {
         public Driver()
         {
-            //Vehicles = new HashSet<Vehicle>();
-            //Races = new HashSet<Race>();
+            Vehicles = new HashSet<Vehicle>();
+            Races = new HashSet<Race>();
         }
 
         public string FirstName { get; set; }
@@ -19,8 +19,8 @@ namespace RaceManager.Server.DataAccess.Core.Domain
 
         public string UMCN { get; set; }
 
-        //public virtual ICollection<Vehicle> Vehicles { get; set; }
+        public ICollection<Vehicle> Vehicles { get; set; }
 
-        //public virtual ICollection<Race> Races { get; set; }
+        public ICollection<Race> Races { get; set; }
     }
 }

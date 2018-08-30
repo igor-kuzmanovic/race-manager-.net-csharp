@@ -1,6 +1,6 @@
 ﻿using RaceManager.Client.Core;
 using RaceManager.Client.Models;
-using RaceManager.Client.Models.Converters;
+using RaceManager.Client.Models.DataMappers;
 using RaceManager.Client.VehicleService;
 using System;
 using System.Collections.Generic;
@@ -230,9 +230,9 @@ namespace RaceManager.Client.ViewModels
             vehicle.EngineDisplacement = EngineDisplacement;
 
             if (Id > 0)
-                _vehicleServiceClient.Update(VehicleConverter.Instance.Convert(vehicle));
+                _vehicleServiceClient.Update(VehicleMapper.Instance.Map(vehicle));
             else
-                _vehicleServiceClient.Add(VehicleConverter.Instance.Convert(vehicle));
+                _vehicleServiceClient.Add(VehicleMapper.Instance.Map(vehicle));
 
             LoadVehicles();
             OnNew();

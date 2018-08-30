@@ -9,13 +9,13 @@ namespace RaceManager.Server.DataAccess.Core.Domain
     {
         public Race()
         {
-            //Drivers = new HashSet<Driver>();
+            Drivers = new HashSet<Driver>();
         }
 
         public DateTime EventDate { get; set; }
 
         public string EventLocation { get; set; }
 
-        //public virtual ICollection<Driver> Drivers { get; set; }
+        public ICollection<Driver> Drivers { get; set; }
     }
 }

@@ -1,5 +1,5 @@
 ﻿using RaceManager.Server.DataAccess.Persistence;
-using RaceManager.Server.Service.Converters;
+using RaceManager.Server.Service.DataMappers;
 using RaceManager.Server.Service.Core.DataTransferObjects;
 using RaceManager.Server.Service.Core.Services;
 using System;
@@ -18,7 +18,7 @@ namespace RaceManager.Server.Service.Services
         {
             using (var uow = new UnitOfWork(new RaceManagerContext()))
             {
-                return DriverConverter.Instance.Convert(uow.Drivers.Get(id));
+                return DriverMapper.Instance.Map(uow.Drivers.Get(id));
             }
         }
 
@@ -26,7 +26,7 @@ namespace RaceManager.Server.Service.Services
         {
             using (var uow = new UnitOfWork(new RaceManagerContext()))
             {
-                return DriverConverter.Instance.Convert(uow.Drivers.GetAll());
+                return DriverMapper.Instance.Map(uow.Drivers.GetAll());
             }
         }
 
@@ -46,7 +46,7 @@ namespace RaceManager.Server.Service.Services
         {
             using (var uow = new UnitOfWork(new RaceManagerContext()))
             {
-                uow.Drivers.Add(DriverConverter.Instance.Convert(driverDTO));
+                uow.Drivers.Add(DriverMapper.Instance.Map(driverDTO));
                 uow.Complete();
             }
         }

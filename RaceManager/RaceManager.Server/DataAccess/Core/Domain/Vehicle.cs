@@ -19,6 +19,6 @@ namespace RaceManager.Server.DataAccess.Core.Domain
 
         public double EngineDisplacement { get; set; }
 
-        //public virtual Driver Driver { get; set; }
+        public Driver Driver { get; set; }
     }
 }

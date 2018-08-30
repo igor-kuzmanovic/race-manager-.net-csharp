@@ -12,8 +12,8 @@ namespace RaceManager.Server.DataAccess.Persistence
     {
         public RaceManagerContext() : base("RaceManagerDb") { }
 
-        public virtual DbSet<Race> Races { get; set; }
-        public virtual DbSet<Driver> Drivers { get; set; }
-        public virtual DbSet<Vehicle> Vehicles { get; set; }
+        public DbSet<Race> Races { get; set; }
+        public DbSet<Driver> Drivers { get; set; }
+        public DbSet<Vehicle> Vehicles { get; set; }
     }
 }

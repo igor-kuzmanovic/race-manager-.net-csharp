@@ -1,6 +1,6 @@
 ﻿using RaceManager.Client.Core;
 using RaceManager.Client.Models;
-using RaceManager.Client.Models.Converters;
+using RaceManager.Client.Models.DataMappers;
 using RaceManager.Client.RaceService;
 using System;
 using System.Collections.Generic;
@@ -179,9 +179,9 @@ namespace RaceManager.Client.ViewModels
             race.EventLocation = EventLocation;
 
             if (Id > 0)
-                _raceServiceClient.Update(RaceConverter.Instance.Convert(race));
+                _raceServiceClient.Update(RaceMapper.Instance.Map(race));
             else
-                _raceServiceClient.Add(RaceConverter.Instance.Convert(race));
+                _raceServiceClient.Add(RaceMapper.Instance.Map(race));
 
             LoadRaces();
             OnNew();

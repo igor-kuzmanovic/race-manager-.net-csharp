@@ -1,9 +1,9 @@
 ﻿using RaceManager.Server.DataAccess.Core.Domain;
 using RaceManager.Server.Service.Core.DataTransferObjects;
 
-namespace RaceManager.Server.Service.Core.Converters
+namespace RaceManager.Server.Service.Core.DataMappers
 {
-    interface IVehicleConverter : IConverter<Vehicle, VehicleDTO>
+    interface IVehicleMapper : IDataMapper<Vehicle, VehicleDTO>
     {
     }
 }

@@ -78,14 +78,14 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Service\Converters\Converter.cs" />
-    <Compile Include="Service\Converters\DriverConverter.cs" />
-    <Compile Include="Service\Core\Converters\IVehicleConverter.cs" />
-    <Compile Include="Service\Core\Converters\IRaceConverter.cs" />
-    <Compile Include="Service\Core\Converters\IDriverConverter.cs" />
-    <Compile Include="Service\Converters\RaceConverter.cs" />
-    <Compile Include="Service\Converters\VehicleConverter.cs" />
-    <Compile Include="Service\Core\Converters\IConverter.cs" />
+    <Compile Include="Service\DataMappers\DataMapper.cs" />
+    <Compile Include="Service\DataMappers\DriverMapper.cs" />
+    <Compile Include="Service\Core\DataMappers\IVehicleMapper.cs" />
+    <Compile Include="Service\Core\DataMappers\IRaceMapper.cs" />
+    <Compile Include="Service\Core\DataMappers\IDriverMapper.cs" />
+    <Compile Include="Service\DataMappers\RaceMapper.cs" />
+    <Compile Include="Service\DataMappers\VehicleMapper.cs" />
+    <Compile Include="Service\Core\DataMappers\IDataMapper.cs" />
     <Compile Include="Service\Core\DataTransferObjects\DriverDTO.cs" />
     <Compile Include="Service\Core\DataTransferObjects\RaceDTO.cs" />
     <Compile Include="Service\Core\DataTransferObjects\VehicleDTO.cs" />

@@ -1,5 +1,5 @@
 ﻿using RaceManager.Server.DataAccess.Persistence;
-using RaceManager.Server.Service.Converters;
+using RaceManager.Server.Service.DataMappers;
 using RaceManager.Server.Service.Core.DataTransferObjects;
 using RaceManager.Server.Service.Core.Services;
 using System;
@@ -19,7 +19,7 @@ namespace RaceManager.Server.Service.Services
         {
             using (var uow = new UnitOfWork(new RaceManagerContext()))
             {
-                return RaceConverter.Instance.Convert(uow.Races.Get(id));
+                return RaceMapper.Instance.Map(uow.Races.Get(id));
             }
         }
 
@@ -27,7 +27,7 @@ namespace RaceManager.Server.Service.Services
         {
             using (var uow = new UnitOfWork(new RaceManagerContext()))
             {
-                return RaceConverter.Instance.Convert(uow.Races.GetAll());
+                return RaceMapper.Instance.Map(uow.Races.GetAll());
             }
         }
 
@@ -46,7 +46,7 @@ namespace RaceManager.Server.Service.Services
         {
             using (var uow = new UnitOfWork(new RaceManagerContext()))
             {
-                uow.Races.Add(RaceConverter.Instance.Convert(raceDTO));
+                uow.Races.Add(RaceMapper.Instance.Map(raceDTO));
                 uow.Complete();
             }
         }

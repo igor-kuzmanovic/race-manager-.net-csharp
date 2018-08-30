@@ -88,16 +88,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="Core\Converters\IConverter.cs" />
-    <Compile Include="Core\Converters\IDriverConverter.cs" />
-    <Compile Include="Core\Converters\IRaceConverter.cs" />
-    <Compile Include="Core\Converters\IVehicleConverter.cs" />
+    <Compile Include="Core\DataMappers\IDataMapper.cs" />
+    <Compile Include="Core\DataMappers\IDriverMapper.cs" />
+    <Compile Include="Core\DataMappers\IRaceMapper.cs" />
+    <Compile Include="Core\DataMappers\IVehicleMapper.cs" />
     <Compile Include="Core\RelayCommand.cs" />
     <Compile Include="Core\ViewModelLocator.cs" />
-    <Compile Include="Models\Converters\Converter.cs" />
-    <Compile Include="Models\Converters\DriverConverter.cs" />
-    <Compile Include="Models\Converters\RaceConverter.cs" />
-    <Compile Include="Models\Converters\VehicleConverter.cs" />
+    <Compile Include="Models\DataMappers\DataMapper.cs" />
+    <Compile Include="Models\DataMappers\DriverMapper.cs" />
+    <Compile Include="Models\DataMappers\RaceMapper.cs" />
+    <Compile Include="Models\DataMappers\VehicleMapper.cs" />
     <Compile Include="ViewModels\DriverViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\RaceViewModel.cs" />

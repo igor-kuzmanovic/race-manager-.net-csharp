@@ -1,7 +1,7 @@
 ﻿using RaceManager.Client.Core;
 using RaceManager.Client.DriverService;
 using RaceManager.Client.Models;
-using RaceManager.Client.Models.Converters;
+using RaceManager.Client.Models.DataMappers;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -196,9 +196,9 @@ namespace RaceManager.Client.ViewModels
             driver.UMCN = UMCN;
 
             if (Id > 0)
-                _driverServiceClient.Update(DriverConverter.Instance.Convert(driver));
+                _driverServiceClient.Update(DriverMapper.Instance.Map(driver));
             else
-                _driverServiceClient.Add(DriverConverter.Instance.Convert(driver));
+                _driverServiceClient.Add(DriverMapper.Instance.Map(driver));
                 
             LoadDrivers();
             OnNew();
