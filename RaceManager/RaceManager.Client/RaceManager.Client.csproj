@@ -241,21 +241,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Connected Services\RaceService\RaceService.disco" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Connected Services\RaceService\configuration91.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Connected Services\RaceService\configuration.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Connected Services\RaceService\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Connected Services\VehicleService\VehicleService.disco" />
   </ItemGroup>
   <ItemGroup>
@@ -266,6 +251,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Connected Services\VehicleService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\RaceService\RaceService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\RaceService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\RaceService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\RaceService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>

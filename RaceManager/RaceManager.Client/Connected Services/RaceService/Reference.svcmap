@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="0250bc1b-5a87-46cb-8e50-78a9ae405f98" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="bd261428-9ce6-421a-a169-84397adcda12" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -22,11 +22,11 @@
     <MetadataSource Address="http://localhost:51257/Service/Services/RaceService.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="RaceService.xsd" MetadataType="Schema" ID="4b8ab17c-7767-4263-9169-2359551e4a30" SourceId="1" SourceUrl="http://localhost:51257/Service/Services/RaceService.svc?xsd=xsd2" />
-    <MetadataFile FileName="RaceService.disco" MetadataType="Disco" ID="a7b69cfb-1525-461d-b11b-7471a5b5c077" SourceId="1" SourceUrl="http://localhost:51257/Service/Services/RaceService.svc?disco" />
-    <MetadataFile FileName="RaceService1.xsd" MetadataType="Schema" ID="da3cfb8d-5e9c-4fc1-b094-53ebd96146df" SourceId="1" SourceUrl="http://localhost:51257/Service/Services/RaceService.svc?xsd=xsd1" />
-    <MetadataFile FileName="RaceService2.xsd" MetadataType="Schema" ID="a83ab10d-14e8-4bd9-8aa6-5b3470e55c8c" SourceId="1" SourceUrl="http://localhost:51257/Service/Services/RaceService.svc?xsd=xsd0" />
-    <MetadataFile FileName="RaceService.wsdl" MetadataType="Wsdl" ID="0c6e8aed-5007-46a7-b50e-16dcc721d9b4" SourceId="1" SourceUrl="http://localhost:51257/Service/Services/RaceService.svc?wsdl" />
+    <MetadataFile FileName="RaceService.xsd" MetadataType="Schema" ID="df66dab3-3081-4145-b31f-85915c720f38" SourceId="1" SourceUrl="http://localhost:51257/Service/Services/RaceService.svc?xsd=xsd2" />
+    <MetadataFile FileName="RaceService.disco" MetadataType="Disco" ID="ade3206f-c206-44f7-8efb-27a9a76cd97a" SourceId="1" SourceUrl="http://localhost:51257/Service/Services/RaceService.svc?disco" />
+    <MetadataFile FileName="RaceService1.xsd" MetadataType="Schema" ID="ab08ad07-cb1a-4094-b6d9-8fb47f4aa8b4" SourceId="1" SourceUrl="http://localhost:51257/Service/Services/RaceService.svc?xsd=xsd1" />
+    <MetadataFile FileName="RaceService2.xsd" MetadataType="Schema" ID="3d34f7a0-7224-4840-b3b3-ba1ae5f9a466" SourceId="1" SourceUrl="http://localhost:51257/Service/Services/RaceService.svc?xsd=xsd0" />
+    <MetadataFile FileName="RaceService.wsdl" MetadataType="Wsdl" ID="407247d7-72e6-48c8-a200-d51b09297516" SourceId="1" SourceUrl="http://localhost:51257/Service/Services/RaceService.svc?wsdl" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

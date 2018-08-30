@@ -108,7 +108,6 @@
     <Compile Include="Service\Core\Services\IVehicleService.cs" />
     <Compile Include="Service\Core\Services\IRaceService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Service\Security\ServiceAuthenticator.cs" />
     <Compile Include="Service\Services\DriverService.svc.cs">
       <DependentUpon>DriverService.svc</DependentUpon>
     </Compile>
