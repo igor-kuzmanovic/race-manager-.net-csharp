@@ -24,6 +24,9 @@ namespace RaceManager.Client.VehicleService {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int DriverIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private double EngineDisplacementField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -48,6 +51,19 @@ namespace RaceManager.Client.VehicleService {
             }
             set {
                 this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int DriverId {
+            get {
+                return this.DriverIdField;
+            }
+            set {
+                if ((this.DriverIdField.Equals(value) != true)) {
+                    this.DriverIdField = value;
+                    this.RaisePropertyChanged("DriverId");
+                }
             }
         }
         

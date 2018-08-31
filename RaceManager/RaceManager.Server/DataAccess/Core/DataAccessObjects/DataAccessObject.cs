@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace RaceManager.Server.DataAccess.Core.Domain
+namespace RaceManager.Server.DataAccess.Core.DataAccessObjects
 {
-    abstract class Entity
+    abstract class DataAccessObject
     {
         public int Id { get; set; }
     }

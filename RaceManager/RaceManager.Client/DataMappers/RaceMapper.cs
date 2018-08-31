@@ -1,7 +1,11 @@
 ﻿using RaceManager.Client.Core.DataMappers;
+using RaceManager.Client.Models;
 using RaceManager.Client.RaceService;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
 
-namespace RaceManager.Client.Models.DataMappers
+namespace RaceManager.Client.DataMappers
 {
     class RaceMapper : DataMapper<Race, RaceDTO>, IRaceMapper
     {
@@ -20,6 +24,7 @@ namespace RaceManager.Client.Models.DataMappers
                 race.Id = raceDTO.Id;
                 race.EventDate = raceDTO.EventDate;
                 race.EventLocation = raceDTO.EventLocation;
+                race.Drivers = new ObservableCollection<Driver>(raceDTO.DriverIds.ToList().Select(i => new Driver() { Id = i }));
             }
 
             return race;
@@ -34,6 +39,7 @@ namespace RaceManager.Client.Models.DataMappers
                 raceDTO.Id = race.Id;
                 raceDTO.EventDate = race.EventDate;
                 raceDTO.EventLocation = race.EventLocation;
+                raceDTO.DriverIds = race.Drivers.Select(d => d.Id).ToArray();
             }
 
             return raceDTO;

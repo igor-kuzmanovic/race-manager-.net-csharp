@@ -52,7 +52,9 @@ namespace RaceManager.Server.Service.Services
                 driver.FirstName = driverDTO.FirstName;
                 driver.LastName = driverDTO.LastName;
                 driver.UMCN = driverDTO.UMCN;
-                uow.Complete();
+
+                if (!uow.Complete())
+                    return false;
 
                 return true;
             }
@@ -66,7 +68,9 @@ namespace RaceManager.Server.Service.Services
                     return false;
 
                 uow.Drivers.Add(DriverMapper.Instance.Map(driverDTO));
-                uow.Complete();
+
+                if (!uow.Complete())
+                    return false;
 
                 return true;
             }
@@ -85,7 +89,9 @@ namespace RaceManager.Server.Service.Services
                     return false;
 
                 uow.Drivers.Remove(driver);
-                uow.Complete();
+
+                if (!uow.Complete())
+                    return false;
 
                 return true;
             }

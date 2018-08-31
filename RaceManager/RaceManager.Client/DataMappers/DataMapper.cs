@@ -3,7 +3,7 @@ using RaceManager.Client.Core.DataMappers;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace RaceManager.Client.Models.DataMappers
+namespace RaceManager.Client.DataMappers
 {
     abstract class DataMapper<TModel, TDataTransferObject> : IDataMapper<TModel, TDataTransferObject> where TModel : ObservableObject where TDataTransferObject : class
     {

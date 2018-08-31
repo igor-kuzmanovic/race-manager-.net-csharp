@@ -1,15 +1,12 @@
 ﻿using RaceManager.Client.Core;
-using RaceManager.Client.Identity;
+using RaceManager.Client.DriverService;
 using RaceManager.Client.Models;
-using RaceManager.Client.Models.DataMappers;
+using RaceManager.Client.DataMappers;
+using RaceManager.Client.Models.Identity;
 using RaceManager.Client.RaceService;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 
 namespace RaceManager.Client.ViewModels
 {
@@ -18,7 +15,13 @@ namespace RaceManager.Client.ViewModels
         #region Fields
 
         private readonly RaceServiceClient _raceServiceClient;
+        private readonly DriverServiceClient _driverServiceClient;
         private ObservableCollection<Race> _races;
+        private ObservableCollection<Driver> _drivers;
+        private ObservableCollection<Driver> _availableDrivers;
+        private ObservableCollection<Driver> _selectedDrivers;
+        private Driver _driverToRemove;
+        private Driver _driverToAdd;
         private Race _selectedRace;
         private int _id;
         private DateTime _eventDate;
@@ -29,12 +32,16 @@ namespace RaceManager.Client.ViewModels
         public RaceViewModel()
         {
             _raceServiceClient = new RaceServiceClient();
+            _driverServiceClient = new DriverServiceClient();
+            LoadRaces();
             RefreshCommand = new RelayCommand(OnRefresh);
             NewCommand = new RelayCommand(OnNew);
             EditCommand = new RelayCommand(OnEdit, CanEdit);
             CopyCommand = new RelayCommand(OnCopy, CanCopy);
             DeleteCommand = new RelayCommand(OnDelete, CanDelete);
             SaveCommand = new RelayCommand(OnSave, CanSave);
+            AddDriverCommand = new RelayCommand(OnAddDriver, CanAddDriver);
+            RemoveDriverCommand = new RelayCommand(OnRemoveDriver, CanRemoveDriver);
             OnNew();
         }
 
@@ -46,6 +53,8 @@ namespace RaceManager.Client.ViewModels
         public RelayCommand CopyCommand { get; }
         public RelayCommand DeleteCommand { get; }
         public RelayCommand SaveCommand { get; }
+        public RelayCommand AddDriverCommand { get; }
+        public RelayCommand RemoveDriverCommand { get; }
 
         #endregion
 
@@ -57,6 +66,53 @@ namespace RaceManager.Client.ViewModels
             {
                 _races = value;
                 RaisePropertyChanged();
+            }
+        }
+
+        public ObservableCollection<Driver> Drivers
+        {
+            get => _drivers; set
+            {
+                _drivers = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        public ObservableCollection<Driver> AvailableDrivers
+        {
+            get => _availableDrivers; set
+            {
+                _availableDrivers = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        public ObservableCollection<Driver> SelectedDrivers
+        {
+            get => _selectedDrivers; set
+            {
+                _selectedDrivers = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        public Driver DriverToAdd
+        {
+            get => _driverToAdd; set
+            {
+                _driverToAdd = value;
+                RaisePropertyChanged();
+                AddDriverCommand.RaiseCanExecuteChanged();
+            }
+        }
+
+        public Driver DriverToRemove
+        {
+            get => _driverToRemove; set
+            {
+                _driverToRemove = value;
+                RaisePropertyChanged();
+                RemoveDriverCommand.RaiseCanExecuteChanged();
             }
         }
 
@@ -117,7 +173,20 @@ namespace RaceManager.Client.ViewModels
 
         private void LoadRaces()
         {
-            Races = new ObservableCollection<Race>(RaceMapper.Instance.Map(_raceServiceClient.GetAll(CurrentUser.SecurityToken)));
+            var races = RaceMapper.Instance.Map(_raceServiceClient.GetAll(CurrentUser.Instance.SecurityToken)).ToList();
+            var drivers = DriverMapper.Instance.Map(_driverServiceClient.GetAll(CurrentUser.Instance.SecurityToken)).ToList();
+
+            foreach (var race in races)
+                foreach (var driver in race.Drivers)
+                {
+                    var tempDriver = drivers.SingleOrDefault(d => d.Id == driver.Id);
+                    driver.FirstName = tempDriver.FirstName;
+                    driver.LastName = tempDriver.LastName;
+                    driver.UMCN = tempDriver.UMCN;
+                }
+
+            Races = new ObservableCollection<Race>(races);
+            Drivers = new ObservableCollection<Driver>(drivers);
         }
 
         #endregion
@@ -134,6 +203,8 @@ namespace RaceManager.Client.ViewModels
             Id = 0;
             EventDate = DateTime.Now;
             EventLocation = string.Empty;
+            SelectedDrivers = new ObservableCollection<Driver>();
+            AvailableDrivers = new ObservableCollection<Driver>(Drivers);
         }
 
         private void OnEdit()
@@ -141,6 +212,8 @@ namespace RaceManager.Client.ViewModels
             Id = SelectedRace.Id;
             EventDate = SelectedRace.EventDate;
             EventLocation = SelectedRace.EventLocation;
+            SelectedDrivers = new ObservableCollection<Driver>(SelectedRace.Drivers);
+            AvailableDrivers = new ObservableCollection<Driver>(Drivers.Where(d => !SelectedDrivers.Any(sd => d.Id == sd.Id)));
         }
 
         private bool CanEdit()
@@ -153,6 +226,8 @@ namespace RaceManager.Client.ViewModels
             Id = 0;
             EventDate = SelectedRace.EventDate;
             EventLocation = SelectedRace.EventLocation;
+            SelectedDrivers = new ObservableCollection<Driver>(SelectedRace.Drivers);
+            AvailableDrivers = new ObservableCollection<Driver>(Drivers.Where(d => !SelectedDrivers.Any(sd => d.Id == sd.Id)));
         }
 
         private bool CanCopy()
@@ -162,7 +237,7 @@ namespace RaceManager.Client.ViewModels
 
         private void OnDelete()
         {
-            _raceServiceClient.Remove(CurrentUser.SecurityToken, SelectedRace.Id);
+            _raceServiceClient.Remove(CurrentUser.Instance.SecurityToken, SelectedRace.Id);
             LoadRaces();
             OnNew();
         }
@@ -178,11 +253,12 @@ namespace RaceManager.Client.ViewModels
             race.Id = Id > 0 ? Id : 0;
             race.EventDate = EventDate;
             race.EventLocation = EventLocation;
+            race.Drivers = SelectedDrivers;
 
             if (Id > 0)
-                _raceServiceClient.Update(CurrentUser.SecurityToken, RaceMapper.Instance.Map(race));
+                _raceServiceClient.Update(CurrentUser.Instance.SecurityToken, RaceMapper.Instance.Map(race));
             else
-                _raceServiceClient.Add(CurrentUser.SecurityToken, RaceMapper.Instance.Map(race));
+                _raceServiceClient.Add(CurrentUser.Instance.SecurityToken, RaceMapper.Instance.Map(race));
 
             LoadRaces();
             OnNew();
@@ -192,6 +268,28 @@ namespace RaceManager.Client.ViewModels
         {
             return EventDate != null 
                 && !string.IsNullOrWhiteSpace(EventLocation);
+        }
+
+        private void OnAddDriver()
+        {
+            SelectedDrivers.Add(DriverToAdd);
+            AvailableDrivers.Remove(DriverToAdd);
+        }
+
+        private bool CanAddDriver()
+        {
+            return DriverToAdd != null;
+        }
+
+        private void OnRemoveDriver()
+        {
+            AvailableDrivers.Add(DriverToAdd);
+            SelectedDrivers.Remove(DriverToRemove);
+        }
+
+        private bool CanRemoveDriver()
+        {
+            return DriverToRemove != null;
         }
 
         #endregion

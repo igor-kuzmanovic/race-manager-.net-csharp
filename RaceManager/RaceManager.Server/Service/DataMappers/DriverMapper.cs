@@ -1,4 +1,4 @@
-﻿using RaceManager.Server.DataAccess.Core.Domain;
+﻿using RaceManager.Server.DataAccess.Core.DataAccessObjects;
 using RaceManager.Server.Service.Core.DataMappers;
 using RaceManager.Server.Service.Core.DataTransferObjects;
 using System;
@@ -8,7 +8,7 @@ using System.Web;
 
 namespace RaceManager.Server.Service.DataMappers
 {
-    class DriverMapper : DataMapper<Driver, DriverDTO>, IDriverMapper
+    class DriverMapper : DataMapper<DriverDAO, DriverDTO>, IDriverMapper
     {
         public static DriverMapper Instance { get; } = new DriverMapper();
 
@@ -16,9 +16,9 @@ namespace RaceManager.Server.Service.DataMappers
 
         private DriverMapper() { }
 
-        public override Driver Map(DriverDTO driverDTO)
+        public override DriverDAO Map(DriverDTO driverDTO)
         {
-            var driver = new Driver();
+            var driver = new DriverDAO();
 
             if (driverDTO != null)
             {
@@ -31,7 +31,7 @@ namespace RaceManager.Server.Service.DataMappers
             return driver;
         }
 
-        public override DriverDTO Map(Driver driver)
+        public override DriverDTO Map(DriverDAO driver)
         {
             var driverDTO = new DriverDTO();
 

@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace RaceManager.Server.DataAccess.Core.Domain
+namespace RaceManager.Server.DataAccess.Core.DataAccessObjects
 {
-    class Vehicle : Entity
+    class VehicleDAO : DataAccessObject
     {
-        public Vehicle() { }
+        public VehicleDAO() { }
 
         public string Manufacturer { get; set; }
 
@@ -19,6 +19,8 @@ namespace RaceManager.Server.DataAccess.Core.Domain
 
         public double EngineDisplacement { get; set; }
 
-        public Driver Driver { get; set; }
+        public DriverDAO Driver { get; set; }
+
+        public int DriverId { get; set; }
     }
 }

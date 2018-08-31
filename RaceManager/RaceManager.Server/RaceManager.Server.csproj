@@ -79,7 +79,8 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataAccess\Core\Domain\User.cs" />
+    <Compile Include="DataAccess\Core\DataAccessObjects\RaceDriver.cs" />
+    <Compile Include="DataAccess\Core\DataAccessObjects\User.cs" />
     <Compile Include="DataAccess\Core\Repositories\IUserRepository.cs" />
     <Compile Include="DataAccess\Configurations\RaceManagerDbInitializer.cs" />
     <Compile Include="DataAccess\Persistence\Repositories\UserRepository.cs" />
@@ -104,10 +105,10 @@
     <Compile Include="Service\Core\DataTransferObjects\DriverDTO.cs" />
     <Compile Include="Service\Core\DataTransferObjects\RaceDTO.cs" />
     <Compile Include="Service\Core\DataTransferObjects\VehicleDTO.cs" />
-    <Compile Include="DataAccess\Core\Domain\Driver.cs" />
-    <Compile Include="DataAccess\Core\Domain\Entity.cs" />
-    <Compile Include="DataAccess\Core\Domain\Race.cs" />
-    <Compile Include="DataAccess\Core\Domain\Vehicle.cs" />
+    <Compile Include="DataAccess\Core\DataAccessObjects\Driver.cs" />
+    <Compile Include="DataAccess\Core\DataAccessObjects\DataAccessObject.cs" />
+    <Compile Include="DataAccess\Core\DataAccessObjects\Race.cs" />
+    <Compile Include="DataAccess\Core\DataAccessObjects\Vehicle.cs" />
     <Compile Include="DataAccess\Core\IUnitOfWork.cs" />
     <Compile Include="DataAccess\Core\Repositories\IDriverRepository.cs" />
     <Compile Include="DataAccess\Core\Repositories\IRaceRepository.cs" />

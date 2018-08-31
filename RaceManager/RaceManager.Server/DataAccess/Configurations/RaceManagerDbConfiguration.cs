@@ -1,4 +1,4 @@
-﻿using RaceManager.Server.DataAccess.Core.Domain;
+﻿using RaceManager.Server.DataAccess.Core.DataAccessObjects;
 using RaceManager.Server.DataAccess.Persistence;
 using System;
 using System.Collections.Generic;
@@ -13,6 +13,7 @@ namespace RaceManager.Server.DataAccess.Configurations
         public RaceManagerDbConfiguration()
         {
             AutomaticMigrationsEnabled = true;
+            AutomaticMigrationDataLossAllowed = true;
         }
     }
 }

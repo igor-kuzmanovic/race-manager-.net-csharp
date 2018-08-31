@@ -26,9 +26,19 @@ namespace RaceManager.Server.DataAccess.Persistence
         public IVehicleRepository Vehicles { get; private set; }
         public IUserRepository Users { get; private set; }
 
-        public int Complete()
+        public bool Complete()
         {
-            return _context.SaveChanges();
+            try
+            {
+                if (_context.SaveChanges() <= 0)
+                    return false;
+
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
 
         public void Dispose()

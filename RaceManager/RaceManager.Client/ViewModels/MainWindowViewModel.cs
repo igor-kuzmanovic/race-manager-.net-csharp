@@ -1,8 +1,8 @@
 ﻿using RaceManager.Client.Core;
-using RaceManager.Client.Identity;
 using RaceManager.Client.LoginService;
 using RaceManager.Client.Models;
-using RaceManager.Client.Models.DataMappers;
+using RaceManager.Client.DataMappers;
+using RaceManager.Client.Models.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -219,7 +219,7 @@ namespace RaceManager.Client.ViewModels
             }
             else
             {
-                CurrentUser.LogUserIn(user);
+                CurrentUser.LoadUser(user);
                 EnableViewsWhenLoggedIn();
                 ClearForm();
             }
@@ -232,8 +232,8 @@ namespace RaceManager.Client.ViewModels
 
         private void OnLogOut()
         {
-            _loginServiceClient.LogOut(CurrentUser.SecurityToken);
-            CurrentUser.LogUserOut();
+            _loginServiceClient.LogOut(CurrentUser.Instance.SecurityToken);
+            CurrentUser.UnloadUser();
             DisableViewsWhenLoggedOut();
         }
 

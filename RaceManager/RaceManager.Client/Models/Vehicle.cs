@@ -15,6 +15,7 @@ namespace RaceManager.Client.Models
         private string _type;
         private double _engineHorsepower;
         private double _engineDisplacement;
+        private Driver _driver;
 
         public Vehicle() { }
 
@@ -29,6 +30,7 @@ namespace RaceManager.Client.Models
                 }
             }
         }
+
         public string Manufacturer
         {
             get => _manufacturer; set
@@ -84,6 +86,18 @@ namespace RaceManager.Client.Models
                 if (_engineDisplacement != value)
                 {
                     _engineDisplacement = value;
+                    RaisePropertyChanged();
+                }
+            }
+        }
+
+        public Driver Driver
+        {
+            get => _driver; set
+            {
+                if (_driver != value)
+                {
+                    _driver = value;
                     RaisePropertyChanged();
                 }
             }

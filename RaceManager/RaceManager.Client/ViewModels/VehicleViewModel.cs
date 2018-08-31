@@ -1,7 +1,8 @@
 ﻿using RaceManager.Client.Core;
-using RaceManager.Client.Identity;
+using RaceManager.Client.DriverService;
 using RaceManager.Client.Models;
-using RaceManager.Client.Models.DataMappers;
+using RaceManager.Client.DataMappers;
+using RaceManager.Client.Models.Identity;
 using RaceManager.Client.VehicleService;
 using System;
 using System.Collections.Generic;
@@ -17,7 +18,9 @@ namespace RaceManager.Client.ViewModels
         #region Fields
 
         private readonly VehicleServiceClient _vehicleServiceClient;
+        private readonly DriverServiceClient _driverServiceClient;
         private ObservableCollection<Vehicle> _vehicles;
+        private ObservableCollection<Driver> _drivers;
         private Vehicle _selectedVehicle;
         private int _id;
         private string _manufacturer;
@@ -25,12 +28,15 @@ namespace RaceManager.Client.ViewModels
         private string _type;
         private double _engineHorsepower;
         private double _engineDisplacement;
+        private Driver _driver;
 
         #endregion
 
         public VehicleViewModel()
         {
             _vehicleServiceClient = new VehicleServiceClient();
+            _driverServiceClient = new DriverServiceClient();
+            LoadVehicles();
             RefreshCommand = new RelayCommand(OnRefresh);
             NewCommand = new RelayCommand(OnNew);
             EditCommand = new RelayCommand(OnEdit, CanEdit);
@@ -62,6 +68,15 @@ namespace RaceManager.Client.ViewModels
             }
         }
 
+        public ObservableCollection<Driver> Drivers
+        {
+            get => _drivers; set
+            {
+                _drivers = value;
+                RaisePropertyChanged();
+            }
+        }
+
         public Vehicle SelectedVehicle
         {
             get => _selectedVehicle; set
@@ -86,6 +101,7 @@ namespace RaceManager.Client.ViewModels
                 }
             }
         }
+
         public string Manufacturer
         {
             get => _manufacturer; set
@@ -151,13 +167,32 @@ namespace RaceManager.Client.ViewModels
             }
         }
 
+        public Driver Driver
+        {
+            get => _driver; set
+            {
+                if (_driver != value)
+                {
+                    _driver = value;
+                    RaisePropertyChanged();
+                    SaveCommand.RaiseCanExecuteChanged();
+                }
+            }
+        }
+
         #endregion Properties
 
         #region Helper Methods
 
         private void LoadVehicles()
         {
-            Vehicles = new ObservableCollection<Vehicle>(VehicleMapper.Instance.Map(_vehicleServiceClient.GetAll(CurrentUser.SecurityToken)));
+            var vehicles = VehicleMapper.Instance.Map(_vehicleServiceClient.GetAll(CurrentUser.Instance.SecurityToken)).ToList();
+            var drivers = DriverMapper.Instance.Map(_driverServiceClient.GetAll(CurrentUser.Instance.SecurityToken)).ToList();
+
+            vehicles.ForEach(v => v.Driver = drivers.SingleOrDefault(d => d.Id == v.Driver.Id));
+
+            Vehicles = new ObservableCollection<Vehicle>(vehicles);
+            Drivers = new ObservableCollection<Driver>(drivers);
         }
 
         #endregion
@@ -177,6 +212,7 @@ namespace RaceManager.Client.ViewModels
             Type = string.Empty;
             EngineHorsepower = 0;
             EngineDisplacement = 0;
+            Driver = new Driver();
         }
 
         private void OnEdit()
@@ -187,6 +223,7 @@ namespace RaceManager.Client.ViewModels
             Type = SelectedVehicle.Type;
             EngineHorsepower = SelectedVehicle.EngineHorsepower;
             EngineDisplacement = SelectedVehicle.EngineDisplacement;
+            Driver = SelectedVehicle.Driver;
         }
 
         private bool CanEdit()
@@ -202,6 +239,7 @@ namespace RaceManager.Client.ViewModels
             Type = SelectedVehicle.Type;
             EngineHorsepower = SelectedVehicle.EngineHorsepower;
             EngineDisplacement = SelectedVehicle.EngineDisplacement;
+            Driver = SelectedVehicle.Driver;
         }
 
         private bool CanCopy()
@@ -211,7 +249,7 @@ namespace RaceManager.Client.ViewModels
 
         private void OnDelete()
         {
-            _vehicleServiceClient.Remove(CurrentUser.SecurityToken, SelectedVehicle.Id);
+            _vehicleServiceClient.Remove(CurrentUser.Instance.SecurityToken, SelectedVehicle.Id);
             LoadVehicles();
             OnNew();
         }
@@ -224,16 +262,18 @@ namespace RaceManager.Client.ViewModels
         private void OnSave()
         {
             var vehicle = new Vehicle();
+            vehicle.Id = Id > 0 ? Id : 0;
             vehicle.Manufacturer = Manufacturer;
             vehicle.Model = Model;
             vehicle.Type = Type;
             vehicle.EngineHorsepower = EngineHorsepower;
             vehicle.EngineDisplacement = EngineDisplacement;
+            vehicle.Driver = Driver;
 
             if (Id > 0)
-                _vehicleServiceClient.Update(CurrentUser.SecurityToken, VehicleMapper.Instance.Map(vehicle));
+                _vehicleServiceClient.Update(CurrentUser.Instance.SecurityToken, VehicleMapper.Instance.Map(vehicle));
             else
-                _vehicleServiceClient.Add(CurrentUser.SecurityToken, VehicleMapper.Instance.Map(vehicle));
+                _vehicleServiceClient.Add(CurrentUser.Instance.SecurityToken, VehicleMapper.Instance.Map(vehicle));
 
             LoadVehicles();
             OnNew();
@@ -241,11 +281,13 @@ namespace RaceManager.Client.ViewModels
 
         private bool CanSave()
         {
-            return !string.IsNullOrWhiteSpace(Manufacturer) 
-                && !string.IsNullOrWhiteSpace(Model) 
-                && !string.IsNullOrWhiteSpace(Type) 
-                && EngineHorsepower > 0 
-                && EngineDisplacement > 0;
+            return !string.IsNullOrWhiteSpace(Manufacturer)
+                && !string.IsNullOrWhiteSpace(Model)
+                && !string.IsNullOrWhiteSpace(Type)
+                && EngineHorsepower > 0
+                && EngineDisplacement > 0
+                && Driver != null
+                && Driver.Id > 0;
         }
 
         #endregion

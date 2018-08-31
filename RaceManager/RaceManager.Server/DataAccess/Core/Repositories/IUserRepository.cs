@@ -1,4 +1,4 @@
-﻿using RaceManager.Server.DataAccess.Core.Domain;
+﻿using RaceManager.Server.DataAccess.Core.DataAccessObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace RaceManager.Server.DataAccess.Core.Repositories
 {
-    interface IUserRepository : IRepository<User>
+    interface IUserRepository : IRepository<UserDAO>
     {
     }
 }

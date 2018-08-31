@@ -1,8 +1,9 @@
 ﻿using RaceManager.Client.Core;
 using RaceManager.Client.DriverService;
-using RaceManager.Client.Identity;
 using RaceManager.Client.Models;
-using RaceManager.Client.Models.DataMappers;
+using RaceManager.Client.DataMappers;
+using RaceManager.Client.Models.Identity;
+using RaceManager.Client.RaceService;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -17,6 +18,7 @@ namespace RaceManager.Client.ViewModels
         #region Fields
 
         private readonly DriverServiceClient _driverServiceClient;
+        private readonly RaceServiceClient _raceServiceClient;
         private ObservableCollection<Driver> _drivers;
         private Driver _selectedDriver;
         private int _id;
@@ -29,6 +31,8 @@ namespace RaceManager.Client.ViewModels
         public DriverViewModel()
         {
             _driverServiceClient = new DriverServiceClient();
+            _raceServiceClient = new RaceServiceClient();
+            LoadDrivers();
             RefreshCommand = new RelayCommand(OnRefresh);
             NewCommand = new RelayCommand(OnNew);
             EditCommand = new RelayCommand(OnEdit, CanEdit);
@@ -130,7 +134,8 @@ namespace RaceManager.Client.ViewModels
 
         private void LoadDrivers()
         {
-            Drivers = new ObservableCollection<Driver>(DriverMapper.Instance.Map(_driverServiceClient.GetAll(CurrentUser.SecurityToken)));
+            var drivers = DriverMapper.Instance.Map(_driverServiceClient.GetAll(CurrentUser.Instance.SecurityToken)).ToList();
+            Drivers = new ObservableCollection<Driver>(drivers);
         }
 
         #endregion
@@ -178,7 +183,7 @@ namespace RaceManager.Client.ViewModels
 
         private void OnDelete()
         {
-            _driverServiceClient.Remove(CurrentUser.SecurityToken, SelectedDriver.Id);
+            _driverServiceClient.Remove(CurrentUser.Instance.SecurityToken, SelectedDriver.Id);
             LoadDrivers();
             OnNew();
         }
@@ -197,9 +202,9 @@ namespace RaceManager.Client.ViewModels
             driver.UMCN = UMCN;
 
             if (Id > 0)
-                _driverServiceClient.Update(CurrentUser.SecurityToken, DriverMapper.Instance.Map(driver));
+                _driverServiceClient.Update(CurrentUser.Instance.SecurityToken, DriverMapper.Instance.Map(driver));
             else
-                _driverServiceClient.Add(CurrentUser.SecurityToken, DriverMapper.Instance.Map(driver));
+                _driverServiceClient.Add(CurrentUser.Instance.SecurityToken, DriverMapper.Instance.Map(driver));
                 
             LoadDrivers();
             OnNew();

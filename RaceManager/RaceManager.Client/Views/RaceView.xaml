@@ -49,6 +49,18 @@
                 <Label Content="Event Location" />
                 <TextBox Text="{Binding EventLocation, UpdateSourceTrigger=PropertyChanged}" Height="23" Width="150" />
             </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <StackPanel Orientation="Vertical">
+                    <Label Content="Participating Drivers" />
+                    <ListBox ItemsSource="{Binding SelectedDrivers, Mode=TwoWay}" SelectedItem="{Binding DriverToRemove}" ScrollViewer.VerticalScrollBarVisibility="Visible"  />
+                    <Button Content="Remove" Width="75" Command="{Binding RemoveDriverCommand}" />
+                </StackPanel>
+                <StackPanel Orientation="Vertical">
+                    <Label Content="Available Drivers" />
+                    <ListBox ItemsSource="{Binding AvailableDrivers, Mode=TwoWay}" SelectedItem="{Binding DriverToAdd}" ScrollViewer.VerticalScrollBarVisibility="Visible" />
+                    <Button Content="Add" Width="75" Command="{Binding AddDriverCommand}" />
+                </StackPanel>
+            </StackPanel>
         </StackPanel>
     </Grid>
 </UserControl>

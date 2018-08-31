@@ -1,7 +1,8 @@
 ﻿using RaceManager.Client.Core.DataMappers;
+using RaceManager.Client.Models;
 using RaceManager.Client.VehicleService;
 
-namespace RaceManager.Client.Models.DataMappers
+namespace RaceManager.Client.DataMappers
 {
     class VehicleMapper : DataMapper<Vehicle, VehicleDTO>, IVehicleMapper
     {
@@ -23,6 +24,7 @@ namespace RaceManager.Client.Models.DataMappers
                 vehicle.Type = vehicleDTO.Type;
                 vehicle.EngineHorsepower = vehicleDTO.EngineHorsepower;
                 vehicle.EngineDisplacement = vehicleDTO.EngineDisplacement;
+                vehicle.Driver = vehicleDTO.DriverId == 0 ? null : new Driver() { Id = vehicleDTO.DriverId };
             }
 
             return vehicle;
@@ -40,6 +42,7 @@ namespace RaceManager.Client.Models.DataMappers
                 vehicleDTO.Type = vehicle.Type;
                 vehicleDTO.EngineHorsepower = vehicle.EngineHorsepower;
                 vehicleDTO.EngineDisplacement = vehicle.EngineDisplacement;
+                vehicleDTO.DriverId = vehicle.Driver == null ? 0 : vehicle.Driver.Id;
             }
 
             return vehicleDTO;

@@ -1,4 +1,4 @@
-﻿using RaceManager.Server.DataAccess.Core.Domain;
+﻿using RaceManager.Server.DataAccess.Core.DataAccessObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,15 +8,15 @@ using System.Threading.Tasks;
 
 namespace RaceManager.Server.DataAccess.Core.Repositories
 {
-    interface IRepository<TEntity> where TEntity : Entity
+    interface IRepository<TDataAccessObject> where TDataAccessObject : DataAccessObject
     {
-        TEntity Get(int id);
-        IEnumerable<TEntity> GetAll();
-        TEntity Find(Expression<Func<TEntity, bool>> predicate);
-        IEnumerable<TEntity> FindAll(Expression<Func<TEntity, bool>> predicate);
-        void Add(TEntity entity);
-        void AddRange(IEnumerable<TEntity> entities);
+        TDataAccessObject Get(int id);
+        IEnumerable<TDataAccessObject> GetAll();
+        TDataAccessObject Find(Expression<Func<TDataAccessObject, bool>> predicate);
+        IEnumerable<TDataAccessObject> FindAll(Expression<Func<TDataAccessObject, bool>> predicate);
+        void Add(TDataAccessObject dao);
+        void AddRange(IEnumerable<TDataAccessObject> daos);
         void Remove(int id);
-        void Remove(TEntity entity);
+        void Remove(TDataAccessObject dao);
     }
 }

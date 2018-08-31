@@ -1,4 +1,4 @@
-﻿using RaceManager.Server.DataAccess.Core.Domain;
+﻿using RaceManager.Server.DataAccess.Core.DataAccessObjects;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -8,25 +8,25 @@ using System.Web;
 
 namespace RaceManager.Server.DataAccess.Persistence.Configurations
 {
-    class RaceManagerDbInitializer : DropCreateDatabaseIfModelChanges<RaceManagerDbContext>
+    class RaceManagerDbInitializer : DropCreateDatabaseAlways<RaceManagerDbContext>
     {
         public RaceManagerDbInitializer() { }
 
         protected override void Seed(RaceManagerDbContext context)
         {
-            var races = new List<Race>()
+            var races = new List<RaceDAO>()
             {
-                new Race()
+                new RaceDAO()
                 {
                     EventDate = new DateTime(2018, 8, 8),
                     EventLocation = "Race Location 1",
                 },
-                new Race()
+                new RaceDAO()
                 {
                     EventDate = new DateTime(2017, 7, 7),
                     EventLocation = "Race Location 2",
                 },
-                new Race()
+                new RaceDAO()
                 {
                     EventDate = new DateTime(2016, 6, 6),
                     EventLocation = "Race Location 3",
@@ -34,23 +34,23 @@ namespace RaceManager.Server.DataAccess.Persistence.Configurations
             };
 
             foreach (var race in races)
-                context.Races.AddOrUpdate(r => r.Id, race);
+                context.Races.AddOrUpdate(race);
 
-            var drivers = new List<Driver>()
+            var drivers = new List<DriverDAO>()
             {
-                new Driver()
+                new DriverDAO()
                 {
                     FirstName = "John 1",
                     LastName = "Doe 1",
                     UMCN = "1111111111111"
                 },
-                new Driver()
+                new DriverDAO()
                 {
                     FirstName = "John 2",
                     LastName = "Doe 2",
                     UMCN = "2222222222222"
                 },
-                new Driver()
+                new DriverDAO()
                 {
                     FirstName = "John 3",
                     LastName = "Doe 3",
@@ -59,42 +59,45 @@ namespace RaceManager.Server.DataAccess.Persistence.Configurations
             };
 
             foreach (var driver in drivers)
-                context.Drivers.AddOrUpdate(d => d.Id, driver);
+                context.Drivers.AddOrUpdate(driver);
 
-            var vehicles = new List<Vehicle>()
+            var vehicles = new List<VehicleDAO>()
             {
-                new Vehicle()
+                new VehicleDAO()
                 {
                     Manufacturer = "Manufacturer 1",
                     Model = "Model 1",
                     Type = "Type 1",
                     EngineHorsepower = 111,
-                    EngineDisplacement = 1
+                    EngineDisplacement = 1,
+                    DriverId = 1
                 },
-                new Vehicle()
+                new VehicleDAO()
                 {
                     Manufacturer = "Manufacturer 2",
                     Model = "Model 2",
                     Type = "Type 2",
                     EngineHorsepower = 222,
-                    EngineDisplacement = 2
+                    EngineDisplacement = 2,
+                    DriverId = 2
                 },
-                new Vehicle()
+                new VehicleDAO()
                 {
                     Manufacturer = "Manufacturer 3",
                     Model = "Model 3",
                     Type = "Type 3",
                     EngineHorsepower = 333,
-                    EngineDisplacement = 3
+                    EngineDisplacement = 3,
+                    DriverId = 3
                 },
             };
 
             foreach (var vehicle in vehicles)
-                context.Vehicles.AddOrUpdate(v => v.Id, vehicle);
+                context.Vehicles.AddOrUpdate(vehicle);
 
-            var users = new List<User>()
+            var users = new List<UserDAO>()
             {
-                new User()
+                new UserDAO()
                 {
                     Username = "admin",
                     Password = "admin",
@@ -103,7 +106,7 @@ namespace RaceManager.Server.DataAccess.Persistence.Configurations
                     SecurityToken = string.Empty,
                     IsAdmin = true
                 },
-                new User()
+                new UserDAO()
                 {
                     Username = "user",
                     Password = "user",
@@ -115,7 +118,44 @@ namespace RaceManager.Server.DataAccess.Persistence.Configurations
             };
 
             foreach (var user in users)
-                context.Users.AddOrUpdate(u => u.Id, user);
+                context.Users.AddOrUpdate(user);
+
+            var raceDrivers = new List<RaceDriverDAO>()
+            {
+                new RaceDriverDAO()
+                {
+                    RaceId = 1,
+                    DriverId = 1
+                },
+                new RaceDriverDAO()
+                {
+                    RaceId = 1,
+                    DriverId = 2
+                },
+                new RaceDriverDAO()
+                {
+                    RaceId = 2,
+                    DriverId = 2
+                },
+                new RaceDriverDAO()
+                {
+                    RaceId = 2,
+                    DriverId = 3
+                },
+                new RaceDriverDAO()
+                {
+                    RaceId = 3,
+                    DriverId = 3
+                },
+                new RaceDriverDAO()
+                {
+                    RaceId = 3,
+                    DriverId = 1
+                }
+            };
+
+            foreach (var raceDriver in raceDrivers)
+                context.RaceDrivers.AddOrUpdate(raceDriver);
 
             context.SaveChanges();
         }

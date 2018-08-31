@@ -1,7 +1,7 @@
 ﻿using RaceManager.Client.Core;
-using RaceManager.Client.Identity;
 using RaceManager.Client.Models;
-using RaceManager.Client.Models.DataMappers;
+using RaceManager.Client.DataMappers;
+using RaceManager.Client.Models.Identity;
 using RaceManager.Client.UserService;
 using System;
 using System.Collections.Generic;
@@ -34,6 +34,7 @@ namespace RaceManager.Client.ViewModels
         public UserViewModel()
         {
             _userServiceClient = new UserServiceClient();
+            LoadUsers();
             RefreshCommand = new RelayCommand(OnRefresh);
             NewCommand = new RelayCommand(OnNew, CanNew);
             EditCommand = new RelayCommand(OnEdit, CanEdit);
@@ -174,13 +175,13 @@ namespace RaceManager.Client.ViewModels
 
         private void LoadUsers()
         {
-            if (CurrentUser.IsAdmin)
+            if (CurrentUser.Instance.IsAdmin)
             {
-                Users = new ObservableCollection<User>(UserMapper.Instance.Map(_userServiceClient.GetAll(CurrentUser.SecurityToken)));
+                Users = new ObservableCollection<User>(UserMapper.Instance.Map(_userServiceClient.GetAll(CurrentUser.Instance.SecurityToken)));
             }
             else
             {
-                Users = new ObservableCollection<User>(UserMapper.Instance.Map(_userServiceClient.GetAll(CurrentUser.SecurityToken)).Where(u => u.Id == CurrentUser.Id));
+                Users = new ObservableCollection<User>(UserMapper.Instance.Map(_userServiceClient.GetAll(CurrentUser.Instance.SecurityToken)).Where(u => u.Id == CurrentUser.Instance.Id));
             }
         }
 
@@ -206,7 +207,7 @@ namespace RaceManager.Client.ViewModels
 
         private bool CanNew()
         {
-            return CurrentUser.IsAdmin;
+            return CurrentUser.Instance.IsAdmin;
         }
 
         private void OnEdit()
@@ -222,9 +223,9 @@ namespace RaceManager.Client.ViewModels
 
         private bool CanEdit()
         {
-            if (!CurrentUser.IsAdmin)
+            if (!CurrentUser.Instance.IsAdmin)
                 return SelectedUser != null
-                    && SelectedUser.Id == CurrentUser.Id;
+                    && SelectedUser.Id == CurrentUser.Instance.Id;
             else
                 return SelectedUser != null;
         }
@@ -242,19 +243,19 @@ namespace RaceManager.Client.ViewModels
 
         private bool CanCopy()
         {
-            return CurrentUser.IsAdmin && SelectedUser != null;
+            return CurrentUser.Instance.IsAdmin && SelectedUser != null;
         }
 
         private void OnDelete()
         {
-            _userServiceClient.Remove(CurrentUser.SecurityToken, SelectedUser.Id);
+            _userServiceClient.Remove(CurrentUser.Instance.SecurityToken, SelectedUser.Id);
             LoadUsers();
             OnNew();
         }
 
         private bool CanDelete()
         {
-            return CurrentUser.IsAdmin && SelectedUser != null && SelectedUser.Id != CurrentUser.Id;
+            return CurrentUser.Instance.IsAdmin && SelectedUser != null && SelectedUser.Id != CurrentUser.Instance.Id;
         }
 
         private void OnSave()
@@ -269,9 +270,9 @@ namespace RaceManager.Client.ViewModels
             user.IsAdmin = IsAdmin;
 
             if (Id > 0)
-                _userServiceClient.Update(CurrentUser.SecurityToken, UserMapper.Instance.Map(user));
+                _userServiceClient.Update(CurrentUser.Instance.SecurityToken, UserMapper.Instance.Map(user));
             else
-                _userServiceClient.Add(CurrentUser.SecurityToken, UserMapper.Instance.Map(user));
+                _userServiceClient.Add(CurrentUser.Instance.SecurityToken, UserMapper.Instance.Map(user));
 
             LoadUsers();
             OnNew();
@@ -279,10 +280,10 @@ namespace RaceManager.Client.ViewModels
 
         private bool CanSave()
         {
-            if (!CurrentUser.IsAdmin)
-                return Id == CurrentUser.Id
-                    && Username == CurrentUser.Username
-                    && Password == CurrentUser.Password
+            if (!CurrentUser.Instance.IsAdmin)
+                return Id == CurrentUser.Instance.Id
+                    && Username == CurrentUser.Instance.Username
+                    && Password == CurrentUser.Instance.Password
                     && !string.IsNullOrWhiteSpace(FirstName)
                     && !string.IsNullOrWhiteSpace(LastName)
                     && IsAdmin == false;

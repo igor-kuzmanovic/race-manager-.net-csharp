@@ -106,13 +106,13 @@
     <Compile Include="Core\DataMappers\IVehicleMapper.cs" />
     <Compile Include="Core\RelayCommand.cs" />
     <Compile Include="Core\ViewModelLocator.cs" />
-    <Compile Include="Identity\CurrentUser.cs" />
-    <Compile Include="Models\DataMappers\DataMapper.cs" />
-    <Compile Include="Models\DataMappers\DriverMapper.cs" />
-    <Compile Include="Models\DataMappers\LoginMapper.cs" />
-    <Compile Include="Models\DataMappers\UserMapper.cs" />
-    <Compile Include="Models\DataMappers\RaceMapper.cs" />
-    <Compile Include="Models\DataMappers\VehicleMapper.cs" />
+    <Compile Include="Models\Identity\CurrentUser.cs" />
+    <Compile Include="DataMappers\DataMapper.cs" />
+    <Compile Include="DataMappers\DriverMapper.cs" />
+    <Compile Include="DataMappers\LoginMapper.cs" />
+    <Compile Include="DataMappers\UserMapper.cs" />
+    <Compile Include="DataMappers\RaceMapper.cs" />
+    <Compile Include="DataMappers\VehicleMapper.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="ViewModels\DriverViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
@@ -219,6 +219,9 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Connected Services\RaceService\RaceService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\RaceService\RaceService3.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Connected Services\UserService\RaceManager.Client.UserService.UserDTO.datasource">

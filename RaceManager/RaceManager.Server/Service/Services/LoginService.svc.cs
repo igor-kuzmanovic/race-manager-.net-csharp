@@ -42,7 +42,9 @@ namespace RaceManager.Server.Service.Services
                 loginDTO.IsAdmin = user.IsAdmin;
 
                 user.SecurityToken = securityToken;
-                uow.Complete();
+
+                if (!uow.Complete())
+                    return new LoginDTO();
 
                 return loginDTO;
             }

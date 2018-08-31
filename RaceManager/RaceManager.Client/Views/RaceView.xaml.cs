@@ -1,4 +1,5 @@
-﻿using RaceManager.Client.ViewModels;
+﻿using RaceManager.Client.Models;
+using RaceManager.Client.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;

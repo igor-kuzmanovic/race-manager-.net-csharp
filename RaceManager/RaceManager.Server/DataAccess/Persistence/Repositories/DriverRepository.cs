@@ -1,4 +1,4 @@
-﻿using RaceManager.Server.DataAccess.Core.Domain;
+﻿using RaceManager.Server.DataAccess.Core.DataAccessObjects;
 using RaceManager.Server.DataAccess.Core.Repositories;
 using System;
 using System.Collections.Generic;
@@ -7,7 +7,7 @@ using System.Web;
 
 namespace RaceManager.Server.DataAccess.Persistence.Repositories
 {
-    class DriverRepository : Repository<Driver>, IDriverRepository
+    class DriverRepository : Repository<DriverDAO>, IDriverRepository
     {
         public DriverRepository(RaceManagerDbContext context) : base(context) { }
     }

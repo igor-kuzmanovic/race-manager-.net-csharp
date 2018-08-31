@@ -1,4 +1,4 @@
-﻿using RaceManager.Server.DataAccess.Core.Domain;
+﻿using RaceManager.Server.DataAccess.Core.DataAccessObjects;
 using RaceManager.Server.Service.Core.DataMappers;
 using System;
 using System.Collections.Generic;
@@ -7,32 +7,32 @@ using System.Web;
 
 namespace RaceManager.Server.Service.DataMappers
 {
-    abstract class DataMapper<TEntity, TDataTransferObject> : IDataMapper<TEntity, TDataTransferObject> where TEntity : Entity where TDataTransferObject : class
+    abstract class DataMapper<TDataAccessObject, TDataTransferObject> : IDataMapper<TDataAccessObject, TDataTransferObject> where TDataAccessObject : DataAccessObject where TDataTransferObject : class
     {
-        public abstract TEntity Map(TDataTransferObject dto);
+        public abstract TDataAccessObject Map(TDataTransferObject dto);
 
-        public abstract TDataTransferObject Map(TEntity entity);
+        public abstract TDataTransferObject Map(TDataAccessObject dao);
 
-        public virtual IEnumerable<TEntity> Map(IEnumerable<TDataTransferObject> dtos)
+        public virtual IEnumerable<TDataAccessObject> Map(IEnumerable<TDataTransferObject> dtos)
         {
-            var entities = new List<TEntity>(dtos.Count());
+            var daos = new List<TDataAccessObject>(dtos.Count());
 
             foreach (var dto in dtos)
             {
-                var entity = Map(dto);
-                entities.Add(entity);
+                var dao = Map(dto);
+                daos.Add(dao);
             }
 
-            return entities;
+            return daos;
         }
 
-        public virtual IEnumerable<TDataTransferObject> Map(IEnumerable<TEntity> entities)
+        public virtual IEnumerable<TDataTransferObject> Map(IEnumerable<TDataAccessObject> daos)
         {
-            var dtos = new List<TDataTransferObject>(entities.Count());
+            var dtos = new List<TDataTransferObject>(daos.Count());
 
-            foreach (var entity in entities)
+            foreach (var dao in daos)
             {
-                var dto = Map(entity);
+                var dto = Map(dao);
                 dtos.Add(dto);
             }
 

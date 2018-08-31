@@ -22,11 +22,5 @@ namespace RaceManager.Server.Service.Core.DataTransferObjects
 
         [DataMember]
         public string UMCN { get; set; }
-
-        [DataMember]
-        public ICollection<int> VehicleIds { get; set; }
-
-        [DataMember]
-        public ICollection<int> RaceIds { get; set; }
     }
 }

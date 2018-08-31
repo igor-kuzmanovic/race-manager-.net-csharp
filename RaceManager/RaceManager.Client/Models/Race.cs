@@ -1,6 +1,7 @@
 ﻿using RaceManager.Client.Core;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,8 +13,12 @@ namespace RaceManager.Client.Models
         private int _id;
         private DateTime _eventDate;
         private string _eventLocation;
+        private ObservableCollection<Driver> _drivers;
 
-        public Race() { }
+        public Race()
+        {
+            Drivers = new ObservableCollection<Driver>();
+        }
 
         public int Id
         {
@@ -48,6 +53,15 @@ namespace RaceManager.Client.Models
                     _eventLocation = value;
                     RaisePropertyChanged();
                 }
+            }
+        }
+
+        public ObservableCollection<Driver> Drivers
+        {
+            get => _drivers; set
+            {
+                _drivers = value;
+                RaisePropertyChanged();
             }
         }
     }

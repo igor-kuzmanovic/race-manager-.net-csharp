@@ -1,4 +1,4 @@
-﻿using RaceManager.Server.DataAccess.Core.Domain;
+﻿using RaceManager.Server.DataAccess.Core.DataAccessObjects;
 using RaceManager.Server.Service.Core.DataMappers;
 using RaceManager.Server.Service.Core.DataTransferObjects;
 using System;
@@ -8,7 +8,7 @@ using System.Web;
 
 namespace RaceManager.Server.Service.DataMappers
 {
-    class UserMapper : DataMapper<User, UserDTO>, IUserMapper
+    class UserMapper : DataMapper<UserDAO, UserDTO>, IUserMapper
     {
         public static UserMapper Instance { get; } = new UserMapper();
 
@@ -16,9 +16,9 @@ namespace RaceManager.Server.Service.DataMappers
 
         private UserMapper() { }
 
-        public override User Map(UserDTO userDTO)
+        public override UserDAO Map(UserDTO userDTO)
         {
-            var user = new User();
+            var user = new UserDAO();
 
             if (userDTO != null)
             {
@@ -34,7 +34,7 @@ namespace RaceManager.Server.Service.DataMappers
             return user;
         }
 
-        public override UserDTO Map(User user)
+        public override UserDTO Map(UserDAO user)
         {
             var userDTO = new UserDTO();
 

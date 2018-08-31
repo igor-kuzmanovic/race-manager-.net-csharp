@@ -9,7 +9,10 @@ namespace RaceManager.Server.Service.Core.DataTransferObjects
     [DataContract]
     public class RaceDTO
     {
-        public RaceDTO() { }
+        public RaceDTO()
+        {
+            DriverIds = new List<int>();
+        }
 
         [DataMember]
         public int Id { get; set; }

@@ -1,7 +1,8 @@
 ﻿using RaceManager.Client.Core.DataMappers;
 using RaceManager.Client.LoginService;
+using RaceManager.Client.Models;
 
-namespace RaceManager.Client.Models.DataMappers
+namespace RaceManager.Client.DataMappers
 {
     class LoginMapper : DataMapper<User, LoginDTO>, ILoginMapper
     {

@@ -24,6 +24,9 @@ namespace RaceManager.Client.RaceService {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int[] DriverIdsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.DateTime EventDateField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -39,6 +42,19 @@ namespace RaceManager.Client.RaceService {
             }
             set {
                 this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int[] DriverIds {
+            get {
+                return this.DriverIdsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DriverIdsField, value) != true)) {
+                    this.DriverIdsField = value;
+                    this.RaisePropertyChanged("DriverIds");
+                }
             }
         }
         

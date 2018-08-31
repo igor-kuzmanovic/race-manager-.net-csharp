@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace RaceManager.Server.DataAccess.Core.Domain
+namespace RaceManager.Server.DataAccess.Core.DataAccessObjects
 {
-    class User : Entity
+    class UserDAO : DataAccessObject
     {
-        public User() { }
+        public UserDAO() { }
 
         public string Username { get; set; }
 

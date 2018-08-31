@@ -1,4 +1,4 @@
-﻿using RaceManager.Server.DataAccess.Core.Domain;
+﻿using RaceManager.Server.DataAccess.Core.DataAccessObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 
 namespace RaceManager.Server.Service.Core.DataMappers
 {
-    interface IDataMapper<TEntity, TDataTransferObject> where TEntity : Entity where TDataTransferObject : class
+    interface IDataMapper<TDataAccessObject, TDataTransferObject> where TDataAccessObject : DataAccessObject where TDataTransferObject : class
     {
-        TEntity Map(TDataTransferObject dto);
+        TDataAccessObject Map(TDataTransferObject dto);
 
-        TDataTransferObject Map(TEntity entity);
+        TDataTransferObject Map(TDataAccessObject dao);
 
-        IEnumerable<TEntity> Map(IEnumerable<TDataTransferObject> dtos);
+        IEnumerable<TDataAccessObject> Map(IEnumerable<TDataTransferObject> dtos);
 
-        IEnumerable<TDataTransferObject> Map(IEnumerable<TEntity> entities);
+        IEnumerable<TDataTransferObject> Map(IEnumerable<TDataAccessObject> daos);
     }
 }

@@ -11,6 +11,7 @@ using System.Security.Permissions;
 using System.ServiceModel;
 using System.Text;
 using RaceManager.Server.Service.Security;
+using RaceManager.Server.DataAccess.Core.DataAccessObjects;
 
 namespace RaceManager.Server.Service.Services
 {
@@ -52,7 +53,10 @@ namespace RaceManager.Server.Service.Services
 
                 race.EventDate = raceDTO.EventDate;
                 race.EventLocation = raceDTO.EventLocation;
-                uow.Complete();
+                race.RaceDrivers = new List<RaceDriverDAO>(raceDTO.DriverIds.Select(id => new RaceDriverDAO() { RaceId = race.Id, DriverId = id }));
+
+                if (!uow.Complete())
+                    return false;
 
                 return true;
             }
@@ -66,7 +70,9 @@ namespace RaceManager.Server.Service.Services
                     return false;
 
                 uow.Races.Add(RaceMapper.Instance.Map(raceDTO));
-                uow.Complete();
+
+                if (!uow.Complete())
+                    return false;
 
                 return true;
             }
@@ -85,7 +91,9 @@ namespace RaceManager.Server.Service.Services
                     return false;
 
                 uow.Races.Remove(race);
-                uow.Complete();
+
+                if (!uow.Complete())
+                    return false;
 
                 return true;
             }

@@ -27,6 +27,7 @@
                 <DataGridTextColumn Width="Auto" Header="Type" Binding="{Binding Type}" />
                 <DataGridTextColumn Width="Auto" Header="Engine Horsepower" Binding="{Binding EngineHorsepower}" />
                 <DataGridTextColumn Width="Auto" Header="Engine Displacement" Binding="{Binding EngineDisplacement}" />
+                <DataGridTextColumn Width="Auto" Header="Driven By" Binding="{Binding Driver}" />
             </DataGrid.Columns>
         </DataGrid>
 
@@ -63,6 +64,10 @@
             <StackPanel Orientation="Horizontal">
                 <Label Content="Engine Displacement" />
                 <TextBox Text="{Binding EngineDisplacement, UpdateSourceTrigger=PropertyChanged}" Height="23" Width="150" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Driven By" />
+                <ComboBox ItemsSource="{Binding Drivers}" SelectedItem="{Binding Driver}" Height="23" Width="Auto" />
             </StackPanel>
         </StackPanel>
     </Grid>

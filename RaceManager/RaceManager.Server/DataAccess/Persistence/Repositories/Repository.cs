@@ -1,4 +1,4 @@
-﻿using RaceManager.Server.DataAccess.Core.Domain;
+﻿using RaceManager.Server.DataAccess.Core.DataAccessObjects;
 using RaceManager.Server.DataAccess.Core.Repositories;
 using System;
 using System.Collections.Generic;
@@ -9,45 +9,45 @@ using System.Web;
 
 namespace RaceManager.Server.DataAccess.Persistence.Repositories
 {
-    abstract class Repository<TEntity> : IRepository<TEntity> where TEntity : Entity
+    abstract class Repository<TDataAccessObject> : IRepository<TDataAccessObject> where TDataAccessObject : DataAccessObject
     {
         protected readonly RaceManagerDbContext _context;
-        protected readonly DbSet<TEntity> dbSet;
+        protected readonly DbSet<TDataAccessObject> dbSet;
 
         public Repository(RaceManagerDbContext context)
         {
             _context = context;
-            dbSet = _context.Set<TEntity>();
+            dbSet = _context.Set<TDataAccessObject>();
         }
 
-        public virtual TEntity Get(int id)
+        public virtual TDataAccessObject Get(int id)
         {
             return dbSet.Find(id);
         }
 
-        public virtual IEnumerable<TEntity> GetAll()
+        public virtual IEnumerable<TDataAccessObject> GetAll()
         {
             return dbSet.ToList();
         }
 
-        public virtual TEntity Find(Expression<Func<TEntity, bool>> predicate)
+        public virtual TDataAccessObject Find(Expression<Func<TDataAccessObject, bool>> predicate)
         {
             return dbSet.SingleOrDefault(predicate);
         }
 
-        public virtual IEnumerable<TEntity> FindAll(Expression<Func<TEntity, bool>> predicate)
+        public virtual IEnumerable<TDataAccessObject> FindAll(Expression<Func<TDataAccessObject, bool>> predicate)
         {
             return dbSet.Where(predicate);
         }
 
-        public virtual void Add(TEntity entity)
+        public virtual void Add(TDataAccessObject dao)
         {
-            dbSet.Add(entity);
+            dbSet.Add(dao);
         }
 
-        public virtual void AddRange(IEnumerable<TEntity> entities)
+        public virtual void AddRange(IEnumerable<TDataAccessObject> daos)
         {
-            dbSet.AddRange(entities);
+            dbSet.AddRange(daos);
         }
 
         public virtual void Remove(int id)
@@ -55,9 +55,9 @@ namespace RaceManager.Server.DataAccess.Persistence.Repositories
             dbSet.Remove(dbSet.Find(id));
         }
 
-        public virtual void Remove(TEntity entity)
+        public virtual void Remove(TDataAccessObject dao)
         {
-            dbSet.Remove(entity);
+            dbSet.Remove(dao);
         }
     }
 }

@@ -1,7 +1,8 @@
 ﻿using RaceManager.Client.Core.DataMappers;
+using RaceManager.Client.Models;
 using RaceManager.Client.UserService;
 
-namespace RaceManager.Client.Models.DataMappers
+namespace RaceManager.Client.DataMappers
 {
     class UserMapper : DataMapper<User, UserDTO>, IUserMapper
     {

@@ -1,4 +1,4 @@
-﻿using RaceManager.Server.DataAccess.Core.Domain;
+﻿using RaceManager.Server.DataAccess.Core.DataAccessObjects;
 using RaceManager.Server.DataAccess.Persistence.Configurations;
 using System;
 using System.Collections.Generic;
@@ -15,9 +15,10 @@ namespace RaceManager.Server.DataAccess.Persistence
             Database.SetInitializer(new RaceManagerDbInitializer());
         }
 
-        public DbSet<Race> Races { get; set; }
-        public DbSet<Driver> Drivers { get; set; }
-        public DbSet<Vehicle> Vehicles { get; set; }
-        public DbSet<User> Users { get; set; }
+        public DbSet<RaceDAO> Races { get; set; }
+        public DbSet<RaceDriverDAO> RaceDrivers { get; set; }
+        public DbSet<DriverDAO> Drivers { get; set; }
+        public DbSet<VehicleDAO> Vehicles { get; set; }
+        public DbSet<UserDAO> Users { get; set; }
     }
 }

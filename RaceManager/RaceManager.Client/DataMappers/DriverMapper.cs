@@ -1,7 +1,10 @@
 ﻿using RaceManager.Client.Core.DataMappers;
 using RaceManager.Client.DriverService;
+using RaceManager.Client.Models;
+using System;
+using System.Collections.ObjectModel;
 
-namespace RaceManager.Client.Models.DataMappers
+namespace RaceManager.Client.DataMappers
 {
     class DriverMapper : DataMapper<Driver, DriverDTO>, IDriverMapper
     {

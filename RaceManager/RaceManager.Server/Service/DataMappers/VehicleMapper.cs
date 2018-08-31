@@ -1,4 +1,4 @@
-﻿using RaceManager.Server.DataAccess.Core.Domain;
+﻿using RaceManager.Server.DataAccess.Core.DataAccessObjects;
 using RaceManager.Server.Service.Core.DataMappers;
 using RaceManager.Server.Service.Core.DataTransferObjects;
 using System;
@@ -8,7 +8,7 @@ using System.Web;
 
 namespace RaceManager.Server.Service.DataMappers
 {
-    class VehicleMapper : DataMapper<Vehicle, VehicleDTO>, IVehicleMapper
+    class VehicleMapper : DataMapper<VehicleDAO, VehicleDTO>, IVehicleMapper
     {
         public static VehicleMapper Instance { get; } = new VehicleMapper();
 
@@ -16,9 +16,9 @@ namespace RaceManager.Server.Service.DataMappers
 
         private VehicleMapper() { }
 
-        public override Vehicle Map(VehicleDTO vehicleDTO)
+        public override VehicleDAO Map(VehicleDTO vehicleDTO)
         {
-            var vehicle = new Vehicle();
+            var vehicle = new VehicleDAO();
 
             if (vehicleDTO != null)
             {
@@ -28,12 +28,13 @@ namespace RaceManager.Server.Service.DataMappers
                 vehicle.Type = vehicleDTO.Type;
                 vehicle.EngineHorsepower = vehicleDTO.EngineHorsepower;
                 vehicle.EngineDisplacement = vehicleDTO.EngineDisplacement;
+                vehicle.DriverId = vehicleDTO.DriverId;
             }
 
             return vehicle;
         }
 
-        public override VehicleDTO Map(Vehicle vehicle)
+        public override VehicleDTO Map(VehicleDAO vehicle)
         {
             var vehicleDTO = new VehicleDTO();
 
@@ -45,6 +46,7 @@ namespace RaceManager.Server.Service.DataMappers
                 vehicleDTO.Type = vehicle.Type;
                 vehicleDTO.EngineHorsepower = vehicle.EngineHorsepower;
                 vehicleDTO.EngineDisplacement = vehicle.EngineDisplacement;
+                vehicleDTO.DriverId = vehicle.DriverId;
             }
 
             return vehicleDTO;

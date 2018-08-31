@@ -1,4 +1,4 @@
-﻿using RaceManager.Server.DataAccess.Core.Domain;
+﻿using RaceManager.Server.DataAccess.Core.DataAccessObjects;
 using RaceManager.Server.Service.Core.DataMappers;
 using RaceManager.Server.Service.Core.DataTransferObjects;
 using System;
@@ -8,7 +8,7 @@ using System.Web;
 
 namespace RaceManager.Server.Service.DataMappers
 {
-    class RaceMapper : DataMapper<Race, RaceDTO>, IRaceMapper
+    class RaceMapper : DataMapper<RaceDAO, RaceDTO>, IRaceMapper
     {
         public static RaceMapper Instance { get; } = new RaceMapper();
 
@@ -16,21 +16,22 @@ namespace RaceManager.Server.Service.DataMappers
 
         private RaceMapper() { }
 
-        public override Race Map(RaceDTO raceDTO)
+        public override RaceDAO Map(RaceDTO raceDTO)
         {
-            var race = new Race();
+            var race = new RaceDAO();
 
             if (raceDTO != null)
             {
                 race.Id = raceDTO.Id;
                 race.EventDate = raceDTO.EventDate;
                 race.EventLocation = raceDTO.EventLocation;
+                race.RaceDrivers = new List<RaceDriverDAO>(raceDTO.DriverIds.Select(i => new RaceDriverDAO() { RaceId = race.Id, DriverId = i }));
             }
 
             return race;
         }
 
-        public override RaceDTO Map(Race race)
+        public override RaceDTO Map(RaceDAO race)
         {
             var raceDTO = new RaceDTO();
 
@@ -39,6 +40,7 @@ namespace RaceManager.Server.Service.DataMappers
                 raceDTO.Id = race.Id;
                 raceDTO.EventDate = race.EventDate;
                 raceDTO.EventLocation = race.EventLocation;
+                raceDTO.DriverIds = race.RaceDrivers.Select(rd => rd.DriverId).ToList();
             }
 
             return raceDTO;
