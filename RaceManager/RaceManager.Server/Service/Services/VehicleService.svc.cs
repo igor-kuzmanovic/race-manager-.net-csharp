@@ -9,31 +9,41 @@ using System.Linq.Expressions;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
+using RaceManager.Server.Service.Security;
 
 namespace RaceManager.Server.Service.Services
 {
     public class VehicleService : IVehicleService
     {
-        public VehicleDTO Get(int id)
+        public VehicleDTO Get(string token, int id)
         {
             using (var uow = new UnitOfWork(new RaceManagerDbContext()))
             {
+                if (!AuthorizationManager.Instance.Authorize(uow, token))
+                    return new VehicleDTO();
+
                 return VehicleMapper.Instance.Map(uow.Vehicles.Get(id));
             }
         }
 
-        public IEnumerable<VehicleDTO> GetAll()
+        public IEnumerable<VehicleDTO> GetAll(string token)
         {
             using (var uow = new UnitOfWork(new RaceManagerDbContext()))
             {
+                if (!AuthorizationManager.Instance.Authorize(uow, token))
+                    return new List<VehicleDTO>();
+
                 return VehicleMapper.Instance.Map(uow.Vehicles.GetAll());
             }
         }
 
-        public void Update(VehicleDTO vehicleDTO)
+        public bool Update(string token, VehicleDTO vehicleDTO)
         {
             using (var uow = new UnitOfWork(new RaceManagerDbContext()))
             {
+                if (!AuthorizationManager.Instance.Authorize(uow, token))
+                    return false;
+
                 var vehicle = uow.Vehicles.Get(vehicleDTO.Id);
                 vehicle.Manufacturer = vehicleDTO.Manufacturer;
                 vehicle.Model = vehicleDTO.Model;
@@ -41,24 +51,33 @@ namespace RaceManager.Server.Service.Services
                 vehicle.EngineHorsepower = vehicleDTO.EngineHorsepower;
                 vehicle.EngineDisplacement = vehicleDTO.EngineDisplacement;
                 uow.Complete();
+                return true;
             }
         }
 
-        public void Add(VehicleDTO vehicleDTO)
+        public bool Add(string token, VehicleDTO vehicleDTO)
         {
             using (var uow = new UnitOfWork(new RaceManagerDbContext()))
             {
+                if (!AuthorizationManager.Instance.Authorize(uow, token))
+                    return false;
+
                 uow.Vehicles.Add(VehicleMapper.Instance.Map(vehicleDTO));
                 uow.Complete();
+                return true;
             }
         }
 
-        public void Remove(int id)
+        public bool Remove(string token, int id)
         {
             using (var uow = new UnitOfWork(new RaceManagerDbContext()))
             {
+                if (!AuthorizationManager.Instance.Authorize(uow, token))
+                    return false;
+
                 uow.Vehicles.Remove(id);
                 uow.Complete();
+                return true;
             }
         }
     }

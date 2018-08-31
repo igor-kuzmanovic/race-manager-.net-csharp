@@ -1,4 +1,5 @@
 ﻿using RaceManager.Client.Core;
+using RaceManager.Client.Identity;
 using RaceManager.Client.Models;
 using RaceManager.Client.Models.DataMappers;
 using RaceManager.Client.RaceService;
@@ -34,6 +35,7 @@ namespace RaceManager.Client.ViewModels
             CopyCommand = new RelayCommand(OnCopy, CanCopy);
             DeleteCommand = new RelayCommand(OnDelete, CanDelete);
             SaveCommand = new RelayCommand(OnSave, CanSave);
+            OnNew();
         }
 
         #region Commands
@@ -115,7 +117,7 @@ namespace RaceManager.Client.ViewModels
 
         private void LoadRaces()
         {
-            Races = new ObservableCollection<Race>(RaceMapper.Instance.Map(_raceServiceClient.GetAll()));
+            Races = new ObservableCollection<Race>(RaceMapper.Instance.Map(_raceServiceClient.GetAll(CurrentUser.SecurityToken)));
         }
 
         #endregion
@@ -160,7 +162,7 @@ namespace RaceManager.Client.ViewModels
 
         private void OnDelete()
         {
-            _raceServiceClient.Remove(SelectedRace.Id);
+            _raceServiceClient.Remove(CurrentUser.SecurityToken, SelectedRace.Id);
             LoadRaces();
             OnNew();
         }
@@ -178,9 +180,9 @@ namespace RaceManager.Client.ViewModels
             race.EventLocation = EventLocation;
 
             if (Id > 0)
-                _raceServiceClient.Update(RaceMapper.Instance.Map(race));
+                _raceServiceClient.Update(CurrentUser.SecurityToken, RaceMapper.Instance.Map(race));
             else
-                _raceServiceClient.Add(RaceMapper.Instance.Map(race));
+                _raceServiceClient.Add(CurrentUser.SecurityToken, RaceMapper.Instance.Map(race));
 
             LoadRaces();
             OnNew();
@@ -188,7 +190,8 @@ namespace RaceManager.Client.ViewModels
 
         private bool CanSave()
         {
-            return EventDate != null && !string.IsNullOrWhiteSpace(EventLocation);
+            return EventDate != null 
+                && !string.IsNullOrWhiteSpace(EventLocation);
         }
 
         #endregion

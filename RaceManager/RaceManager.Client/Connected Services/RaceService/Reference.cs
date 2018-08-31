@@ -96,34 +96,34 @@ namespace RaceManager.Client.RaceService {
     public interface IRaceService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRaceService/Get", ReplyAction="http://tempuri.org/IRaceService/GetResponse")]
-        RaceManager.Client.RaceService.RaceDTO Get(int id);
+        RaceManager.Client.RaceService.RaceDTO Get(string token, int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRaceService/Get", ReplyAction="http://tempuri.org/IRaceService/GetResponse")]
-        System.Threading.Tasks.Task<RaceManager.Client.RaceService.RaceDTO> GetAsync(int id);
+        System.Threading.Tasks.Task<RaceManager.Client.RaceService.RaceDTO> GetAsync(string token, int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRaceService/GetAll", ReplyAction="http://tempuri.org/IRaceService/GetAllResponse")]
-        RaceManager.Client.RaceService.RaceDTO[] GetAll();
+        RaceManager.Client.RaceService.RaceDTO[] GetAll(string token);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRaceService/GetAll", ReplyAction="http://tempuri.org/IRaceService/GetAllResponse")]
-        System.Threading.Tasks.Task<RaceManager.Client.RaceService.RaceDTO[]> GetAllAsync();
+        System.Threading.Tasks.Task<RaceManager.Client.RaceService.RaceDTO[]> GetAllAsync(string token);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRaceService/Add", ReplyAction="http://tempuri.org/IRaceService/AddResponse")]
-        void Add(RaceManager.Client.RaceService.RaceDTO dto);
+        bool Add(string token, RaceManager.Client.RaceService.RaceDTO dto);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRaceService/Add", ReplyAction="http://tempuri.org/IRaceService/AddResponse")]
-        System.Threading.Tasks.Task AddAsync(RaceManager.Client.RaceService.RaceDTO dto);
+        System.Threading.Tasks.Task<bool> AddAsync(string token, RaceManager.Client.RaceService.RaceDTO dto);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRaceService/Update", ReplyAction="http://tempuri.org/IRaceService/UpdateResponse")]
-        void Update(RaceManager.Client.RaceService.RaceDTO dto);
+        bool Update(string token, RaceManager.Client.RaceService.RaceDTO dto);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRaceService/Update", ReplyAction="http://tempuri.org/IRaceService/UpdateResponse")]
-        System.Threading.Tasks.Task UpdateAsync(RaceManager.Client.RaceService.RaceDTO dto);
+        System.Threading.Tasks.Task<bool> UpdateAsync(string token, RaceManager.Client.RaceService.RaceDTO dto);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRaceService/Remove", ReplyAction="http://tempuri.org/IRaceService/RemoveResponse")]
-        void Remove(int id);
+        bool Remove(string token, int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRaceService/Remove", ReplyAction="http://tempuri.org/IRaceService/RemoveResponse")]
-        System.Threading.Tasks.Task RemoveAsync(int id);
+        System.Threading.Tasks.Task<bool> RemoveAsync(string token, int id);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -153,44 +153,44 @@ namespace RaceManager.Client.RaceService {
                 base(binding, remoteAddress) {
         }
         
-        public RaceManager.Client.RaceService.RaceDTO Get(int id) {
-            return base.Channel.Get(id);
+        public RaceManager.Client.RaceService.RaceDTO Get(string token, int id) {
+            return base.Channel.Get(token, id);
         }
         
-        public System.Threading.Tasks.Task<RaceManager.Client.RaceService.RaceDTO> GetAsync(int id) {
-            return base.Channel.GetAsync(id);
+        public System.Threading.Tasks.Task<RaceManager.Client.RaceService.RaceDTO> GetAsync(string token, int id) {
+            return base.Channel.GetAsync(token, id);
         }
         
-        public RaceManager.Client.RaceService.RaceDTO[] GetAll() {
-            return base.Channel.GetAll();
+        public RaceManager.Client.RaceService.RaceDTO[] GetAll(string token) {
+            return base.Channel.GetAll(token);
         }
         
-        public System.Threading.Tasks.Task<RaceManager.Client.RaceService.RaceDTO[]> GetAllAsync() {
-            return base.Channel.GetAllAsync();
+        public System.Threading.Tasks.Task<RaceManager.Client.RaceService.RaceDTO[]> GetAllAsync(string token) {
+            return base.Channel.GetAllAsync(token);
         }
         
-        public void Add(RaceManager.Client.RaceService.RaceDTO dto) {
-            base.Channel.Add(dto);
+        public bool Add(string token, RaceManager.Client.RaceService.RaceDTO dto) {
+            return base.Channel.Add(token, dto);
         }
         
-        public System.Threading.Tasks.Task AddAsync(RaceManager.Client.RaceService.RaceDTO dto) {
-            return base.Channel.AddAsync(dto);
+        public System.Threading.Tasks.Task<bool> AddAsync(string token, RaceManager.Client.RaceService.RaceDTO dto) {
+            return base.Channel.AddAsync(token, dto);
         }
         
-        public void Update(RaceManager.Client.RaceService.RaceDTO dto) {
-            base.Channel.Update(dto);
+        public bool Update(string token, RaceManager.Client.RaceService.RaceDTO dto) {
+            return base.Channel.Update(token, dto);
         }
         
-        public System.Threading.Tasks.Task UpdateAsync(RaceManager.Client.RaceService.RaceDTO dto) {
-            return base.Channel.UpdateAsync(dto);
+        public System.Threading.Tasks.Task<bool> UpdateAsync(string token, RaceManager.Client.RaceService.RaceDTO dto) {
+            return base.Channel.UpdateAsync(token, dto);
         }
         
-        public void Remove(int id) {
-            base.Channel.Remove(id);
+        public bool Remove(string token, int id) {
+            return base.Channel.Remove(token, id);
         }
         
-        public System.Threading.Tasks.Task RemoveAsync(int id) {
-            return base.Channel.RemoveAsync(id);
+        public System.Threading.Tasks.Task<bool> RemoveAsync(string token, int id) {
+            return base.Channel.RemoveAsync(token, id);
         }
     }
 }

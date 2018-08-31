@@ -9,6 +9,6 @@ namespace RaceManager.Server.Service.Core.Security
 {
     interface IAuthorizationManager
     {
-        bool Authorize(IUnitOfWork uow, string securityToken, bool shouldBeAdmin);
+        bool Authorize(IUnitOfWork uow, string securityToken);
     }
 }

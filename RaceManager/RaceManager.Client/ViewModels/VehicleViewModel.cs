@@ -1,4 +1,5 @@
 ﻿using RaceManager.Client.Core;
+using RaceManager.Client.Identity;
 using RaceManager.Client.Models;
 using RaceManager.Client.Models.DataMappers;
 using RaceManager.Client.VehicleService;
@@ -36,6 +37,7 @@ namespace RaceManager.Client.ViewModels
             CopyCommand = new RelayCommand(OnCopy, CanCopy);
             DeleteCommand = new RelayCommand(OnDelete, CanDelete);
             SaveCommand = new RelayCommand(OnSave, CanSave);
+            OnNew();
         }
 
         #region Commands
@@ -155,7 +157,7 @@ namespace RaceManager.Client.ViewModels
 
         private void LoadVehicles()
         {
-            Vehicles = new ObservableCollection<Vehicle>(VehicleMapper.Instance.Map(_vehicleServiceClient.GetAll()));
+            Vehicles = new ObservableCollection<Vehicle>(VehicleMapper.Instance.Map(_vehicleServiceClient.GetAll(CurrentUser.SecurityToken)));
         }
 
         #endregion
@@ -209,7 +211,7 @@ namespace RaceManager.Client.ViewModels
 
         private void OnDelete()
         {
-            _vehicleServiceClient.Remove(SelectedVehicle.Id);
+            _vehicleServiceClient.Remove(CurrentUser.SecurityToken, SelectedVehicle.Id);
             LoadVehicles();
             OnNew();
         }
@@ -229,9 +231,9 @@ namespace RaceManager.Client.ViewModels
             vehicle.EngineDisplacement = EngineDisplacement;
 
             if (Id > 0)
-                _vehicleServiceClient.Update(VehicleMapper.Instance.Map(vehicle));
+                _vehicleServiceClient.Update(CurrentUser.SecurityToken, VehicleMapper.Instance.Map(vehicle));
             else
-                _vehicleServiceClient.Add(VehicleMapper.Instance.Map(vehicle));
+                _vehicleServiceClient.Add(CurrentUser.SecurityToken, VehicleMapper.Instance.Map(vehicle));
 
             LoadVehicles();
             OnNew();
@@ -239,7 +241,11 @@ namespace RaceManager.Client.ViewModels
 
         private bool CanSave()
         {
-            return !string.IsNullOrWhiteSpace(Manufacturer) && !string.IsNullOrWhiteSpace(Model) && !string.IsNullOrWhiteSpace(Type) && EngineHorsepower > 0 && EngineDisplacement > 0;
+            return !string.IsNullOrWhiteSpace(Manufacturer) 
+                && !string.IsNullOrWhiteSpace(Model) 
+                && !string.IsNullOrWhiteSpace(Type) 
+                && EngineHorsepower > 0 
+                && EngineDisplacement > 0;
         }
 
         #endregion

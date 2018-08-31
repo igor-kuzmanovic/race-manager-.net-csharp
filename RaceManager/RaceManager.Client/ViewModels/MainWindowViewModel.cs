@@ -1,4 +1,5 @@
 ﻿using RaceManager.Client.Core;
+using RaceManager.Client.Identity;
 using RaceManager.Client.LoginService;
 using RaceManager.Client.Models;
 using RaceManager.Client.Models.DataMappers;
@@ -46,8 +47,6 @@ namespace RaceManager.Client.ViewModels
         #endregion
 
         #region Properties
-
-        public static User CurrentUser { get; set; }
 
         public string Username
         {
@@ -187,15 +186,16 @@ namespace RaceManager.Client.ViewModels
 
         #region Helper Methods
 
-        private void EnableViewsWhenLoggedIn(bool isAdmin)
+        private void EnableViewsWhenLoggedIn()
         {
             IsRaceViewEnabled = true;
             IsDriverViewEnabled = true;
             IsVehicleViewEnabled = true;
-            IsUserViewEnabled = true && isAdmin;
+            IsUserViewEnabled = true;
             IsLogInViewEnabled = false;
             IsLogOutViewEnabled = true;
             IsSettingsViewEnabled = true;
+
             IsRaceViewSelected = true;
             IsLogInViewSelected = false;
         }
@@ -209,6 +209,7 @@ namespace RaceManager.Client.ViewModels
             IsLogInViewEnabled = true;
             IsLogOutViewEnabled = false;
             IsSettingsViewEnabled = false;
+
             IsRaceViewSelected = false;
             IsLogInViewSelected = true;
         }
@@ -225,17 +226,17 @@ namespace RaceManager.Client.ViewModels
 
         private void OnLogIn()
         {
-            CurrentUser = LoginMapper.Instance.Map(_loginServiceClient.LogIn(Username, Password));
+            var user = LoginMapper.Instance.Map(_loginServiceClient.LogIn(Username, Password));
 
-            if (string.IsNullOrWhiteSpace(CurrentUser.SecurityToken))
+            if (string.IsNullOrWhiteSpace(user.SecurityToken))
             {
                 MessageBox.Show("An error occured, please try again!");
             }
             else
             {
-                EnableViewsWhenLoggedIn(CurrentUser.IsAdmin);
+                CurrentUser.LogUserIn(user);
+                EnableViewsWhenLoggedIn();
                 ClearForm();
-                MessageBox.Show("Logged in, security token: " + CurrentUser.SecurityToken);
             }
         }
 
@@ -247,9 +248,8 @@ namespace RaceManager.Client.ViewModels
         private void OnLogOut()
         {
             _loginServiceClient.LogOut(CurrentUser.SecurityToken);
-            CurrentUser = null;
+            CurrentUser.LogUserOut();
             DisableViewsWhenLoggedOut();
-            MessageBox.Show("Logged out");
         }
 
         #endregion

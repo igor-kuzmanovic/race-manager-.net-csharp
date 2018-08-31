@@ -12,18 +12,18 @@ namespace RaceManager.Server.Service.Core.Services
     public interface IDriverService
     {
         [OperationContract]
-        DriverDTO Get(int id);
+        DriverDTO Get(string token, int id);
 
         [OperationContract]
-        IEnumerable<DriverDTO> GetAll();
+        IEnumerable<DriverDTO> GetAll(string token);
 
         [OperationContract]
-        void Add(DriverDTO dto);
+        bool Add(string token, DriverDTO dto);
 
         [OperationContract]
-        void Update(DriverDTO dto);
+        bool Update(string token, DriverDTO dto);
 
         [OperationContract]
-        void Remove(int id);
+        bool Remove(string token, int id);
     }
 }

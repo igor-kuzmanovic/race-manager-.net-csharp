@@ -10,7 +10,7 @@ namespace RaceManager.Client.Core
 {
     class ObservableObject : INotifyPropertyChanged
     {
-        public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler PropertyChanged = delegate { };
 
         protected void RaisePropertyChanged([CallerMemberName]string propertyName = "")
         {

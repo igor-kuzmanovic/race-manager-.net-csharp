@@ -18,6 +18,9 @@ namespace RaceManager.Server.Service.Security
 
         public string GenerateToken(IUnitOfWork uow, string username)
         {
+            if (string.IsNullOrWhiteSpace(username))
+                return string.Empty;
+
             var user = uow.Users.Find(u => u.Username.ToLower() == username.ToLower());
 
             if (user == null)

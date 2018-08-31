@@ -1,5 +1,6 @@
 ﻿using RaceManager.Client.Core;
 using RaceManager.Client.DriverService;
+using RaceManager.Client.Identity;
 using RaceManager.Client.Models;
 using RaceManager.Client.Models.DataMappers;
 using System;
@@ -33,7 +34,8 @@ namespace RaceManager.Client.ViewModels
             EditCommand = new RelayCommand(OnEdit, CanEdit);
             CopyCommand = new RelayCommand(OnCopy, CanCopy);
             DeleteCommand = new RelayCommand(OnDelete, CanDelete);
-            SaveCommand = new RelayCommand(OnSave, CanSave); 
+            SaveCommand = new RelayCommand(OnSave, CanSave);
+            OnNew();
         }
 
         #region Commands
@@ -128,7 +130,7 @@ namespace RaceManager.Client.ViewModels
 
         private void LoadDrivers()
         {
-            Drivers = new ObservableCollection<Driver>(DriverMapper.Instance.Map(_driverServiceClient.GetAll()));
+            Drivers = new ObservableCollection<Driver>(DriverMapper.Instance.Map(_driverServiceClient.GetAll(CurrentUser.SecurityToken)));
         }
 
         #endregion
@@ -176,7 +178,7 @@ namespace RaceManager.Client.ViewModels
 
         private void OnDelete()
         {
-            _driverServiceClient.Remove(SelectedDriver.Id);
+            _driverServiceClient.Remove(CurrentUser.SecurityToken, SelectedDriver.Id);
             LoadDrivers();
             OnNew();
         }
@@ -195,9 +197,9 @@ namespace RaceManager.Client.ViewModels
             driver.UMCN = UMCN;
 
             if (Id > 0)
-                _driverServiceClient.Update(DriverMapper.Instance.Map(driver));
+                _driverServiceClient.Update(CurrentUser.SecurityToken, DriverMapper.Instance.Map(driver));
             else
-                _driverServiceClient.Add(DriverMapper.Instance.Map(driver));
+                _driverServiceClient.Add(CurrentUser.SecurityToken, DriverMapper.Instance.Map(driver));
                 
             LoadDrivers();
             OnNew();
@@ -205,7 +207,9 @@ namespace RaceManager.Client.ViewModels
 
         private bool CanSave()
         {
-            return !string.IsNullOrWhiteSpace(FirstName) && !string.IsNullOrWhiteSpace(LastName) && !string.IsNullOrWhiteSpace(UMCN);
+            return !string.IsNullOrWhiteSpace(FirstName) 
+                && !string.IsNullOrWhiteSpace(LastName) 
+                && !string.IsNullOrWhiteSpace(UMCN);
         }
 
         #endregion

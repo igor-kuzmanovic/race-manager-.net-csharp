@@ -7,7 +7,7 @@
         xmlns:views="clr-namespace:RaceManager.Client.Views"
         xmlns:viewModels="clr-namespace:RaceManager.Client.ViewModels"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="800" WindowStartupLocation="CenterScreen">
+        Title="MainWindow" MinHeight="600" MinWidth="800" WindowStartupLocation="CenterScreen">
 
     <Window.DataContext>
         <viewModels:MainWindowViewModel />
@@ -18,31 +18,46 @@
             <TabItem Header="Races" IsEnabled="{Binding IsRaceViewEnabled}" IsSelected="{Binding IsRaceViewSelected}">
                 <views:RaceView x:Name="raceViewControl" />
             </TabItem>
+
             <TabItem Header="Drivers" IsEnabled="{Binding IsDriverViewEnabled}">
                 <views:DriverView x:Name="driverViewControl" />
             </TabItem>
+
             <TabItem Header="Vehicles" IsEnabled="{Binding IsVehicleViewEnabled}">
                 <views:VehicleView x:Name="vehicleViewControl" />
             </TabItem>
+
             <TabItem Header="Users" IsEnabled="{Binding IsUserViewEnabled}">
                 <views:UserView x:Name="userViewControl" />
             </TabItem>
+
             <!--<TabItem Header="Settings" IsEnabled="{Binding IsSettingsViewEnabled}">
                 <views:SettingsView x:Name="settingsViewControl" />
             </TabItem>-->
+
             <TabItem Header="Log In" IsEnabled="{Binding IsLogInViewEnabled}" IsSelected="{Binding IsLogInViewSelected}">
-                <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <Label Content="Username" />
-                    <TextBox Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}" Height="23" Width="150" />
-                    <Label Content="Password" />
-                    <TextBox Text="{Binding Password, UpdateSourceTrigger=PropertyChanged}" Height="23" Width="150" />
-                    <Button Content="Log In" Width="75" Command="{Binding LogInCommand}" />
-                </StackPanel>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="15" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Grid.Row="1" Orientation="Vertical" HorizontalAlignment="Center">
+                        <Label Content="Username" />
+                        <TextBox Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}" Height="23" Width="150" />
+                        <Label Content="Password" />
+                        <TextBox Text="{Binding Password, UpdateSourceTrigger=PropertyChanged}" Height="23" Width="150" />
+                    </StackPanel>
+
+                    <Button Grid.Row="3" Content="Log In" Width="75" Command="{Binding LogInCommand}" HorizontalAlignment="Center" />
+                </Grid>
             </TabItem>
+
             <TabItem Header="Log Out" IsEnabled="{Binding IsLogOutViewEnabled}">
-                <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <Button Content="Log Out" Width="75" Command="{Binding LogOutCommand}" />
-                </StackPanel>
+                <Button Content="Log Out" Width="75" Command="{Binding LogOutCommand}" HorizontalAlignment="Center" VerticalAlignment="Center" />
             </TabItem>
         </TabControl>
     </Grid>

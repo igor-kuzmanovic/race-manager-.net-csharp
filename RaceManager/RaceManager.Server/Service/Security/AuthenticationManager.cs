@@ -17,6 +17,9 @@ namespace RaceManager.Server.Service.Security
 
         public bool Authenticate(IUnitOfWork uow, string username, string password)
         {
+            if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
+                return false;
+
             var user = uow.Users.Find(u => u.Username.ToLower() == username.ToLower());
 
             if (user == null)

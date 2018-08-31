@@ -12,18 +12,18 @@ namespace RaceManager.Server.Service.Core.Services
     public interface IRaceService
     {
         [OperationContract]
-        RaceDTO Get(int id);
+        RaceDTO Get(string token, int id);
 
         [OperationContract]
-        IEnumerable<RaceDTO> GetAll();
+        IEnumerable<RaceDTO> GetAll(string token);
 
         [OperationContract]
-        void Add(RaceDTO dto);
+        bool Add(string token, RaceDTO dto);
 
         [OperationContract]
-        void Update(RaceDTO dto);
+        bool Update(string token, RaceDTO dto);
 
         [OperationContract]
-        void Remove(int id);
+        bool Remove(string token, int id);
     }
 }

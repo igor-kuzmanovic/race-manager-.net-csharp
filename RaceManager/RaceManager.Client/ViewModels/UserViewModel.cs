@@ -1,4 +1,5 @@
 ﻿using RaceManager.Client.Core;
+using RaceManager.Client.Identity;
 using RaceManager.Client.Models;
 using RaceManager.Client.Models.DataMappers;
 using RaceManager.Client.UserService;
@@ -34,11 +35,12 @@ namespace RaceManager.Client.ViewModels
         {
             _userServiceClient = new UserServiceClient();
             RefreshCommand = new RelayCommand(OnRefresh);
-            NewCommand = new RelayCommand(OnNew);
+            NewCommand = new RelayCommand(OnNew, CanNew);
             EditCommand = new RelayCommand(OnEdit, CanEdit);
             CopyCommand = new RelayCommand(OnCopy, CanCopy);
             DeleteCommand = new RelayCommand(OnDelete, CanDelete);
             SaveCommand = new RelayCommand(OnSave, CanSave);
+            OnNew();
         }
 
         #region Commands
@@ -172,7 +174,14 @@ namespace RaceManager.Client.ViewModels
 
         private void LoadUsers()
         {
-            Users = new ObservableCollection<User>(UserMapper.Instance.Map(_userServiceClient.GetAll()));
+            if (CurrentUser.IsAdmin)
+            {
+                Users = new ObservableCollection<User>(UserMapper.Instance.Map(_userServiceClient.GetAll(CurrentUser.SecurityToken)));
+            }
+            else
+            {
+                Users = new ObservableCollection<User>(UserMapper.Instance.Map(_userServiceClient.GetAll(CurrentUser.SecurityToken)).Where(u => u.Id == CurrentUser.Id));
+            }
         }
 
         #endregion
@@ -195,6 +204,11 @@ namespace RaceManager.Client.ViewModels
             IsAdmin = false;
         }
 
+        private bool CanNew()
+        {
+            return CurrentUser.IsAdmin;
+        }
+
         private void OnEdit()
         {
             Id = SelectedUser.Id;
@@ -208,7 +222,11 @@ namespace RaceManager.Client.ViewModels
 
         private bool CanEdit()
         {
-            return SelectedUser != null;
+            if (!CurrentUser.IsAdmin)
+                return SelectedUser != null
+                    && SelectedUser.Id == CurrentUser.Id;
+            else
+                return SelectedUser != null;
         }
 
         private void OnCopy()
@@ -224,19 +242,19 @@ namespace RaceManager.Client.ViewModels
 
         private bool CanCopy()
         {
-            return SelectedUser != null;
+            return CurrentUser.IsAdmin && SelectedUser != null;
         }
 
         private void OnDelete()
         {
-            _userServiceClient.Remove(SelectedUser.Id);
+            _userServiceClient.Remove(CurrentUser.SecurityToken, SelectedUser.Id);
             LoadUsers();
             OnNew();
         }
 
         private bool CanDelete()
         {
-            return SelectedUser != null && SelectedUser.Username != MainWindowViewModel.CurrentUser.Username;
+            return CurrentUser.IsAdmin && SelectedUser != null && SelectedUser.Id != CurrentUser.Id;
         }
 
         private void OnSave()
@@ -251,9 +269,9 @@ namespace RaceManager.Client.ViewModels
             user.IsAdmin = IsAdmin;
 
             if (Id > 0)
-                _userServiceClient.Update(UserMapper.Instance.Map(user));
+                _userServiceClient.Update(CurrentUser.SecurityToken, UserMapper.Instance.Map(user));
             else
-                _userServiceClient.Add(UserMapper.Instance.Map(user));
+                _userServiceClient.Add(CurrentUser.SecurityToken, UserMapper.Instance.Map(user));
 
             LoadUsers();
             OnNew();
@@ -261,11 +279,20 @@ namespace RaceManager.Client.ViewModels
 
         private bool CanSave()
         {
-            return !string.IsNullOrWhiteSpace(Username)
-                && !Users.Any(u => u.Username.ToLower() == Username.ToLower())
-                && !string.IsNullOrWhiteSpace(Password)
-                && !string.IsNullOrWhiteSpace(FirstName)
-                && !string.IsNullOrWhiteSpace(LastName);
+            if (!CurrentUser.IsAdmin)
+                return Id == CurrentUser.Id
+                    && !string.IsNullOrWhiteSpace(Username)
+                    && !Users.Any(u => u.Username.ToLower() == Username.ToLower())
+                    && !string.IsNullOrWhiteSpace(Password)
+                    && !string.IsNullOrWhiteSpace(FirstName)
+                    && !string.IsNullOrWhiteSpace(LastName)
+                    && IsAdmin == false;
+            else
+                return !string.IsNullOrWhiteSpace(Username)
+                    && !Users.Any(u => u.Username.ToLower() == Username.ToLower())
+                    && !string.IsNullOrWhiteSpace(Password)
+                    && !string.IsNullOrWhiteSpace(FirstName)
+                    && !string.IsNullOrWhiteSpace(LastName);
         }
 
         #endregion

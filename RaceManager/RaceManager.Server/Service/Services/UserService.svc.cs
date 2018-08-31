@@ -9,31 +9,41 @@ using System.Linq.Expressions;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
+using RaceManager.Server.Service.Security;
 
 namespace RaceManager.Server.Service.Services
 {
     public class UserService : IUserService
     {
-        public UserDTO Get(int id)
+        public UserDTO Get(string token, int id)
         {
             using (var uow = new UnitOfWork(new RaceManagerDbContext()))
             {
+                if (!AuthorizationManager.Instance.Authorize(uow, token))
+                    return new UserDTO();
+
                 return UserMapper.Instance.Map(uow.Users.Get(id));
             }
         }
 
-        public IEnumerable<UserDTO> GetAll()
+        public IEnumerable<UserDTO> GetAll(string token)
         {
             using (var uow = new UnitOfWork(new RaceManagerDbContext()))
             {
+                if (!AuthorizationManager.Instance.Authorize(uow, token))
+                    return new List<UserDTO>();
+
                 return UserMapper.Instance.Map(uow.Users.GetAll());
             }
         }
 
-        public void Update(UserDTO userDTO)
+        public bool Update(string token, UserDTO userDTO)
         {
             using (var uow = new UnitOfWork(new RaceManagerDbContext()))
             {
+                if (!AuthorizationManager.Instance.Authorize(uow, token))
+                    return false;
+
                 var user = uow.Users.Get(userDTO.Id);
                 user.Username = userDTO.Username;
                 user.Password = userDTO.Password;
@@ -42,24 +52,33 @@ namespace RaceManager.Server.Service.Services
                 user.SecurityToken = userDTO.SecurityToken;
                 user.IsAdmin = userDTO.IsAdmin;
                 uow.Complete();
+                return true;
             }
         }
 
-        public void Add(UserDTO userDTO)
+        public bool Add(string token, UserDTO userDTO)
         {
             using (var uow = new UnitOfWork(new RaceManagerDbContext()))
             {
+                if (!AuthorizationManager.Instance.Authorize(uow, token))
+                    return false;
+
                 uow.Users.Add(UserMapper.Instance.Map(userDTO));
                 uow.Complete();
+                return true;
             }
         }
 
-        public void Remove(int id)
+        public bool Remove(string token, int id)
         {
             using (var uow = new UnitOfWork(new RaceManagerDbContext()))
             {
+                if (!AuthorizationManager.Instance.Authorize(uow, token))
+                    return false;
+
                 uow.Users.Remove(id);
                 uow.Complete();
+                return true;
             }
         }
     }

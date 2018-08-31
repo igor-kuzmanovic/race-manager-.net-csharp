@@ -106,6 +106,7 @@
     <Compile Include="Core\DataMappers\IVehicleMapper.cs" />
     <Compile Include="Core\RelayCommand.cs" />
     <Compile Include="Core\ViewModelLocator.cs" />
+    <Compile Include="Identity\CurrentUser.cs" />
     <Compile Include="Models\DataMappers\DataMapper.cs" />
     <Compile Include="Models\DataMappers\DriverMapper.cs" />
     <Compile Include="Models\DataMappers\LoginMapper.cs" />

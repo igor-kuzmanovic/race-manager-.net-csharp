@@ -16,14 +16,14 @@ namespace RaceManager.Server.Service.Security
 
         private AuthorizationManager() { }
 
-        public bool Authorize(IUnitOfWork uow, string securityToken, bool shouldBeAdmin)
+        public bool Authorize(IUnitOfWork uow, string securityToken)
         {
+            if (string.IsNullOrWhiteSpace(securityToken))
+                return false;
+
             var user = uow.Users.Find(u => u.SecurityToken == securityToken);
 
             if (user == null)
-                return false;
-
-            if (shouldBeAdmin != user.IsAdmin)
                 return false;
 
             return true;

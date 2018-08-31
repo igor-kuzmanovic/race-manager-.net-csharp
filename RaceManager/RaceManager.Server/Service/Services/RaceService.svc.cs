@@ -10,53 +10,72 @@ using System.Runtime.Serialization;
 using System.Security.Permissions;
 using System.ServiceModel;
 using System.Text;
+using RaceManager.Server.Service.Security;
 
 namespace RaceManager.Server.Service.Services
 {
     public class RaceService : IRaceService
     {
-        public RaceDTO Get(int id)
+        public RaceDTO Get(string token, int id)
         {
             using (var uow = new UnitOfWork(new RaceManagerDbContext()))
             {
+                if (!AuthorizationManager.Instance.Authorize(uow, token))
+                    return new RaceDTO();
+
                 return RaceMapper.Instance.Map(uow.Races.Get(id));
             }
         }
 
-        public IEnumerable<RaceDTO> GetAll()
+        public IEnumerable<RaceDTO> GetAll(string token)
         {
             using (var uow = new UnitOfWork(new RaceManagerDbContext()))
             {
+                if (!AuthorizationManager.Instance.Authorize(uow, token))
+                    return new List<RaceDTO>();
+
                 return RaceMapper.Instance.Map(uow.Races.GetAll());
             }
         }
 
-        public void Update(RaceDTO raceDTO)
+        public bool Update(string token, RaceDTO raceDTO)
         {
             using (var uow = new UnitOfWork(new RaceManagerDbContext()))
             {
+                if (!AuthorizationManager.Instance.Authorize(uow, token))
+                    return false;
+
                 var race = uow.Races.Get(raceDTO.Id);
                 race.EventDate = raceDTO.EventDate;
                 race.EventLocation = raceDTO.EventLocation;
                 uow.Complete();
+                return true;
             }
         }
 
-        public void Add(RaceDTO raceDTO)
+        public bool Add(string token, RaceDTO raceDTO)
         {
             using (var uow = new UnitOfWork(new RaceManagerDbContext()))
             {
+                if (!AuthorizationManager.Instance.Authorize(uow, token))
+                    return false;
+
                 uow.Races.Add(RaceMapper.Instance.Map(raceDTO));
                 uow.Complete();
+                return true;
             }
         }
 
-        public void Remove(int id)
+        public bool Remove(string token, int id)
         {
             using (var uow = new UnitOfWork(new RaceManagerDbContext()))
             {
+                if (!AuthorizationManager.Instance.Authorize(uow, token))
+                    return false;
+
                 uow.Races.Remove(id);
                 uow.Complete();
+                return true;
             }
         }
     }

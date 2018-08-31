@@ -10,35 +10,44 @@
              d:DesignHeight="600" d:DesignWidth="800">
 
     <Grid>
-        <StackPanel Orientation="Vertical">
-            <DataGrid ItemsSource="{Binding Races}" SelectedItem="{Binding SelectedRace}" AutoGenerateColumns="False" EnableRowVirtualization="True" SelectionMode="Single" RowDetailsVisibilityMode="Collapsed" CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Width="Auto" Header="Id" Binding="{Binding Id}" CanUserResize="False" />
-                    <DataGridTextColumn Width="Auto" Header="Event Date" Binding="{Binding EventDate, StringFormat=D}" />
-                    <DataGridTextColumn Width="Auto" Header="Event Location" Binding="{Binding EventLocation}" />
-                </DataGrid.Columns>
-            </DataGrid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="15"/>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="15"/>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="15"/>
+        </Grid.RowDefinitions>
+
+        <DataGrid Grid.Row="0" ItemsSource="{Binding Races}" SelectedItem="{Binding SelectedRace}" AutoGenerateColumns="False" EnableRowVirtualization="True" SelectionMode="Single" RowDetailsVisibilityMode="Collapsed" CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Width="Auto" Header="Id" Binding="{Binding Id}" CanUserResize="False" />
+                <DataGridTextColumn Width="Auto" Header="Event Date" Binding="{Binding EventDate, StringFormat=D}" />
+                <DataGridTextColumn Width="Auto" Header="Event Location" Binding="{Binding EventLocation}" />
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <StackPanel Grid.Row="2" Orientation="Horizontal">
+            <Button Content="Refresh" Width="75" Command="{Binding RefreshCommand}" />
+            <Button Content="New" Width="75" Command="{Binding NewCommand}" />
+            <Button Content="Edit" Width="75" Command="{Binding EditCommand}" />
+            <Button Content="Copy" Width="75" Command="{Binding CopyCommand}" />
+            <Button Content="Delete" Width="75" Command="{Binding DeleteCommand}" />
+            <Button Content="Save" Width="75" Command="{Binding SaveCommand}" />
+        </StackPanel>
+
+        <StackPanel Grid.Row="4" Orientation="Vertical">
             <StackPanel Orientation="Horizontal">
-                <Button Content="Refresh" Width="75" Command="{Binding RefreshCommand}" />
-                <Button Content="New" Width="75" Command="{Binding NewCommand}" />
-                <Button Content="Edit" Width="75" Command="{Binding EditCommand}" />
-                <Button Content="Copy" Width="75" Command="{Binding CopyCommand}" />
-                <Button Content="Delete" Width="75" Command="{Binding DeleteCommand}" />
-                <Button Content="Save" Width="75" Command="{Binding SaveCommand}" />
+                <Label Content="Id" />
+                <TextBox Text="{Binding Id, UpdateSourceTrigger=PropertyChanged}" Height="23" Width="Auto" IsReadOnly="True" />
             </StackPanel>
-            <StackPanel Orientation="Vertical">
-                <StackPanel Orientation="Horizontal">
-                    <Label Content="Id" />
-                    <TextBox Text="{Binding Id, UpdateSourceTrigger=PropertyChanged}" Height="23" Width="Auto" IsReadOnly="True" />
-                </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <Label Content="Event Date" />
-                    <DatePicker SelectedDate="{Binding EventDate, UpdateSourceTrigger=PropertyChanged}" Height="23" Width="Auto" />
-                </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <Label Content="Event Location" />
-                    <TextBox Text="{Binding EventLocation, UpdateSourceTrigger=PropertyChanged}" Height="23" Width="150" />
-                </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Event Date" />
+                <DatePicker SelectedDate="{Binding EventDate, UpdateSourceTrigger=PropertyChanged}" Height="23" Width="Auto" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Event Location" />
+                <TextBox Text="{Binding EventLocation, UpdateSourceTrigger=PropertyChanged}" Height="23" Width="150" />
             </StackPanel>
         </StackPanel>
     </Grid>
