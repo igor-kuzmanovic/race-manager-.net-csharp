@@ -10,11 +10,22 @@ namespace RaceManager.Server.Service.DataMappers
 {
     class DriverMapper : DataMapper<DriverDAO, DriverDTO>, IDriverMapper
     {
-        public static DriverMapper Instance { get; } = new DriverMapper();
+        private static DriverMapper _instance = null;
 
-        static DriverMapper() { }
+        private static readonly object _padlock = new object();
 
         private DriverMapper() { }
+
+        public static DriverMapper Instance
+        {
+            get
+            {
+                lock (_padlock)
+                    if (_instance == null)
+                        _instance = new DriverMapper();
+                return _instance;
+            }
+        }
 
         public override DriverDAO Map(DriverDTO driverDTO)
         {

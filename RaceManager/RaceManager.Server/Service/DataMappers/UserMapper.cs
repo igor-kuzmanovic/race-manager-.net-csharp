@@ -10,11 +10,22 @@ namespace RaceManager.Server.Service.DataMappers
 {
     class UserMapper : DataMapper<UserDAO, UserDTO>, IUserMapper
     {
-        public static UserMapper Instance { get; } = new UserMapper();
+        private static UserMapper _instance = null;
 
-        static UserMapper() { }
+        private static readonly object _padlock = new object();
 
         private UserMapper() { }
+
+        public static UserMapper Instance
+        {
+            get
+            {
+                lock (_padlock)
+                    if (_instance == null)
+                        _instance = new UserMapper();
+                return _instance;
+            }
+        }
 
         public override UserDAO Map(UserDTO userDTO)
         {

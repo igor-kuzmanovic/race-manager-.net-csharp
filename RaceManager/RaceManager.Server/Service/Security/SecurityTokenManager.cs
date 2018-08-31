@@ -10,11 +10,22 @@ namespace RaceManager.Server.Service.Security
 {
     class SecurityTokenManager : ISecurityTokenManager
     {
-        public static SecurityTokenManager Instance { get; } = new SecurityTokenManager();
+        private static SecurityTokenManager _instance = null;
 
-        static SecurityTokenManager() { }
+        private static readonly object _padlock = new object();
 
         private SecurityTokenManager() { }
+
+        public static SecurityTokenManager Instance
+        {
+            get
+            {
+                lock (_padlock)
+                    if (_instance == null)
+                        _instance = new SecurityTokenManager();
+                    return _instance;
+            }
+        }
 
         public string GenerateToken(IUnitOfWork uow, string username)
         {

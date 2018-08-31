@@ -9,11 +9,22 @@ namespace RaceManager.Client.DataMappers
 {
     class RaceMapper : DataMapper<Race, RaceDTO>, IRaceMapper
     {
-        public static RaceMapper Instance { get; } = new RaceMapper();
+        private static RaceMapper _instance = null;
 
-        static RaceMapper() { }
+        private static readonly object _padlock = new object();
 
         private RaceMapper() { }
+
+        public static RaceMapper Instance
+        {
+            get
+            {
+                lock (_padlock)
+                    if (_instance == null)
+                        _instance = new RaceMapper();
+                return _instance;
+            }
+        }
 
         public override Race Map(RaceDTO raceDTO)
         {

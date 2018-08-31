@@ -9,11 +9,22 @@ namespace RaceManager.Server.Service.Security
 {
     class AuthenticationManager : IAuthenticationManager
     {
-        public static AuthenticationManager Instance { get; } = new AuthenticationManager();
+        private static AuthenticationManager _instance = null;
 
-        static AuthenticationManager() { }
+        private static readonly object _padlock = new object();
 
         private AuthenticationManager() { }
+
+        public static AuthenticationManager Instance
+        {
+            get
+            {
+                lock (_padlock)
+                    if (_instance == null)
+                        _instance = new AuthenticationManager();
+                return _instance;
+            }
+        }
 
         public bool Authenticate(IUnitOfWork uow, string username, string password)
         {

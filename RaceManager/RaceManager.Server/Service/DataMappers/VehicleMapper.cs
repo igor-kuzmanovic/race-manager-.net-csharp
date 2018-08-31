@@ -10,11 +10,22 @@ namespace RaceManager.Server.Service.DataMappers
 {
     class VehicleMapper : DataMapper<VehicleDAO, VehicleDTO>, IVehicleMapper
     {
-        public static VehicleMapper Instance { get; } = new VehicleMapper();
+        private static VehicleMapper _instance = null;
 
-        static VehicleMapper() { }
+        private static readonly object _padlock = new object();
 
         private VehicleMapper() { }
+
+        public static VehicleMapper Instance
+        {
+            get
+            {
+                lock (_padlock)
+                    if (_instance == null)
+                        _instance = new VehicleMapper();
+                return _instance;
+            }
+        }
 
         public override VehicleDAO Map(VehicleDTO vehicleDTO)
         {

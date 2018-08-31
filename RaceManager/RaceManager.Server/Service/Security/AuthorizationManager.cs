@@ -10,11 +10,22 @@ namespace RaceManager.Server.Service.Security
 {
     class AuthorizationManager : IAuthorizationManager
     {
-        public static AuthorizationManager Instance { get; } = new AuthorizationManager();
+        private static AuthorizationManager _instance = null;
 
-        static AuthorizationManager() { }
+        private static readonly object _padlock = new object();
 
         private AuthorizationManager() { }
+
+        public static AuthorizationManager Instance
+        {
+            get
+            {
+                lock (_padlock)
+                    if (_instance == null)
+                        _instance = new AuthorizationManager();
+                return _instance;
+            }
+        }
 
         public bool Authorize(IUnitOfWork uow, string securityToken)
         {

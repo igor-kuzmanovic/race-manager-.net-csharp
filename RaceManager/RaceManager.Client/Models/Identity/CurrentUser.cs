@@ -9,11 +9,22 @@ namespace RaceManager.Client.Models.Identity
 {
     class CurrentUser : User
     {
-        public static CurrentUser Instance { get; } = new CurrentUser();
+        private static CurrentUser _instance = null;
 
-        static CurrentUser() { }
+        private static readonly object _padlock = new object();
 
         private CurrentUser() { }
+
+        public static CurrentUser Instance
+        {
+            get
+            {
+                lock (_padlock)
+                    if (_instance == null)
+                        _instance = new CurrentUser();
+                return _instance;
+            }
+        }
 
         public static void LoadUser(User user)
         {

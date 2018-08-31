@@ -10,7 +10,7 @@ namespace RaceManager.Client.Core
 {
     class ViewModelLocator
     {
-        public static readonly DependencyProperty AutoHookedUpViewModelProperty =
+        public static DependencyProperty AutoHookedUpViewModelProperty =
             DependencyProperty.RegisterAttached("AutoHookedUpViewModel", typeof(bool), typeof(ViewModelLocator), new PropertyMetadata(false, AutoHookedUpViewModelChanged));
 
         public static bool GetAutoHookedUpViewModel(DependencyObject obj)
