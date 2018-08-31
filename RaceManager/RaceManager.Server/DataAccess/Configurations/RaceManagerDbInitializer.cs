@@ -8,7 +8,7 @@ using System.Web;
 
 namespace RaceManager.Server.DataAccess.Persistence.Configurations
 {
-    class RaceManagerDbInitializer : DropCreateDatabaseAlways<RaceManagerDbContext>
+    class RaceManagerDbInitializer : CreateDatabaseIfNotExists<RaceManagerDbContext>
     {
         public RaceManagerDbInitializer() { }
 
@@ -18,18 +18,23 @@ namespace RaceManager.Server.DataAccess.Persistence.Configurations
             {
                 new RaceDAO()
                 {
-                    EventDate = new DateTime(2018, 8, 8),
-                    EventLocation = "Race Location 1",
+                    EventDate = new DateTime(2015, 3, 22),
+                    EventLocation = "Indianapolis",
                 },
                 new RaceDAO()
                 {
-                    EventDate = new DateTime(2017, 7, 7),
-                    EventLocation = "Race Location 2",
+                    EventDate = new DateTime(2019, 4, 12),
+                    EventLocation = "Texas",
                 },
                 new RaceDAO()
                 {
-                    EventDate = new DateTime(2016, 6, 6),
-                    EventLocation = "Race Location 3",
+                    EventDate = new DateTime(2018, 1, 6),
+                    EventLocation = "Las Vegas",
+                },
+                new RaceDAO()
+                {
+                    EventDate = new DateTime(2011, 12, 12),
+                    EventLocation = "Dover",
                 }
             };
 
@@ -40,21 +45,21 @@ namespace RaceManager.Server.DataAccess.Persistence.Configurations
             {
                 new DriverDAO()
                 {
-                    FirstName = "John 1",
-                    LastName = "Doe 1",
-                    UMCN = "1111111111111"
+                    FirstName = "Barry",
+                    LastName = "Reagan",
+                    UMCN = "3246937295843"
                 },
                 new DriverDAO()
                 {
-                    FirstName = "John 2",
-                    LastName = "Doe 2",
-                    UMCN = "2222222222222"
+                    FirstName = "Milburn",
+                    LastName = "Lukeson",
+                    UMCN = "5739265837109"
                 },
                 new DriverDAO()
                 {
-                    FirstName = "John 3",
-                    LastName = "Doe 3",
-                    UMCN = "3333333333333"
+                    FirstName = "John",
+                    LastName = "Oliver",
+                    UMCN = "3759372917375"
                 }
             };
 
@@ -65,31 +70,49 @@ namespace RaceManager.Server.DataAccess.Persistence.Configurations
             {
                 new VehicleDAO()
                 {
-                    Manufacturer = "Manufacturer 1",
-                    Model = "Model 1",
-                    Type = "Type 1",
-                    EngineHorsepower = 111,
-                    EngineDisplacement = 1,
+                    Manufacturer = "Nissan",
+                    Model = "350Z",
+                    Type = "WSDFS32",
+                    EngineHorsepower = 300,
+                    EngineDisplacement = 2,
                     DriverId = 1
                 },
                 new VehicleDAO()
                 {
-                    Manufacturer = "Manufacturer 2",
-                    Model = "Model 2",
-                    Type = "Type 2",
-                    EngineHorsepower = 222,
+                    Manufacturer = "Ford",
+                    Model = "Mustang GT",
+                    Type = "FWEWVR43",
+                    EngineHorsepower = 250,
                     EngineDisplacement = 2,
+                    DriverId = 1
+                },
+                new VehicleDAO()
+                {
+                    Manufacturer = "Toyota",
+                    Model = "Corolla GT-S",
+                    Type = "DDGREVZ",
+                    EngineHorsepower = 350,
+                    EngineDisplacement = 3,
                     DriverId = 2
                 },
                 new VehicleDAO()
                 {
-                    Manufacturer = "Manufacturer 3",
-                    Model = "Model 3",
-                    Type = "Type 3",
-                    EngineHorsepower = 333,
+                    Manufacturer = "Toyota",
+                    Model = "Supra SZ-R",
+                    Type = "GSGRGR34",
+                    EngineHorsepower = 325,
+                    EngineDisplacement = 3,
+                    DriverId = 2
+                },
+                new VehicleDAO()
+                {
+                    Manufacturer = "Mitsubishi",
+                    Model = "Eclipse",
+                    Type = "GAR3GGR",
+                    EngineHorsepower = 370,
                     EngineDisplacement = 3,
                     DriverId = 3
-                },
+                }
             };
 
             foreach (var vehicle in vehicles)
@@ -151,6 +174,21 @@ namespace RaceManager.Server.DataAccess.Persistence.Configurations
                 {
                     RaceId = 3,
                     DriverId = 1
+                },
+                new RaceDriverDAO()
+                {
+                    RaceId = 4,
+                    DriverId = 1
+                },
+                new RaceDriverDAO()
+                {
+                    RaceId = 4,
+                    DriverId = 2
+                },
+                new RaceDriverDAO()
+                {
+                    RaceId = 4,
+                    DriverId = 3
                 }
             };
 
