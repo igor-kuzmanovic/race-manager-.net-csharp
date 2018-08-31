@@ -45,12 +45,17 @@ namespace RaceManager.Server.Service.Services
                     return false;
 
                 var vehicle = uow.Vehicles.Get(vehicleDTO.Id);
+
+                if (vehicle == null)
+                    return false;
+
                 vehicle.Manufacturer = vehicleDTO.Manufacturer;
                 vehicle.Model = vehicleDTO.Model;
                 vehicle.Type = vehicleDTO.Type;
                 vehicle.EngineHorsepower = vehicleDTO.EngineHorsepower;
                 vehicle.EngineDisplacement = vehicleDTO.EngineDisplacement;
                 uow.Complete();
+
                 return true;
             }
         }
@@ -64,6 +69,7 @@ namespace RaceManager.Server.Service.Services
 
                 uow.Vehicles.Add(VehicleMapper.Instance.Map(vehicleDTO));
                 uow.Complete();
+
                 return true;
             }
         }
@@ -75,8 +81,14 @@ namespace RaceManager.Server.Service.Services
                 if (!AuthorizationManager.Instance.Authorize(uow, token))
                     return false;
 
-                uow.Vehicles.Remove(id);
+                var vehicle = uow.Vehicles.Get(id);
+
+                if (vehicle == null)
+                    return false;
+
+                uow.Vehicles.Remove(vehicle);
                 uow.Complete();
+
                 return true;
             }
         }

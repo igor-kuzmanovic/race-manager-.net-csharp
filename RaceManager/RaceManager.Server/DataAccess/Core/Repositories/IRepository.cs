@@ -18,6 +18,5 @@ namespace RaceManager.Server.DataAccess.Core.Repositories
         void AddRange(IEnumerable<TEntity> entities);
         void Remove(int id);
         void Remove(TEntity entity);
-        void RemoveRange(IEnumerable<TEntity> entities);
     }
 }

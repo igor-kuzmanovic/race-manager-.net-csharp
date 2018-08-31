@@ -19,5 +19,8 @@ namespace RaceManager.Server.Service.Core.DataTransferObjects
 
         [DataMember]
         public string EventLocation { get; set; }
+
+        [DataMember]
+        public ICollection<int> DriverIds { get; set; }
     }
 }

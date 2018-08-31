@@ -45,10 +45,15 @@ namespace RaceManager.Server.Service.Services
                     return false;
 
                 var driver = uow.Drivers.Get(driverDTO.Id);
+
+                if (driver == null)
+                    return false;
+
                 driver.FirstName = driverDTO.FirstName;
                 driver.LastName = driverDTO.LastName;
                 driver.UMCN = driverDTO.UMCN;
                 uow.Complete();
+
                 return true;
             }
         }
@@ -62,6 +67,7 @@ namespace RaceManager.Server.Service.Services
 
                 uow.Drivers.Add(DriverMapper.Instance.Map(driverDTO));
                 uow.Complete();
+
                 return true;
             }
         }
@@ -73,8 +79,14 @@ namespace RaceManager.Server.Service.Services
                 if (!AuthorizationManager.Instance.Authorize(uow, token))
                     return false;
 
-                uow.Drivers.Remove(id);
+                var driver = uow.Drivers.Get(id);
+
+                if (driver == null)
+                    return false;
+
+                uow.Drivers.Remove(driver);
                 uow.Complete();
+
                 return true;
             }
         }

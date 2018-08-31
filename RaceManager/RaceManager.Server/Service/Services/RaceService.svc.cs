@@ -46,9 +46,14 @@ namespace RaceManager.Server.Service.Services
                     return false;
 
                 var race = uow.Races.Get(raceDTO.Id);
+
+                if (race == null)
+                    return false;
+
                 race.EventDate = raceDTO.EventDate;
                 race.EventLocation = raceDTO.EventLocation;
                 uow.Complete();
+
                 return true;
             }
         }
@@ -62,6 +67,7 @@ namespace RaceManager.Server.Service.Services
 
                 uow.Races.Add(RaceMapper.Instance.Map(raceDTO));
                 uow.Complete();
+
                 return true;
             }
         }
@@ -73,8 +79,14 @@ namespace RaceManager.Server.Service.Services
                 if (!AuthorizationManager.Instance.Authorize(uow, token))
                     return false;
 
-                uow.Races.Remove(id);
+                var race = uow.Races.Get(id);
+
+                if (race == null)
+                    return false;
+
+                uow.Races.Remove(race);
                 uow.Complete();
+
                 return true;
             }
         }

@@ -28,5 +28,8 @@ namespace RaceManager.Server.Service.Core.DataTransferObjects
 
         [DataMember]
         public double EngineDisplacement { get; set; }
+
+        [DataMember]
+        public int DriverId { get; set; }
     }
 }

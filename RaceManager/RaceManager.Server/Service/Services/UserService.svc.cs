@@ -45,6 +45,10 @@ namespace RaceManager.Server.Service.Services
                     return false;
 
                 var user = uow.Users.Get(userDTO.Id);
+
+                if (user == null)
+                    return false;
+
                 user.Username = userDTO.Username;
                 user.Password = userDTO.Password;
                 user.FirstName = userDTO.FirstName;
@@ -52,6 +56,7 @@ namespace RaceManager.Server.Service.Services
                 user.SecurityToken = userDTO.SecurityToken;
                 user.IsAdmin = userDTO.IsAdmin;
                 uow.Complete();
+
                 return true;
             }
         }
@@ -65,6 +70,7 @@ namespace RaceManager.Server.Service.Services
 
                 uow.Users.Add(UserMapper.Instance.Map(userDTO));
                 uow.Complete();
+
                 return true;
             }
         }
@@ -76,8 +82,14 @@ namespace RaceManager.Server.Service.Services
                 if (!AuthorizationManager.Instance.Authorize(uow, token))
                     return false;
 
-                uow.Users.Remove(id);
+                var user = uow.Users.Get(id);
+
+                if (user == null)
+                    return false;
+
+                uow.Users.Remove(user);
                 uow.Complete();
+
                 return true;
             }
         }

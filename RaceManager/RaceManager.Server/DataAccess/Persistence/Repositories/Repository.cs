@@ -59,10 +59,5 @@ namespace RaceManager.Server.DataAccess.Persistence.Repositories
         {
             dbSet.Remove(entity);
         }
-
-        public virtual void RemoveRange(IEnumerable<TEntity> entities)
-        {
-            dbSet.RemoveRange(entities);
-        }
     }
 }
