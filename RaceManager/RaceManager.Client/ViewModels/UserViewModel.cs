@@ -281,9 +281,8 @@ namespace RaceManager.Client.ViewModels
         {
             if (!CurrentUser.IsAdmin)
                 return Id == CurrentUser.Id
-                    && !string.IsNullOrWhiteSpace(Username)
-                    && !Users.Any(u => u.Username.ToLower() == Username.ToLower())
-                    && !string.IsNullOrWhiteSpace(Password)
+                    && Username == CurrentUser.Username
+                    && Password == CurrentUser.Password
                     && !string.IsNullOrWhiteSpace(FirstName)
                     && !string.IsNullOrWhiteSpace(LastName)
                     && IsAdmin == false;

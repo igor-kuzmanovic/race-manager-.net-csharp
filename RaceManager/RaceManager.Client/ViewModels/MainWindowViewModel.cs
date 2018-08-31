@@ -25,7 +25,6 @@ namespace RaceManager.Client.ViewModels
         private bool _isUserViewEnabled;
         private bool _isLogInViewEnabled;
         private bool _isLogOutViewEnabled;
-        private bool _isSettingsViewEnabled;
         private bool _isRaceViewSelected;
         private bool _isLogInViewSelected;
 
@@ -146,18 +145,6 @@ namespace RaceManager.Client.ViewModels
             }
         }
 
-        public bool IsSettingsViewEnabled
-        {
-            get => _isSettingsViewEnabled; set
-            {
-                if (_isSettingsViewEnabled != value)
-                {
-                    _isSettingsViewEnabled = value;
-                    RaisePropertyChanged();
-                }
-            }
-        }
-
         public bool IsRaceViewSelected
         {
             get => _isRaceViewSelected; set
@@ -194,7 +181,6 @@ namespace RaceManager.Client.ViewModels
             IsUserViewEnabled = true;
             IsLogInViewEnabled = false;
             IsLogOutViewEnabled = true;
-            IsSettingsViewEnabled = true;
 
             IsRaceViewSelected = true;
             IsLogInViewSelected = false;
@@ -208,7 +194,6 @@ namespace RaceManager.Client.ViewModels
             IsUserViewEnabled = false;
             IsLogInViewEnabled = true;
             IsLogOutViewEnabled = false;
-            IsSettingsViewEnabled = false;
 
             IsRaceViewSelected = false;
             IsLogInViewSelected = true;

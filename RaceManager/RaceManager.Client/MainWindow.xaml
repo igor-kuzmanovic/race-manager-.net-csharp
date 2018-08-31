@@ -31,10 +31,6 @@
                 <views:UserView x:Name="userViewControl" />
             </TabItem>
 
-            <!--<TabItem Header="Settings" IsEnabled="{Binding IsSettingsViewEnabled}">
-                <views:SettingsView x:Name="settingsViewControl" />
-            </TabItem>-->
-
             <TabItem Header="Log In" IsEnabled="{Binding IsLogInViewEnabled}" IsSelected="{Binding IsLogInViewSelected}">
                 <Grid>
                     <Grid.RowDefinitions>
