@@ -213,6 +213,12 @@ namespace RaceManager.Client.ViewModels
             IsLogInViewSelected = true;
         }
 
+        private void ClearForm()
+        {
+            Username = string.Empty;
+            Password = string.Empty;
+        }
+
         #endregion
 
         #region Command Methods
@@ -220,8 +226,17 @@ namespace RaceManager.Client.ViewModels
         private void OnLogIn()
         {
             CurrentUser = LoginMapper.Instance.Map(_loginServiceClient.LogIn(Username, Password));
-            EnableViewsWhenLoggedIn(CurrentUser.IsAdmin);
-            MessageBox.Show("Logged in, security token: " + CurrentUser.SecurityToken);
+
+            if (string.IsNullOrWhiteSpace(CurrentUser.SecurityToken))
+            {
+                MessageBox.Show("An error occured, please try again!");
+            }
+            else
+            {
+                EnableViewsWhenLoggedIn(CurrentUser.IsAdmin);
+                ClearForm();
+                MessageBox.Show("Logged in, security token: " + CurrentUser.SecurityToken);
+            }
         }
 
         private bool CanLogIn()

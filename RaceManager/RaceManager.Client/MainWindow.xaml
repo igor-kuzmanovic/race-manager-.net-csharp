@@ -35,7 +35,7 @@
                     <Label Content="Username" />
                     <TextBox Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}" Height="23" Width="150" />
                     <Label Content="Password" />
-                    <PasswordBox PasswordChanged="PasswordBox_PasswordChanged" Height="23" Width="150" />
+                    <TextBox Text="{Binding Password, UpdateSourceTrigger=PropertyChanged}" Height="23" Width="150" />
                     <Button Content="Log In" Width="75" Command="{Binding LogInCommand}" />
                 </StackPanel>
             </TabItem>

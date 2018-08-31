@@ -15,8 +15,10 @@
                 <DataGrid.Columns>
                     <DataGridTextColumn Width="Auto" Header="Id" Binding="{Binding Id}" CanUserResize="False" />
                     <DataGridTextColumn Width="Auto" Header="Username" Binding="{Binding Username}" />
-                    <DataGridTextColumn Width="Auto" Header="Password" Binding="{Binding Password}" />
-                    <DataGridTextColumn Width="Auto" Header="Security Token" Binding="{Binding SecurityToken}" />
+                    <!--<DataGridTextColumn Width="Auto" Header="Password" Binding="{Binding Password}" />-->
+                    <DataGridTextColumn Width="Auto" Header="First Name" Binding="{Binding FirstName}" />
+                    <DataGridTextColumn Width="Auto" Header="Last Name" Binding="{Binding LastName}" />
+                    <!--<DataGridTextColumn Width="Auto" Header="Security Token" Binding="{Binding SecurityToken}" />-->
                     <DataGridCheckBoxColumn Width="Auto" Header="Is Admin" Binding="{Binding IsAdmin}" />
                 </DataGrid.Columns>
             </DataGrid>
@@ -42,12 +44,20 @@
                     <TextBox Text="{Binding Password, UpdateSourceTrigger=PropertyChanged}" Height="23" Width="150" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
-                    <Label Content="Security Token" />
-                    <TextBox Text="{Binding SecurityToken, UpdateSourceTrigger=PropertyChanged}" Height="23" Width="150" />
+                    <Label Content="First Name" />
+                    <TextBox Text="{Binding FirstName, UpdateSourceTrigger=PropertyChanged}" Height="23" Width="150" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
+                    <Label Content="Last Name" />
+                    <TextBox Text="{Binding LastName, UpdateSourceTrigger=PropertyChanged}" Height="23" Width="150" />
+                </StackPanel>
+                <!--<StackPanel Orientation="Horizontal">
+                    <Label Content="Security Token" />
+                    <TextBox Text="{Binding SecurityToken, UpdateSourceTrigger=PropertyChanged}" Height="23" Width="150" />
+                </StackPanel>-->
+                <StackPanel Orientation="Horizontal">
                     <Label Content="Is Admin" />
-                    <CheckBox IsChecked="{Binding IsAdmin, UpdateSourceTrigger=PropertyChanged}" Height="23" Width="150" />
+                    <CheckBox IsChecked="{Binding IsAdmin, UpdateSourceTrigger=PropertyChanged}" />
                 </StackPanel>
             </StackPanel>
         </StackPanel>

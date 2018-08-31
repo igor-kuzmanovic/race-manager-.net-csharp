@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
 
 namespace RaceManager.Client.ViewModels
 {
@@ -235,7 +236,7 @@ namespace RaceManager.Client.ViewModels
 
         private bool CanDelete()
         {
-            return SelectedUser != null;
+            return SelectedUser != null && SelectedUser.Username != MainWindowViewModel.CurrentUser.Username;
         }
 
         private void OnSave()
@@ -261,7 +262,7 @@ namespace RaceManager.Client.ViewModels
         private bool CanSave()
         {
             return !string.IsNullOrWhiteSpace(Username)
-                && !Users.Select(u => u.Username.ToLower()).Contains(Username.ToLower())
+                && !Users.Any(u => u.Username.ToLower() == Username.ToLower())
                 && !string.IsNullOrWhiteSpace(Password)
                 && !string.IsNullOrWhiteSpace(FirstName)
                 && !string.IsNullOrWhiteSpace(LastName);
