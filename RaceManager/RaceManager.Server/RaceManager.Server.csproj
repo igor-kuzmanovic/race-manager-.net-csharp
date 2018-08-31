@@ -81,6 +81,7 @@
   <ItemGroup>
     <Compile Include="DataAccess\Core\Domain\User.cs" />
     <Compile Include="DataAccess\Core\Repositories\IUserRepository.cs" />
+    <Compile Include="DataAccess\Configurations\RaceManagerDbInitializer.cs" />
     <Compile Include="DataAccess\Persistence\Repositories\UserRepository.cs" />
     <Compile Include="Service\Core\DataMappers\ILoginMapper.cs" />
     <Compile Include="Service\Core\DataMappers\IUserMapper.cs" />
@@ -112,7 +113,7 @@
     <Compile Include="DataAccess\Core\Repositories\IRaceRepository.cs" />
     <Compile Include="DataAccess\Core\Repositories\IRepository.cs" />
     <Compile Include="DataAccess\Core\Repositories\IVehicleRepository.cs" />
-    <Compile Include="DataAccess\Migrations\Configuration.cs" />
+    <Compile Include="DataAccess\Configurations\RaceManagerDbConfiguration.cs" />
     <Compile Include="DataAccess\Persistence\RaceManagerContext.cs" />
     <Compile Include="DataAccess\Persistence\Repositories\DriverRepository.cs" />
     <Compile Include="DataAccess\Persistence\Repositories\RaceRepository.cs" />

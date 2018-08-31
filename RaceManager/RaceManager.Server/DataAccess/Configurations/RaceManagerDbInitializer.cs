@@ -1,21 +1,18 @@
 ﻿using RaceManager.Server.DataAccess.Core.Domain;
-using RaceManager.Server.DataAccess.Persistence;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Web;
 
-namespace RaceManager.Server.DataAccess.Migrations
+namespace RaceManager.Server.DataAccess.Persistence.Configurations
 {
-    internal sealed class Configuration : DbMigrationsConfiguration<RaceManagerContext>
+    class RaceManagerDbInitializer : DropCreateDatabaseIfModelChanges<RaceManagerDbContext>
     {
-        public Configuration()
-        {
-            AutomaticMigrationsEnabled = true;
-        }
+        public RaceManagerDbInitializer() { }
 
-        protected override void Seed(RaceManagerContext context)
+        protected override void Seed(RaceManagerDbContext context)
         {
             var races = new List<Race>()
             {
@@ -119,6 +116,8 @@ namespace RaceManager.Server.DataAccess.Migrations
 
             foreach (var user in users)
                 context.Users.AddOrUpdate(u => u.Id, user);
+
+            context.SaveChanges();
         }
     }
 }

@@ -17,7 +17,7 @@ namespace RaceManager.Server.Service.Services
     {
         public RaceDTO Get(int id)
         {
-            using (var uow = new UnitOfWork(new RaceManagerContext()))
+            using (var uow = new UnitOfWork(new RaceManagerDbContext()))
             {
                 return RaceMapper.Instance.Map(uow.Races.Get(id));
             }
@@ -25,7 +25,7 @@ namespace RaceManager.Server.Service.Services
 
         public IEnumerable<RaceDTO> GetAll()
         {
-            using (var uow = new UnitOfWork(new RaceManagerContext()))
+            using (var uow = new UnitOfWork(new RaceManagerDbContext()))
             {
                 return RaceMapper.Instance.Map(uow.Races.GetAll());
             }
@@ -33,7 +33,7 @@ namespace RaceManager.Server.Service.Services
 
         public void Update(RaceDTO raceDTO)
         {
-            using (var uow = new UnitOfWork(new RaceManagerContext()))
+            using (var uow = new UnitOfWork(new RaceManagerDbContext()))
             {
                 var race = uow.Races.Get(raceDTO.Id);
                 race.EventDate = raceDTO.EventDate;
@@ -44,7 +44,7 @@ namespace RaceManager.Server.Service.Services
 
         public void Add(RaceDTO raceDTO)
         {
-            using (var uow = new UnitOfWork(new RaceManagerContext()))
+            using (var uow = new UnitOfWork(new RaceManagerDbContext()))
             {
                 uow.Races.Add(RaceMapper.Instance.Map(raceDTO));
                 uow.Complete();
@@ -53,7 +53,7 @@ namespace RaceManager.Server.Service.Services
 
         public void Remove(int id)
         {
-            using (var uow = new UnitOfWork(new RaceManagerContext()))
+            using (var uow = new UnitOfWork(new RaceManagerDbContext()))
             {
                 uow.Races.Remove(id);
                 uow.Complete();

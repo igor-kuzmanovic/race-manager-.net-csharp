@@ -1,5 +1,5 @@
-﻿using RaceManager.Server.DataAccess.Core;
-using RaceManager.Server.DataAccess.Core.Domain;
+﻿using RaceManager.Server.DataAccess.Core.Domain;
+using RaceManager.Server.DataAccess.Persistence.Configurations;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -8,9 +8,12 @@ using System.Web;
 
 namespace RaceManager.Server.DataAccess.Persistence
 {
-    class RaceManagerContext : DbContext
+    class RaceManagerDbContext : DbContext
     {
-        public RaceManagerContext() : base("RaceManagerDb") { }
+        public RaceManagerDbContext() : base("name=RaceManagerDbConnection")
+        {
+            Database.SetInitializer(new RaceManagerDbInitializer());
+        }
 
         public DbSet<Race> Races { get; set; }
         public DbSet<Driver> Drivers { get; set; }

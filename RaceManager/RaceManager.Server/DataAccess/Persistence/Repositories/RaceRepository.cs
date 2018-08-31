@@ -9,6 +9,6 @@ namespace RaceManager.Server.DataAccess.Persistence.Repositories
 {
     class RaceRepository : Repository<Race>, IRaceRepository
     {
-        public RaceRepository(RaceManagerContext context) : base(context) { }
+        public RaceRepository(RaceManagerDbContext context) : base(context) { }
     }
 }

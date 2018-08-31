@@ -11,10 +11,10 @@ namespace RaceManager.Server.DataAccess.Persistence.Repositories
 {
     abstract class Repository<TEntity> : IRepository<TEntity> where TEntity : Entity
     {
-        protected readonly RaceManagerContext _context;
+        protected readonly RaceManagerDbContext _context;
         protected readonly DbSet<TEntity> dbSet;
 
-        public Repository(RaceManagerContext context)
+        public Repository(RaceManagerDbContext context)
         {
             _context = context;
             dbSet = _context.Set<TEntity>();

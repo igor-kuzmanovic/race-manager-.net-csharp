@@ -10,9 +10,9 @@ namespace RaceManager.Server.DataAccess.Persistence
 {
     class UnitOfWork : IUnitOfWork
     {
-        private readonly RaceManagerContext _context;
+        private readonly RaceManagerDbContext _context;
 
-        public UnitOfWork(RaceManagerContext context)
+        public UnitOfWork(RaceManagerDbContext context)
         {
             _context = context;
             Races = new RaceRepository(_context);

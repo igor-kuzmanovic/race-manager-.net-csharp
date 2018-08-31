@@ -9,6 +9,6 @@ namespace RaceManager.Server.DataAccess.Persistence.Repositories
 {
     class DriverRepository : Repository<Driver>, IDriverRepository
     {
-        public DriverRepository(RaceManagerContext context) : base(context) { }
+        public DriverRepository(RaceManagerDbContext context) : base(context) { }
     }
 }

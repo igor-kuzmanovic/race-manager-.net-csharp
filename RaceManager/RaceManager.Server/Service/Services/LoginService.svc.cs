@@ -17,7 +17,7 @@ namespace RaceManager.Server.Service.Services
     {
         public LoginDTO LogIn(string username, string password)
         {
-            using (var uow = new UnitOfWork(new RaceManagerContext()))
+            using (var uow = new UnitOfWork(new RaceManagerDbContext()))
             {
                 if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
                     return new LoginDTO();
@@ -50,7 +50,7 @@ namespace RaceManager.Server.Service.Services
 
         public void LogOut(string securityToken)
         {
-            using (var uow = new UnitOfWork(new RaceManagerContext()))
+            using (var uow = new UnitOfWork(new RaceManagerDbContext()))
             {
                 if (string.IsNullOrWhiteSpace(securityToken))
                     return;
