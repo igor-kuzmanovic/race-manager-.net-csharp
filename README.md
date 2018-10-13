@@ -1,5 +1,5 @@
 # Race Manager
-A Race Manager project consisting of a client (WPF - MVVM) and a server (WCF, Entity Framework)
+A simple Race Manager project consisting of a client (WPF - MVVM) and a server (WCF, Entity Framework)
 
 # Bugs, Known Issues and Unimplemented Features
 * Race search needs to be implemented
